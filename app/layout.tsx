@@ -12,6 +12,7 @@ import { ScrollToTop } from "@/components/shared/scroll-to-top";
 
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -51,6 +52,7 @@ export default function RootLayout({
             </ThemeProvider>
           </Providers>
         </NuqsAdapter>
+        <SpeedInsights />
       </body>
     </html>
   );

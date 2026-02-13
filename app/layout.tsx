@@ -14,6 +14,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,6 +54,7 @@ export default function RootLayout({
           </Providers>
         </NuqsAdapter>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

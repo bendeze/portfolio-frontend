@@ -21,7 +21,7 @@ export function AboutSection() {
               
                 {
                   text:
-                    "Cisco Network Engineer • Backend Software Engineer (Python)\n\n",
+                    "Cisco Network Engineer • Backend Software Engineer (Python | Rust)\n\n",
                 },
               
                 { text: "Overview:\n", bold: true },

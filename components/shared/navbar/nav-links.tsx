@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation' 
 import { cn } from '@/lib/utils'
 import { navigation } from './nav-config'
+import { useTranslation } from '@/context/language-context'
 
 interface NavLinksProps {
   direction?: 'row' | 'column'
@@ -18,6 +19,7 @@ export function NavLinks({
   className
 }: NavLinksProps) {
   const pathname = usePathname()
+  const { t } = useTranslation()
   const isColumn = direction === 'column'
   const isHomePage = pathname === "/"
 
@@ -32,33 +34,32 @@ export function NavLinks({
       )}
     >
       {navigation.map((item) => {
-        // <--- 4. smart href logic starts here
         let href = item.href
 
         // If it is an anchor link (#) and we are NOT on home, prepend /
         if (item.href.startsWith('#') && !isHomePage) {
           href = `/${item.href}`
         }
-        // <--- Logic ends here
+
+        const nameKey = item.name.toLowerCase()
 
         return (
           <Link
-            key={item.name} // Better to use name as key since href changes dynamically
-            href={href}     // Use the new dynamic variable
+            key={item.name} 
+            href={href}     
             onClick={onClick}
             className={cn(
-              'transition-colors',
+              'transition-colors font-mono font-semibold uppercase tracking-[0.16em]',
               isColumn
-                ? 'text-muted-foreground hover:text-primary'
-                : 'text-foreground/60 hover:text-foreground/80',
-              // Optional: specific styling for active link if you want
-              pathname === item.href && "text-primary font-semibold" 
+                ? 'text-xs text-white/60 hover:text-white py-1.5'
+                : 'text-[10px] text-white/60 hover:text-white',
+              pathname === item.href && "text-white font-black" 
             )}
           >
-            {item.name}
+            {t(`nav.${nameKey}`)}
           </Link>
         )
       })}
     </nav>
   )
-}
+}

@@ -11,6 +11,7 @@ interface FooterSocialsProps {
   showTwitter?: boolean
   showYoutube?: boolean
   showModeToggle?: boolean
+  variant?: 'default' | 'navbar'
 }
 
 export function Socials({
@@ -20,19 +21,22 @@ export function Socials({
   showTwitter = true,
   showYoutube = false,
   showModeToggle = true,
+  variant = 'default',
 }: FooterSocialsProps) {
-  return (
-    <div className={cn("flex items-center gap-3", className)}>
-      
+  const isNavbar = variant === 'navbar'
+
+  const linksContent = (
+    <>
       {showGithub && (
         <Link
           href="https://github.com/bonheurNE07"
           target="_blank"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-white/60 hover:text-white transition-colors"
+          aria-label="GitHub Profile"
         >
           <MotionDiv
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            whileHover={{ scale: 1.15, y: -2 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
             <Github className="h-4 w-4" />
           </MotionDiv>
@@ -43,11 +47,12 @@ export function Socials({
         <Link
           href="https://www.linkedin.com/in/bonheur-ndeze-bne/"
           target="_blank"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-white/60 hover:text-white transition-colors"
+          aria-label="LinkedIn Profile"
         >
           <MotionDiv
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            whileHover={{ scale: 1.15, y: -2 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
             <Linkedin className="h-4 w-4" />
           </MotionDiv>
@@ -58,11 +63,12 @@ export function Socials({
         <Link
           href="https://x.com/ndeze_emmanuel"
           target="_blank"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-white/60 hover:text-white transition-colors"
+          aria-label="Twitter / X Profile"
         >
           <MotionDiv
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            whileHover={{ scale: 1.15, y: -2 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
             <Twitter className="h-4 w-4" />
           </MotionDiv>
@@ -73,17 +79,36 @@ export function Socials({
         <Link
           href="https://www.youtube.com/@NdezeBonheur"
           target="_blank"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-white/60 hover:text-white transition-colors"
+          aria-label="YouTube Channel"
         >
           <MotionDiv
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            whileHover={{ scale: 1.15, y: -2 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
             <YoutubeIcon className="h-4 w-4" />
           </MotionDiv>
         </Link>
       )}
+    </>
+  )
 
+  if (isNavbar) {
+    return (
+      <div 
+        className={cn(
+          "flex items-center gap-3 px-3 py-1.5 rounded-full border border-white/5 bg-zinc-950/40 backdrop-blur h-10 select-none",
+          className
+        )}
+      >
+        {linksContent}
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("flex items-center gap-3", className)}>
+      {linksContent}
       {showModeToggle && <ModeToggle />}
     </div>
   )

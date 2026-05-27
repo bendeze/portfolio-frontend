@@ -1,6 +1,3 @@
-"use client";
-
-import { parseAsInteger, useQueryState } from "nuqs";
 import {
   Pagination,
   PaginationContent,
@@ -9,51 +6,30 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"; // Adjust path to where you saved your component
+} from "@/components/ui/pagination";
 
 interface BlogPaginationProps {
   totalCount: number;
-  pageSize?: number; // Default Django page size is usually 10
+  currentPage: number;
+  pageSize?: number; // Django page size defaults to 2 here
   siblingCount?: number;
 }
 
 export function BlogPagination({
   totalCount,
-  pageSize = 10,
+  currentPage,
+  pageSize = 2,
   siblingCount = 1,
 }: BlogPaginationProps) {
-    const [currentPage, setPage] = useQueryState(
-    "page", 
-    parseAsInteger.withDefault(1).withOptions({
-      shallow: false, // Set to TRUE if you want instant updates without reloading
-      history: "push", // Allows user to use "Back" button
-      scroll: true, // Scroll to top on change
-    })
-  );
-  
-  //const searchParams = useSearchParams();
-  //const pathname = usePathname();
-  //const router = useRouter();
-
-  // 1. Get current page from URL (default to 1)
-  //const currentPage = Number(searchParams.get("page")) || 1;
   const totalPages = Math.ceil(totalCount / pageSize);
 
   // If there's only 1 page, don't show pagination
   if (totalPages <= 1) return null;
 
-  // Helper to handle click
-  const handlePageChange = (page: number, e: React.MouseEvent) => {
-    e.preventDefault();
-    setPage(page);
-  };
-
-  // 3. Logic to generate page numbers (e.g., [1, ..., 4, 5, 6, ..., 10])
+  // Logic to generate page numbers (e.g., [1, ..., 4, 5, 6, ..., 10])
   const generatePaginationItems = () => {
-    // If total pages is small, show all
     if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
- 
-    // Otherwise, calculate range
+
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
     const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
 
@@ -88,8 +64,7 @@ export function BlogPagination({
         {/* Previous Button */}
         <PaginationItem>
           <PaginationPrevious 
-            href={`?page=${currentPage - 1}`} // Fallback for SEO
-            onClick={(e) => handlePageChange(currentPage - 1, e)}
+            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
             aria-disabled={currentPage <= 1}
             className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
           />
@@ -108,8 +83,7 @@ export function BlogPagination({
           return (
             <PaginationItem key={page}>
               <PaginationLink
-                href={`?page=${page}`} // Fallback for SEO
-                onClick={(e) => handlePageChange(Number(page), e)}
+                href={`?page=${page}`}
                 isActive={page === currentPage}
               >
                 {page}
@@ -121,8 +95,7 @@ export function BlogPagination({
         {/* Next Button */}
         <PaginationItem>
           <PaginationNext 
-            href={`?page=${currentPage + 1}`}
-            onClick={(e) => handlePageChange(currentPage + 1, e)}
+            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
             aria-disabled={currentPage >= totalPages}
             className={currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}
           />

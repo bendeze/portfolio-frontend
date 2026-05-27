@@ -1,15 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
-import { parseAsInteger, useQueryState } from "nuqs";
-
-import { useBlogPosts } from "@/features/blog/hooks";
 import { BlogPagination } from "@/features/blog/components/blog-pagination";
 import { Markdown } from "@/components/shared/markdown";
-import BlogListSkeleton from "@/features/blog/components/blog-skeleton";
-
 import {
   Card,
   CardContent,
@@ -19,18 +12,32 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
-export default function BlogPageContent() {
-  // Ensure page is at least 1
-  const [page] = useQueryState("page", parseAsInteger.withDefault(1));
+interface BlogPost {
+  id: string;
+  author: string;
+  title: string;
+  slug: string;
+  summary: string;
+  content: string;
+  image: string | null;
+  reading_time: number;
+  status: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
-  const { data, isLoading, isError } = useBlogPosts(page);
+interface BlogPageContentProps {
+  postsData: {
+    count: number;
+    results: BlogPost[];
+  };
+  currentPage: number;
+}
 
-  const last_element = data?.results[data.results.length - 1];
-
-  // Calculate total items (Django usually sends this in 'count')
-  const totalCount = data?.count || 0; 
-  // IMPORTANT: Set this to match your Django Standard Page Size (settings.py)
-  const PAGE_SIZE = 2;
+export default function BlogPageContent({ postsData, currentPage }: BlogPageContentProps) {
+  const last_element = postsData.results[postsData.results.length - 1];
+  const totalCount = postsData.count; 
+  const PAGE_SIZE = 2; // Matches Django Standard Page Size
 
   return (
     <div className="container py-24 max-w-6xl px-8 sm:mx-auto ">
@@ -47,92 +54,80 @@ export default function BlogPageContent() {
 
         <Separator className="mb-12" />
 
-        {/* Error */}
-        {isError && (
-          <p className="text-center text-sm text-muted-foreground">
-            Failed to load blog posts.
-          </p>
-        )}
-
-        {/* Loading */}
-        {isLoading && <BlogListSkeleton />}
-
         {/* List */}
-        {!isLoading && data && (
-          <>
-          <div className="space-y-14">
-            {data.results.map((post) => (
-              <article key={post.id}>
-                <Card className="border-none shadow-none bg-background">
-                  {/* Image */}
-                  {post.image && (
+        <div className="space-y-14">
+          {postsData.results.map((post) => (
+            <article key={post.id}>
+              <Card className="border-none shadow-none bg-background">
+                {/* Image */}
+                {post.image && (
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="relative mb-6 h-40 w-full overflow-hidden rounded-lg">
+                    <div className="relative mb-6 h-48 w-full overflow-hidden rounded-lg">
                       <Image
                         src={post.image}
                         alt={post.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 768px"
                         priority={false}
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        className="object-cover transition-transform duration-300 hover:scale-[1.01]"
                       />
                     </div>
                   </Link>
-                  )}
+                )}
 
-                  <CardHeader className="p-0 space-y-3">
-                    {/* Meta row */}
-                    <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                      <span>{post.author}</span>
-                      <span>•</span>
-                      <time>
-                        {format(post.updated_at, "MMM dd, yyyy")}
-                      </time>
-                      <span>•</span>
-                      <span>{post.reading_time} min read</span>
-                      <Badge variant="secondary" className="ml-2">
-                        {post.status}
-                      </Badge>
-                    </div>
+                <CardHeader className="p-0 space-y-3">
+                  {/* Meta row */}
+                  <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                    <span>{post.author}</span>
+                    <span>•</span>
+                    <time>
+                      {format(new Date(post.updated_at), "MMM dd, yyyy")}
+                    </time>
+                    <span>•</span>
+                    <span>{post.reading_time} min read</span>
+                    <Badge variant="secondary" className="ml-2 capitalize">
+                      {post.status}
+                    </Badge>
+                  </div>
 
-                    {/* Title */}
-                    <CardTitle className="text-2xl leading-snug">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="hover:text-primary transition-colors"
-                      >
-                        {post.title}
-                      </Link>
-                    </CardTitle>
-                  </CardHeader>
+                  {/* Title */}
+                  <CardTitle className="text-2xl leading-snug">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </CardTitle>
+                </CardHeader>
 
-                  <CardContent className="p-0 mt-4">
-                    <Markdown
-                      content={post.summary}
-                      className="prose-sm line-clamp-4"
-                    />
+                <CardContent className="p-0 mt-4">
+                  <Markdown
+                    content={post.summary}
+                    className="prose-sm line-clamp-4"
+                  />
 
-                    <div className="mt-5">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="text-sm font-medium text-primary hover:underline"
-                      >
-                        Read article →
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <div className="mt-5">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      Read article →
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
 
-                {last_element?.id !== post.id && <Separator className="mt-14" />}
-              </article>
-            ))}
-          </div>
-          <BlogPagination 
-              totalCount={totalCount} 
-              pageSize={PAGE_SIZE} 
-            />
-          </>
-        )}
+              {last_element?.id !== post.id && <Separator className="mt-14" />}
+            </article>
+          ))}
+        </div>
+
+        <BlogPagination 
+          totalCount={totalCount} 
+          currentPage={currentPage}
+          pageSize={PAGE_SIZE} 
+        />
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export const projectQueryKeys = {
 export function useProjects() {
   return useQuery({
     queryKey: ["projects"], // Unique key for caching
-    queryFn: getProjects,
+    queryFn: () => getProjects(),
     staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
   });
 }

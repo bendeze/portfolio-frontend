@@ -13,6 +13,8 @@ interface BlogPaginationProps {
   currentPage: number;
   pageSize?: number; // Django page size defaults to 2 here
   siblingCount?: number;
+  category?: string;
+  search?: string;
 }
 
 export function BlogPagination({
@@ -20,11 +22,22 @@ export function BlogPagination({
   currentPage,
   pageSize = 2,
   siblingCount = 1,
+  category = "",
+  search = "",
 }: BlogPaginationProps) {
   const totalPages = Math.ceil(totalCount / pageSize);
 
   // If there's only 1 page, don't show pagination
   if (totalPages <= 1) return null;
+
+  // Compile pagination URL retaining other query parameters
+  const getHref = (page: number) => {
+    const params = new URLSearchParams();
+    params.set("page", page.toString());
+    if (category) params.set("category", category);
+    if (search) params.set("search", search);
+    return `?${params.toString()}`;
+  };
 
   // Logic to generate page numbers (e.g., [1, ..., 4, 5, 6, ..., 10])
   const generatePaginationItems = () => {
@@ -59,12 +72,12 @@ export function BlogPagination({
   };
 
   return (
-    <Pagination className="mt-12">
+    <Pagination className="mt-16">
       <PaginationContent>
         {/* Previous Button */}
         <PaginationItem>
           <PaginationPrevious 
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
+            href={currentPage > 1 ? getHref(currentPage - 1) : "#"}
             aria-disabled={currentPage <= 1}
             className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
           />
@@ -80,13 +93,14 @@ export function BlogPagination({
             );
           }
 
+          const pageNum = page as number;
           return (
-            <PaginationItem key={page}>
+            <PaginationItem key={pageNum}>
               <PaginationLink
-                href={`?page=${page}`}
-                isActive={page === currentPage}
+                href={getHref(pageNum)}
+                isActive={pageNum === currentPage}
               >
-                {page}
+                {pageNum}
               </PaginationLink>
             </PaginationItem>
           );
@@ -95,7 +109,7 @@ export function BlogPagination({
         {/* Next Button */}
         <PaginationItem>
           <PaginationNext 
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
+            href={currentPage < totalPages ? getHref(currentPage + 1) : "#"}
             aria-disabled={currentPage >= totalPages}
             className={currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}
           />

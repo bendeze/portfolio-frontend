@@ -51,9 +51,9 @@ export function NavLinks({
             className={cn(
               'transition-colors font-mono font-semibold uppercase tracking-[0.16em]',
               isColumn
-                ? 'text-xs text-white/60 hover:text-white py-1.5'
-                : 'text-[10px] text-white/60 hover:text-white',
-              pathname === item.href && "text-white font-black" 
+                ? 'text-xs text-muted-foreground hover:text-foreground py-1.5'
+                : 'text-[10px] text-muted-foreground hover:text-foreground',
+              pathname === item.href && "text-foreground font-black" 
             )}
           >
             {t(`nav.${nameKey}`)}

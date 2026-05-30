@@ -50,6 +50,7 @@ const BlogPostAPISchema = z.object({
   image: z.string().url().nullable().optional(),
   reading_time: z.number().nullable().optional().default(0),
   status: BackendBlogStatusEnum,
+  likes_count: z.number().optional().default(0),
   // Backend returns serialized relations, not flat string arrays
   tags: z.array(TagAPISchema).optional().default([]),
   category: CategoryAPISchema.nullable().optional(),
@@ -70,6 +71,7 @@ export const BlogPostSchema = BlogPostAPISchema.transform((apiPost) => ({
   content: apiPost.content,
   image: apiPost.image,
   reading_time: apiPost.reading_time || 0,
+  likes_count: apiPost.likes_count ?? 0,
   status: statusMap[apiPost.status],
   // Transform Tag objects to string names for list rendering
   tags: apiPost.tags.map((tag) => tag.name),

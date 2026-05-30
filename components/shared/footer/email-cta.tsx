@@ -10,8 +10,8 @@ export function EmailCTA() {
       asChild
     >
       <a href="mailto:bonheurndezenc@gmail.com">
-        <Mail className="h-4 w-4" />
-        Contact me
+        <Mail className="h-3 w-3" />
+        Write me an email
       </a>
     </Button>
   )

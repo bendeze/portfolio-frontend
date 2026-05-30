@@ -4,19 +4,47 @@ import BlogListSkeleton from "@/features/blog/components/blog-skeleton";
 import { safeFetch } from "@/lib/api-fetch";
 import { PaginatedResponseSchema, BlogPostSchema } from "@/features/blog/schemas";
 
-// Explicitly define ISR revalidation strategy (1 hour)
-export const revalidate = 3600;
+// Real-time server dynamic fetching for instant search & filters
+export const revalidate = 0;
 
 interface BlogPageProps {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ 
+    page?: string;
+    category?: string;
+    search?: string;
+  }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const params = await searchParams;
   const currentPage = params.page ? parseInt(params.page, 10) : 1;
+  const currentCategory = params.category || "";
+  const currentSearch = params.search || "";
 
-  // Server-side native fetch with automatic deduplication, timeout, and fallbacks
-  const responseData = await safeFetch<any>(`/blog/?page=${currentPage}`, {}, null);
+  // Construct server-side fetch URL
+  let fetchUrl = `/blog/?page=${currentPage}`;
+  if (currentCategory) {
+    fetchUrl += `&category__slug=${encodeURIComponent(currentCategory)}`;
+  }
+  if (currentSearch) {
+    fetchUrl += `&search=${encodeURIComponent(currentSearch)}`;
+  }
+
+  // Debug logs to verify server-side parameters in terminal
+  console.log(`[BlogPage Server Component] Loading page: ${currentPage}, Category: "${currentCategory}", Search: "${currentSearch}"`);
+  console.log(`[BlogPage Server Component] Fetching URL from Django: ${fetchUrl}`);
+
+  // FORCE cache: "no-store" to completely bypass Next.js server-side Data Caching
+  const responseData = await safeFetch<any>(
+    fetchUrl, 
+    { 
+      cache: "no-store", 
+      next: { revalidate: 0 } 
+    }, 
+    null
+  );
+
+  console.log(`[BlogPage Server Component] Fetched articles count: ${responseData?.results?.length || 0}`);
 
   let postsData = { count: 0, results: [] as any[] };
   if (responseData) {
@@ -34,7 +62,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <Suspense fallback={<BlogListSkeleton />}>
-      <BlogPageContent postsData={postsData} currentPage={currentPage} />
+      <BlogPageContent 
+        postsData={postsData} 
+        currentPage={currentPage}
+        currentCategory={currentCategory}
+        currentSearch={currentSearch}
+      />
     </Suspense>
   );
 }

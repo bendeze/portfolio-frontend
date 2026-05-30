@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import Providers from "@/providers/providers";
 import { ThemeProvider } from "@/providers/theme-provider";
 
@@ -15,19 +13,14 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans" 
-});
-
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ["latin"],
-  variable: "--font-mono" 
-});
-
 export const metadata: Metadata = {
   title: "E. Ndeze Bonheur",
   description: "Backend Developer & Network Engineer Portfolio",
+  icons: {
+    icon: "/profile.png",
+    shortcut: "/profile.png",
+    apple: "/profile.png",
+  },
 };
 
 export default function RootLayout({
@@ -36,13 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn(inter.variable, jetbrainsMono.variable)}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+      </head>
       <body
         suppressHydrationWarning
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.className
-        )}
+        className="min-h-screen bg-[#030303] text-foreground font-sans antialiased overflow-x-hidden"
       >
         <NuqsAdapter>
           <Providers>
@@ -52,13 +47,15 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Navbar />
-              <main className="flex-1">
-                {children}
-              </main>
+              <div className="w-full mx-auto min-h-screen flex flex-col relative">
+                <Navbar />
+                <main className="flex-1">
+                  {children}
+                </main>
+                <Footer />
+              </div>
               <Toaster />
               <ScrollToTop />
-              <Footer />
             </ThemeProvider>
           </Providers>
         </NuqsAdapter>

@@ -31,7 +31,7 @@ export function Socials({
         <Link
           href="https://github.com/bonheurNE07"
           target="_blank"
-          className="text-white/60 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="GitHub Profile"
         >
           <MotionDiv
@@ -47,7 +47,7 @@ export function Socials({
         <Link
           href="https://www.linkedin.com/in/bonheur-ndeze-bne/"
           target="_blank"
-          className="text-white/60 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="LinkedIn Profile"
         >
           <MotionDiv
@@ -63,7 +63,7 @@ export function Socials({
         <Link
           href="https://x.com/ndeze_emmanuel"
           target="_blank"
-          className="text-white/60 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Twitter / X Profile"
         >
           <MotionDiv
@@ -79,7 +79,7 @@ export function Socials({
         <Link
           href="https://www.youtube.com/@NdezeBonheur"
           target="_blank"
-          className="text-white/60 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
           aria-label="YouTube Channel"
         >
           <MotionDiv
@@ -97,7 +97,7 @@ export function Socials({
     return (
       <div 
         className={cn(
-          "flex items-center gap-3 px-3 py-1.5 rounded-full border border-white/5 bg-zinc-950/40 backdrop-blur h-10 select-none",
+          "flex items-center gap-3 px-3 py-1.5 rounded-full border border-border bg-muted/40 backdrop-blur h-10 select-none",
           className
         )}
       >

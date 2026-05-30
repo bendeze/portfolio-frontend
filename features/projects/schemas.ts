@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-// 0. Define the Technology Relation Shape
+// 0. Define the Category Relation Shape
+const CategoryAPISchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  slug: z.string(),
+});
+
+// Define the Technology Relation Shape
 const TechnologyAPISchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -20,7 +27,9 @@ const ProjectAPISchema = z.object({
   repository_url: z.string().url().nullable().optional(), // Backend name
   live_demo_url: z.string().url().nullable().optional(), // Backend name
   is_featured: z.boolean().default(false), // Backend name
+  claps_count: z.number().default(0), // Backend name
   created_at: z.string(),
+  category: CategoryAPISchema.nullable().optional(), // Nested category relation
   // Backend now returns fully serialized Technology objects
   technologies: z.array(TechnologyAPISchema).optional().default([]), 
 });
@@ -44,11 +53,13 @@ export const ProjectSchema = ProjectAPISchema.transform((apiProject) => ({
   description: apiProject.summary, // Map summary -> description
   content: apiProject.content, // Map content -> content
   image: apiProject.image,
+  category: apiProject.category ? apiProject.category.name : null, // Extract category name
   // Transform the technology objects list into an array of string names for UI components
   technologies: apiProject.technologies.map((tech) => tech.name),
   demo_link: apiProject.live_demo_url, // Map live_demo_url -> demo_link
   repo_link: apiProject.repository_url, // Map repository_url -> repo_link
   featured: apiProject.is_featured, // Map is_featured -> featured
+  claps: apiProject.claps_count, // Map claps_count -> claps
   created_at: apiProject.created_at,
 }));
 

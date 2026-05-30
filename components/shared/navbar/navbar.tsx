@@ -44,7 +44,7 @@ export function Navbar() {
         mass: 0.9,
         delay: 0.05     // Deliberate 50ms easing buffer delay
       }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#030303]/75 backdrop-blur-md"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/75 backdrop-blur-md"
     >
       <div className="container flex h-16 items-center justify-between mx-auto px-4 md:px-8">
         <BrandLogo />
@@ -61,9 +61,9 @@ export function Navbar() {
             <Socials variant="navbar" showModeToggle={false} />
 
             {/* Pill 2: Settings (Theme + Language) */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/5 bg-zinc-950/40 backdrop-blur h-10 select-none">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-border bg-muted/40 backdrop-blur h-10 select-none">
               <ModeToggle />
-              <div className="h-4 w-[1px] bg-white/10 mx-0.5" />
+              <div className="h-4 w-[1px] bg-border mx-0.5" />
               <LanguageToggler />
             </div>
           </div>

@@ -74,7 +74,7 @@ export const translations = {
 
       placeholders: {
       name: "Bonheur Emmanuel",
-      email: "[bonheur@example.com](mailto:bonheur@example.com)",
+      email: "bonheur.ndeze@example.com)",
       subject: "Backend Architecture / Network Infrastructure",
       message: "Tell me about your project, technical challenges, infrastructure goals, or scaling requirements..."
       },
@@ -319,7 +319,7 @@ export const translations = {
 
       placeholders: {
       name: "Bonheur Emmanuel",
-      email: "[bonheur@exemple.com](mailto:bonheur@exemple.com)",
+      email: "bonheur.ndeze@exemple.com)",
       subject: "Architecture backend / Infrastructure réseau",
       message: "Parlez-moi de votre projet, de vos défis techniques ou de votre infrastructure actuelle..."
       },

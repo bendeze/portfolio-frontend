@@ -55,9 +55,9 @@ export function ContactForm() {
   return (
     <div className="w-full">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:space-y-12"> 
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:space-y-6"> 
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-6">
             {/* Name Field */}
             <FormField
               control={form.control}
@@ -128,8 +128,9 @@ export function ContactForm() {
                      placeholder={t("contact.placeholders.message")}
                      className={cn(
                        inputClasses,
-                       "min-h-[140px] max-h-[300px] py-4 resize-none leading-relaxed overflow-y-auto"
+                       "h-[240px] py-4 resize-none leading-relaxed overflow-y-auto"
                      )}
+                     style={{ fieldSizing: "fixed" } as React.CSSProperties}
                      {...field}
                    />
                 </FormControl>

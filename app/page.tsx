@@ -7,6 +7,8 @@ import { SkillsSection } from "@/components/sections/skills";
 import { ContactSection } from "@/components/sections/contact";
 import { safeFetch } from "@/lib/api-fetch";
 
+export const dynamic = "force-dynamic";
+
 interface BlogApiResponse {
   results: BlogPost[];
 }

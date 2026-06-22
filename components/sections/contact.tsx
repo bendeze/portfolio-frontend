@@ -156,11 +156,12 @@ export function ContactSection() {
               onMouseLeave={() => setIsHoveringForm(false)}
               className="w-full lg:col-span-7"
             >
-              <div className="bg-white dark:bg-[#030303] backdrop-blur-2xl p-6 sm:p-10 rounded-3xl border border-white/5 dark:border-black/5 shadow-2xl relative overflow-hidden">
+              <div className="bg-white dark:bg-[#030303] backdrop-blur-2xl p-6 sm:p-10 rounded-3xl border border-white/5 dark:border-black/5 shadow-2xl relative overflow-hidden flex flex-col">
                 <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/[0.02] dark:from-indigo-500/[0.05] to-transparent pointer-events-none" />
-                <ContactForm />
+                <div className="overflow-y-auto flex-1">
+                  <ContactForm />
+                </div>
               </div>
-            </div>
 
           </div>
         </motion.div>

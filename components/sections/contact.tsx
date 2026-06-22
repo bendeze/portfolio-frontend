@@ -121,7 +121,7 @@ export function ContactSection() {
       className="relative w-full lg:h-[120vh] flex items-center justify-center px-4 py-10 sm:px-6 lg:px-0 lg:py-0 bg-background dark:bg-[#030303] overflow-hidden"
     >
       {/* Cinematic ambient background glow behind the macro-container */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] rounded-full bg-gray-500/5 dark:bg-gray-500/10 blur-[90px] sm:blur-[130px] pointer-events-none -z-10 animate-pulse duration-[8000ms]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] rounded-full bg-gray-500/5 dark:bg-gray-500/10 blur-[90px] sm:blur-[130px] pointer-events-none" />
 
       <div className="w-full lg:sticky lg:top-0 lg:h-screen flex items-center justify-center py-6 sm:py-8 lg:py-0">
         <motion.div
@@ -156,12 +156,13 @@ export function ContactSection() {
               onMouseLeave={() => setIsHoveringForm(false)}
               className="w-full lg:col-span-7"
             >
-              <div className="bg-white dark:bg-[#030303] backdrop-blur-2xl p-6 sm:p-10 rounded-3xl border border-white/5 dark:border-black/5 shadow-2xl relative overflow-hidden flex flex-col">
+              <div className="bg-white dark:bg-[#030303] backdrop-blur-2xl p-6 sm:p-10 rounded-3xl border border-white/5 dark:border-black/5 shadow-2xl relative overflow-hidden flex flex-col h-full">
                 <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/[0.02] dark:from-indigo-500/[0.05] to-transparent pointer-events-none" />
                 <div className="overflow-y-auto flex-1">
                   <ContactForm />
                 </div>
               </div>
+            </div>
 
           </div>
         </motion.div>

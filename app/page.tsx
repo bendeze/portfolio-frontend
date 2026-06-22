@@ -33,8 +33,8 @@ export default async function Home() {
       <AboutSection />
       <TechMarqueeSection />
       <PlatformsSection />
-      <YoutubeVideosSection videos={youtubeVideos} />
       <BlogSection posts={posts} />
+      <YoutubeVideosSection videos={youtubeVideos} />
       <ContactSection />
     </div>
   );

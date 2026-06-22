@@ -91,15 +91,18 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
       >
         {/* Section Header Row */}
         <motion.div
-          variants={headerVariants}
-          className="flex items-center justify-between w-full mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div className="space-y-2 text-left">
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500 dark:text-zinc-400">
-              {t("youtube.badge") || "04 / MEDIA"}
+              {t("youtube.badge") || "MEDIA"}
             </span>
             <h2
-              id="videos-heading" 
+              id="videos-heading"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white font-sans font-medium leading-none tracking-tight"
             >
               {t("youtube.title") || "My Latest Videos"}
@@ -107,10 +110,10 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
           </div>
 
           <Link
-            href="https://youtube.com"
+            href="https://www.youtube.com/@NdezeBonheur"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2.5 rounded-full border border-gray-300 dark:border-zinc-800 text-sm font-medium hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors bg-white dark:bg-[#030303] text-gray-900 dark:text-zinc-100 font-mono"
+            className="w-full sm:w-auto text-center px-6 py-3 sm:py-2.5 rounded-full border border-gray-300 dark:border-zinc-800 text-sm font-medium hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors bg-white dark:bg-[#030303] text-gray-900 dark:text-zinc-100 font-mono"
           >
             {t("youtube.viewChannel") || "Go to Channel"}
           </Link>

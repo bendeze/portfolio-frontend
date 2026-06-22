@@ -3,6 +3,8 @@ import BlogPageContent from "@/features/blog/components/blog-content";
 import BlogListSkeleton from "@/features/blog/components/blog-skeleton";
 import { safeFetch } from "@/lib/api-fetch";
 import { PaginatedResponseSchema, BlogPostSchema } from "@/features/blog/schemas";
+import { YoutubeVideosSection } from "@/components/sections/youtube-videos";
+import { getLatestYouTubeVideos } from "@/lib/youtube";
 
 // Real-time server dynamic fetching for instant search & filters
 export const revalidate = 0;
@@ -60,14 +62,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     }
   }
 
+  // Fetch YouTube Videos
+  const youtubeChannelId = process.env.YOUTUBE_CHANNEL_ID || "";
+  const youtubeVideos = await getLatestYouTubeVideos(youtubeChannelId, 10);
+
   return (
-    <Suspense fallback={<BlogListSkeleton />}>
-      <BlogPageContent 
-        postsData={postsData} 
-        currentPage={currentPage}
-        currentCategory={currentCategory}
-        currentSearch={currentSearch}
-      />
-    </Suspense>
+    <div className="flex flex-col min-h-screen">
+      <Suspense fallback={<BlogListSkeleton />}>
+        <BlogPageContent 
+          postsData={postsData} 
+          currentPage={currentPage}
+          currentCategory={currentCategory}
+          currentSearch={currentSearch}
+        />
+      </Suspense>
+      
+      {/* Show YouTube Videos Section below the blog content */}
+      <YoutubeVideosSection videos={youtubeVideos} />
+    </div>
   );
 }

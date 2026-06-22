@@ -5,7 +5,9 @@ import { PlatformsSection } from "@/components/sections/platforms";
 import { BlogSection, BlogPost } from "@/components/sections/blog";
 import { SkillsSection } from "@/components/sections/skills";
 import { ContactSection } from "@/components/sections/contact";
+import { YoutubeVideosSection } from "@/components/sections/youtube-videos";
 import { safeFetch } from "@/lib/api-fetch";
+import { getLatestYouTubeVideos } from "@/lib/youtube";
 
 export const dynamic = "force-dynamic";
 
@@ -22,12 +24,16 @@ export default async function Home() {
 
   const posts = blogData?.results || [];
 
+  const youtubeChannelId = process.env.YOUTUBE_CHANNEL_ID || "";
+  const youtubeVideos = await getLatestYouTubeVideos(youtubeChannelId, 10);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
       <AboutSection />
       <TechMarqueeSection />
       <PlatformsSection />
+      <YoutubeVideosSection videos={youtubeVideos} />
       <BlogSection posts={posts} />
       <ContactSection />
     </div>

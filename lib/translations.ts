@@ -245,6 +245,11 @@ export const translations = {
         instagramGuide: "Instagram Guide",
         instagramDesc: "Instagram does not support direct link shares. Copy the link using the copy button above and paste it as a sticker in your Stories or add it directly to your Bio!"
       }
+    },
+    youtube: {
+      badge: "04 / MEDIA",
+      title: "My Latest Videos",
+      viewChannel: "Go to Channel",
     }
   },
   fr: {
@@ -490,6 +495,11 @@ export const translations = {
         instagramGuide: "Guide Instagram",
         instagramDesc: "Instagram ne permet pas le partage de liens directs. Copiez le lien du projet avec le bouton ci-dessus et ajoutez-le en sticker dans vos Stories ou dans votre Bio !"
       }
+    },
+    youtube: {
+      badge: "04 / MÉDIA",
+      title: "Mes Dernières Vidéos",
+      viewChannel: "Voir la chaîne",
     }
   }
 } as const;

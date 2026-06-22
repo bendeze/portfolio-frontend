@@ -125,13 +125,13 @@ export function ContactForm() {
                 <FormLabel className="text-xs font-mono uppercase tracking-wider text-gray-900 dark:text-gray-100">{t("contact.message")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder={t("contact.placeholders.message")}
-                    className={cn(
-                      inputClasses,
-                      "min-h-[140px] py-4 resize-none leading-relaxed"
-                    )}
-                    {...field}
-                  />
+                     placeholder={t("contact.placeholders.message")}
+                     className={cn(
+                       inputClasses,
+                       "min-h-[140px] max-h-[300px] py-4 resize-none leading-relaxed overflow-y-auto"
+                     )}
+                     {...field}
+                   />
                 </FormControl>
                 <FormMessage className="text-xs text-gray-500/90 font-mono mt-1" />
               </FormItem>

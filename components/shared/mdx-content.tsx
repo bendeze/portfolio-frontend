@@ -1,6 +1,8 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 
+import { DiagramCodeDetector, MermaidDiagram, PlantUMLDiagram, SchemaDiagram } from "@/components/diagrams";
+
 // Define your custom components (like standard HTML or your own React components)
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -10,7 +12,11 @@ const components = {
     <h2 {...props} className="text-2xl font-semibold tracking-tight mt-8 mb-4" />
   ),
   p: (props: React.HTMLAttributes<HTMLHeadingElement>) => <p {...props} className="leading-7 [&:not(:first-child)]:mt-6" />,
-  // Add more as needed (ul, ol, li, code, etc.)
+  pre: (props: any) => <DiagramCodeDetector {...props} />,
+  Mermaid: (props: any) => <MermaidDiagram chart={props.chart || props.children} {...props} />,
+  PlantUML: (props: any) => <PlantUMLDiagram code={props.code || props.children} {...props} />,
+  DatabaseSchema: (props: any) => <SchemaDiagram code={props.code || props.sql || props.children} {...props} />,
+  SchemaViewer: (props: any) => <SchemaDiagram code={props.code || props.sql || props.children} {...props} />,
 };
 
 const options = {

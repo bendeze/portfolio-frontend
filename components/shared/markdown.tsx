@@ -2,6 +2,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 
+import { DiagramCodeDetector } from "@/components/diagrams";
+
 interface MarkdownProps {
   content: string;
   className?: string;
@@ -38,17 +40,31 @@ export function Markdown({ content, className }: MarkdownProps) {
             <ul className="list-disc pl-6" {...props} />
           ),
           // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+          pre: ({ node, children, ...props }: any) => (
+            <DiagramCodeDetector
+              {...props}
+              fallbackRenderer={(fbProps) => (
+                <pre className="block rounded-lg bg-muted p-4 text-sm overflow-x-auto">
+                  {fbProps.children}
+                </pre>
+              )}
+            >
+              {children}
+            </DiagramCodeDetector>
+          ),
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
           code: ({ node, inline, className, children, ...props }: any) =>
             inline ? (
               <code
                 className="rounded bg-muted px-1 py-0.5 text-sm"
                 {...props}
-              />
+              >
+                {children}
+              </code>
             ) : (
-              <code
-                className="block rounded-lg bg-muted p-4 text-sm"
-                {...props}
-              />
+              <code className={className} {...props}>
+                {children}
+              </code>
             ),
         }}
       >

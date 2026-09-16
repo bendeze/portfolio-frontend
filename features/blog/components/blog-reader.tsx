@@ -12,6 +12,7 @@ import { likeBlogPost } from "@/features/blog/api";
 
 import { BlogPost } from "@/features/blog/types";
 import { Heading } from "@/features/blog/utils/headings";
+import { DiagramCodeDetector, MermaidDiagram, PlantUMLDiagram, SchemaDiagram } from "@/components/diagrams";
 
 interface BlogReaderProps {
   post: BlogPost;
@@ -375,7 +376,26 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
         {children}
       </p>
     ),
-    pre: ({ children }: any) => <CodeBlock>{children}</CodeBlock>,
+    pre: ({ children, ...props }: any) => (
+      <DiagramCodeDetector
+        {...props}
+        fallbackRenderer={(fbProps) => <CodeBlock>{fbProps.children}</CodeBlock>}
+      >
+        {children}
+      </DiagramCodeDetector>
+    ),
+    Mermaid: ({ chart, children, ...props }: any) => (
+      <MermaidDiagram chart={chart || children} {...props} />
+    ),
+    PlantUML: ({ code, children, ...props }: any) => (
+      <PlantUMLDiagram code={code || children} {...props} />
+    ),
+    DatabaseSchema: ({ code, sql, children, ...props }: any) => (
+      <SchemaDiagram code={code || sql || children} {...props} />
+    ),
+    SchemaViewer: ({ code, sql, children, ...props }: any) => (
+      <SchemaDiagram code={code || sql || children} {...props} />
+    ),
     code: ({ children }: any) => (
       <code className="text-gray-500 dark:text-gray-200 bg-gray-500/[0.04] dark:bg-gray-400/[0.04] border border-gray-500/10 dark:border-gray-400/10 px-1.5 py-0.5 rounded font-mono text-[13px] font-bold">
         {children}

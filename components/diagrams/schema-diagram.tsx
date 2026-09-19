@@ -343,10 +343,10 @@ export function SchemaDiagram({
                   onMouseEnter={() => setHighlightedTable(table.name)}
                   onMouseLeave={() => setHighlightedTable(null)}
                   className={cn(
-                    "rounded-xl border bg-card/60 dark:bg-zinc-900/60 shadow-xs backdrop-blur-xs overflow-hidden transition-all duration-200",
+                    "rounded-lg border bg-zinc-50/50 dark:bg-zinc-900/40 shadow-none overflow-hidden transition-colors duration-150",
                     isTargeted
-                      ? "border-blue-500/80 shadow-md ring-1 ring-blue-500/20"
-                      : "border-border/60 hover:border-border"
+                      ? "border-blue-500 ring-1 ring-blue-500"
+                      : "border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
                   )}
                 >
                   {/* Table Header */}

@@ -160,7 +160,7 @@ export function PlantUMLDiagram({
       ) : (
         svgUrl && (
           <div className={`flex flex-col items-center justify-center w-full space-y-4 ${isLoading ? "sr-only" : "block"}`}>
-            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-lg p-2 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xs">
+            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-lg p-3 bg-zinc-50/50 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-zinc-800/60 shadow-none">
               {/* PlantUML SVG Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

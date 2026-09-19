@@ -492,7 +492,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
         /> 
       </div>
 
-      <div className="w-full bg-background dark:bg-[#030303] text-foreground min-h-screen py-12 px-4 md:px-8 lg:px-12 select-text">
+      <div className="w-full bg-background text-foreground min-h-screen py-12 px-4 md:px-8 lg:px-12 select-text">
         <div className="max-w-7xl mx-auto">
           
           <Button variant="ghost" asChild className="mb-6 -ml-4 rounded-full group cursor-pointer hover:bg-black/[0.03] dark:hover:bg-white/[0.03] transition-colors">
@@ -592,14 +592,14 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
 
                 <div className="rounded-xl border border-border/50 bg-[#f9f9f9]/80 dark:bg-[#060606]/40 p-4 space-y-3 shadow-sm backdrop-blur-md select-none">
                   <h5 className="text-[12px] font-bold text-foreground tracking-tight leading-snug font-mono">
-                    {t("projects.reader.promoTitle") || "Discover Boutika"}
+                    {t("projects.reader.promoTitle") || "Discover BiasharaOne"}
                   </h5>
                   <p className="text-[10px] leading-relaxed text-muted-foreground font-mono">
-                    {t("projects.reader.promoDesc") || "Boutika is a modern digital marketplace that helps businesses showcase products, connect with customers, and grow their presence through a seamless online experience."}
+                    {t("projects.reader.promoDesc") || "BiasharaOne is a unified digital commerce ecosystem helping businesses manage inventory, sales, and customer relations."}
                   </p>
-                  <Button variant="outline" size="sm" asChild className="w-full bg-white dark:bg-zinc-950 border-border hover:bg-black/[0.02] dark:hover:bg-white/[0.02] hover:text-foreground text-[10px] font-bold py-1 h-7 cursor-pointer shadow-xs rounded font-mono transition-colors">
-                    <a href="" target="_blank" rel="noopener noreferrer">
-                      {t("projects.reader.promoBtn") || "Visit Boutika"}
+                  <Button variant="outline" size="sm" asChild className="w-full bg-white dark:bg-zinc-950 border-border hover:bg-black/[0.02] dark:hover:bg-white/[0.02] hover:text-[#ebcb00] text-[10px] font-bold py-1 h-7 cursor-pointer shadow-xs rounded font-mono transition-colors">
+                    <a href="https://github.com/biasharaOne" target="_blank" rel="noopener noreferrer">
+                      {t("projects.reader.promoBtn") || "Visit BiasharaOne"}
                     </a>
                   </Button>
                 </div>
@@ -718,8 +718,8 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
               </div>
 
               {/* AUTHOR PROFILE CARD */}
-              <div className="w-full p-5 min-h-[6rem] bg-[#030303] dark:bg-gray-50 hover:bg-black/90 dark:hover:bg-white/90 text-gray-50 border border-border/40 rounded-3xl flex flex-row items-center gap-5 transition-all duration-300 shadow-sm backdrop-blur-md select-none mt-8">
-                <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 relative border border-border/20 shadow-md">
+              <div className="w-full p-5 min-h-[6rem] bg-transparent hover:border-[#2a7c13] dark:hover:border-[#ebcb00] text-foreground border border-dashed border-zinc-300 dark:border-zinc-800 rounded-3xl flex flex-row items-center gap-5 transition-all duration-300 shadow-xs select-none mt-8">
+                <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 relative border border-dashed border-zinc-300 dark:border-zinc-800 shadow-xs">
                   <img
                     src="/blog-profile.png"
                     alt="Ndeze Bonheur Emmanuel"
@@ -732,14 +732,14 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
 
                 <div className="flex-1 space-y-1 select-text">
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-                    <h4 className="text-sm font-black tracking-tight text-white dark:text-gray-950 font-mono uppercase">
+                    <h4 className="text-sm font-bold tracking-tight text-foreground font-mono uppercase">
                       Ndeze Bonheur Emmanuel
                     </h4>
                     <span className="text-[10px] font-mono text-zinc-500 select-all font-semibold">
                       bonheurndezenc@gmail.com
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed text-gray-100 dark:text-gray-700 font-sans font-light">
+                  <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 font-mono font-light">
                     {t("blog.reader.fromGoma") || "From Goma to the world, engineering scalable backend architectures and robust network infrastructures."}
                   </p>
                 </div>
@@ -781,7 +781,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                 <h3 className="text-lg font-black tracking-tight text-zinc-900 dark:text-white font-mono uppercase">
                   {t("projects.reader.shareTitle") || "Share Project"}
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-sans">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-mono">
                   {t("projects.reader.shareDesc") || "Share the project with your network."}
                 </p>
               </div>
@@ -885,7 +885,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                   </a>
                 </div>
 
-                <div className="bg-gradient-to-r from-purple-500/[0.04] via-pink-500/[0.04] to-orange-500/[0.04] dark:from-purple-500/10 dark:via-pink-500/10 dark:to-orange-500/10 border border-pink-500/10 dark:border-pink-500/20 rounded-[20px] p-4 text-[11px] leading-relaxed text-zinc-600 dark:text-zinc-300 font-sans flex flex-col gap-1.5 shadow-xs">
+                <div className="bg-gradient-to-r from-purple-500/[0.04] via-pink-500/[0.04] to-orange-500/[0.04] dark:from-purple-500/10 dark:via-pink-500/10 dark:to-orange-500/10 border border-pink-500/10 dark:border-pink-500/20 rounded-[20px] p-4 text-[11px] leading-relaxed text-zinc-600 dark:text-zinc-300 font-mono flex flex-col gap-1.5 shadow-xs">
                   <div className="flex items-center gap-2 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 dark:from-purple-400 dark:via-pink-400 dark:to-orange-400 uppercase tracking-widest font-mono text-[9px]">
                     <svg className="h-3.5 w-3.5 text-pink-500 dark:text-pink-400 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

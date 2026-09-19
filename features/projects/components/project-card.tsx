@@ -205,7 +205,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 )}
               />
               <span className="font-bold">{localClaps}</span>
-              <span className="text-[10px] text-zinc-400 dark:text-white/40 group-hover/clap:text-zinc-600 group-hover/clap:dark:text-white/60 transition-colors font-sans">
+              <span className="text-[10px] text-zinc-400 dark:text-white/40 group-hover/clap:text-zinc-600 group-hover/clap:dark:text-white/60 transition-colors font-mono">
                 {userClaps > 0 ? (t("projects.clappedBtn") || "Bravo !") : (t("projects.clapBtn") || "Clap")}
               </span>
             </button>

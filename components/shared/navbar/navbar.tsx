@@ -49,24 +49,28 @@ export function Navbar() {
       <div className="container flex h-16 items-center justify-between mx-auto px-4 md:px-8">
         <BrandLogo />
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex flex-1 justify-center">
-          <NavLinks />
-        </div>
+        {/* Right Group: NavLinks + Socials + Settings */}
+        <div className="flex items-center gap-4 sm:gap-5">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center">
+            <NavLinks />
+          </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-3">
-            {/* Pill 1: Socials */}
+          <div className="hidden lg:block h-4 w-px border-r border-dashed border-zinc-300 dark:border-zinc-800" />
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-2.5">
+            {/* Box 1: Socials */}
             <Socials variant="navbar" showModeToggle={false} />
 
-            {/* Pill 2: Settings (Theme + Language) */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-border bg-muted/40 backdrop-blur h-10 select-none">
+            {/* Box 2: Settings (Theme + Language) */}
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent h-9 select-none">
               <ModeToggle />
-              <div className="h-4 w-[1px] bg-border mx-0.5" />
+              <div className="h-3.5 w-px border-r border-dashed border-zinc-300 dark:border-zinc-800 mx-0.5" />
               <LanguageToggler />
             </div>
           </div>
+
           <MobileNav />
         </div>
       </div>

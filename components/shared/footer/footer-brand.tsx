@@ -68,15 +68,9 @@ export function FooterBrand() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.4, ease: "easeOut" }}
-              whileHover={{ 
-                scale: 1.03, 
-                y: -2,
-                borderColor: "rgba(99, 102, 241, 0.4)",
-                backgroundColor: "rgba(99, 102, 241, 0.04)",
-                color: "var(--foreground, currentColor)"
-              }}
-              className="text-[11px] font-mono px-2.5 py-1 rounded-md border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] text-muted-foreground transition-all duration-300 select-none cursor-default shadow-sm hover:shadow-indigo-500/5"
+              className="text-[14px] font-mono py-0.5 bg-transparent border-transparent border-b hover:border-b-[#ebcb00] border-dashed text-zinc-600 dark:text-zinc-400 transition-all duration-200 select-none cursor-default"
             >
+              <span className="text-[#ebcb00]">#</span>
               {role}
             </motion.span>
           ))}

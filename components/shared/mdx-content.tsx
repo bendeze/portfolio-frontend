@@ -1,6 +1,9 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+
 import { DiagramCodeDetector, MermaidDiagram, PlantUMLDiagram, SchemaDiagram } from "@/components/diagrams";
 
 // Define your custom components (like standard HTML or your own React components)
@@ -21,7 +24,7 @@ const components = {
 
 const options = {
   mdxOptions: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
       // This plugin adds syntax highlighting
       [

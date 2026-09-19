@@ -198,122 +198,136 @@ export async function renderMermaidSafely(
       suppressErrorRendering: true,
       securityLevel: "loose",
       fontFamily: "var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace",
-      theme: "base",
+      theme: isDark ? "dark" : "default",
       themeCSS: `
-        *, *::before, *::after, rect, circle, path, polygon, g, .node, .cluster, .label, .label-container {
+        *, *::before, *::after {
           filter: none !important;
           box-shadow: none !important;
           text-shadow: none !important;
-          drop-shadow: none !important;
-          -webkit-filter: none !important;
         }
         .node rect, .node circle, .node polygon, .node path, .node ellipse {
-          fill: transparent !important;
-          stroke: ${isDark ? "#52525b" : "#d4d4d8"} !important;
-          stroke-width: 0.6px !important;
-          stroke-dasharray: none !important;
-          rx: 4px !important;
-          ry: 4px !important;
-        }
-        .node:hover rect, .node:hover circle, .node:hover polygon, .node:hover path {
-          stroke: #ebcb00 !important;
+          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
+          stroke: ${isDark ? "#3f3f46" : "#d4d4d8"} !important;
           stroke-width: 1px !important;
+          rx: 6px !important;
+          ry: 6px !important;
         }
         .node .label {
-          color: ${isDark ? "#f4f4f5" : "#000000"} !important;
-          fill: ${isDark ? "#f4f4f5" : "#000000"} !important;
+          color: ${isDark ? "#f4f4f5" : "#18181b"} !important;
+          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
           font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, monospace !important;
           font-size: 13px !important;
           font-weight: 500 !important;
-          text-shadow: none !important;
         }
         .node .label text, .node text {
-          fill: ${isDark ? "#f4f4f5" : "#000000"} !important;
+          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
         }
         .edgePath path.path, .flowchart-link, path.flowchart-link, .edge-thickness-normal {
-          stroke: ${isDark ? "#ffffff" : "#000000"} !important;
-          stroke-width: 1px !important;
-          fill: none !important;
+          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
+          stroke-width: 1.2px !important;
         }
         marker path, .marker, marker[id*="arrowhead"] path, marker[id*="crosshead"] path, marker[id*="barbEnd"] path {
-          fill: ${isDark ? "#ffffff" : "#000000"} !important;
-          stroke: ${isDark ? "#ffffff" : "#000000"} !important;
+          fill: ${isDark ? "#a1a1aa" : "#71717a"} !important;
+          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
         }
         .cluster rect {
-          fill: transparent !important;
-          stroke: ${isDark ? "#3f3f46" : "#e4e4e7"} !important;
-          stroke-width: 0.6px !important;
-          stroke-dasharray: 3 3 !important;
-          rx: 6px !important;
+          fill: ${isDark ? "#121215" : "#fbfbfb"} !important;
+          stroke: ${isDark ? "#27272a" : "#e4e4e7"} !important;
+          stroke-width: 1px !important;
+          rx: 8px !important;
+        }
+        .cluster text {
+          fill: ${isDark ? "#a1a1aa" : "#71717a"} !important;
+          font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace !important;
+          font-size: 12px !important;
+          font-weight: 600 !important;
         }
         .labelBkg, .edgeLabel rect {
-          fill: transparent !important;
-          stroke: transparent !important;
+          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
+          stroke: ${isDark ? "#27272a" : "#e4e4e7"} !important;
+          stroke-width: 0.5px !important;
+          rx: 3px !important;
         }
         .edgeLabel {
-          color: ${isDark ? "#d4d4d8" : "#27272a"} !important;
-          fill: ${isDark ? "#d4d4d8" : "#27272a"} !important;
+          color: ${isDark ? "#d4d4d8" : "#52525b"} !important;
+          fill: ${isDark ? "#d4d4d8" : "#52525b"} !important;
+          font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace !important;
           font-size: 11px !important;
+        }
+        .actor {
+          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
+          stroke: ${isDark ? "#3f3f46" : "#d4d4d8"} !important;
+        }
+        .actor text {
+          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
+        }
+        .messageText {
+          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
+          font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
+          font-size: 12px !important;
+        }
+        .messageLine0, .messageLine1 {
+          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
         }
       `,
       flowchart: {
         htmlLabels: true,
         useMaxWidth: true,
         curve: "basis",
-        padding: 8,
-        nodeSpacing: 25,
-        rankSpacing: 28,
+        padding: 12,
+        nodeSpacing: 30,
+        rankSpacing: 35,
       },
       themeVariables: isDark
         ? {
             darkMode: true,
             background: "transparent",
-            primaryColor: "transparent",
+            primaryColor: "#18181b",
             primaryTextColor: "#f4f4f5",
-            primaryBorderColor: "#52525b",
-            lineColor: "#ffffff",
-            secondaryColor: "transparent",
-            tertiaryColor: "transparent",
-            nodeBorder: "#52525b",
-            clusterBkg: "transparent",
-            clusterBorder: "#3f3f46",
-            defaultLinkColor: "#ffffff",
+            primaryBorderColor: "#3f3f46",
+            lineColor: "#a1a1aa",
+            secondaryColor: "#18181b",
+            tertiaryColor: "#121215",
+            nodeBorder: "#3f3f46",
+            clusterBkg: "#121215",
+            clusterBorder: "#27272a",
+            defaultLinkColor: "#a1a1aa",
             titleColor: "#fafafa",
-            edgeLabelBackground: "transparent",
-            actorBkg: "transparent",
-            actorBorder: "#52525b",
+            edgeLabelBackground: "#18181b",
+            actorBkg: "#18181b",
+            actorBorder: "#3f3f46",
             actorTextColor: "#f4f4f5",
-            actorLineColor: "#ffffff",
-            signalColor: "#ffffff",
+            actorLineColor: "#a1a1aa",
+            signalColor: "#a1a1aa",
             signalTextColor: "#f4f4f5",
-            labelBoxBkgColor: "transparent",
-            labelBoxBorderColor: "#52525b",
+            labelBoxBkgColor: "#18181b",
+            labelBoxBorderColor: "#3f3f46",
             labelTextColor: "#f4f4f5",
           }
         : {
             darkMode: false,
             background: "transparent",
-            primaryColor: "transparent",
-            primaryTextColor: "#000000",
+            primaryColor: "#ffffff",
+            primaryTextColor: "#18181b",
             primaryBorderColor: "#d4d4d8",
-            lineColor: "#000000",
-            secondaryColor: "transparent",
-            tertiaryColor: "transparent",
+            lineColor: "#71717a",
+            secondaryColor: "#ffffff",
+            tertiaryColor: "#fbfbfb",
             nodeBorder: "#d4d4d8",
-            clusterBkg: "transparent",
+            clusterBkg: "#fbfbfb",
             clusterBorder: "#e4e4e7",
-            defaultLinkColor: "#000000",
-            titleColor: "#000000",
-            edgeLabelBackground: "transparent",
-            actorBkg: "transparent",
+            defaultLinkColor: "#71717a",
+            titleColor: "#18181b",
+            edgeLabelBackground: "#ffffff",
+            actorBkg: "#ffffff",
             actorBorder: "#d4d4d8",
-            actorTextColor: "#000000",
-            actorLineColor: "#000000",
-            signalColor: "#000000",
-            signalTextColor: "#000000",
-            labelBoxBkgColor: "transparent",
+            actorTextColor: "#18181b",
+            actorLineColor: "#71717a",
+            signalColor: "#71717a",
+            signalTextColor: "#18181b",
+            labelBoxBkgColor: "#ffffff",
             labelBoxBorderColor: "#d4d4d8",
-            labelTextColor: "#000000",
+            labelTextColor: "#18181b",
           },
     });
 

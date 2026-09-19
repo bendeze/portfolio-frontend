@@ -222,7 +222,7 @@ export default function BlogPageContent({
   };
 
   return (
-    <div className="w-full bg-background dark:bg-[#030303] text-foreground min-h-screen py-24 px-6 md:px-12 lg:px-20">
+    <div className="w-full bg-background text-foreground min-h-screen py-24 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto space-y-16">
 
         {/* --- SECTION 1: FEATURED POST --- */}
@@ -239,7 +239,7 @@ export default function BlogPageContent({
                 # {t("blog.featured")}
               </span>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black dark:text-white font-sans">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black dark:text-white font-mono">
                 <Link href={`/blog/${featuredPost.slug}`} className="hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300">
                   {featuredPost.title}
                 </Link>

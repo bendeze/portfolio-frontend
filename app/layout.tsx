@@ -14,8 +14,8 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "E. Ndeze Bonheur",
-  description: "Backend Developer & Network Engineer Portfolio",
+  title: "E. Ndeze Bonheur | Backend & Network Engineer",
+  description: "Network architecture, BGP routing, eBPF telemetry, and high-performance backend systems publication.",
   icons: {
     icon: "/profile.png",
     shortcut: "/profile.png",
@@ -33,11 +33,14 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-[#030303] text-foreground font-sans antialiased overflow-x-hidden"
+        className="min-h-screen bg-background text-foreground font-sans antialiased overflow-x-hidden selection:bg-[#ebcb00] selection:text-black"
       >
         <NuqsAdapter>
           <Providers>

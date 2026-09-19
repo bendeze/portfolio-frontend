@@ -3,7 +3,12 @@ export const translations = {
     nav: {
       about: "About",
       skills: "Skills",
+      articles: "Articles",
+      posts: "Posts",
       projects: "Projects",
+      archives: "Archives",
+      tags: "Tags",
+      search: "Search",
       blog: "Blog",
       contact: "Contact"
     },
@@ -21,12 +26,12 @@ export const translations = {
     about: {
       badge: "01 / Architectural Focus",
       title: "Bridging Software And Physical Infrastructure",
-      p1: "I build systems at the intersection of network engineering and software development, where infrastructure, automation, and backend architecture converge. My methodology is grounded in a comprehensive understanding of data flow across networks, inter-system communication, and the engineering of resilient platforms from the foundational level.",
-      p2: "Rather than treating software and infrastructure as separate entities, I regard both as integral components of a unified ecosystem. From scalable backend services to secure network environments, my emphasis is on constructing reliable, efficient, and cohesively integrated systems that are designed for optimal performance and enduring stability.",
+      p1: "I build systems where network engineering, automation, and backend architectures converge. Focused on resilient data flows, performant APIs, and low-latency infrastructure.",
+      p2: "Software and infrastructure are two sides of the same coin. I engineer unified, scalable systems built for production reliability.",
       pillar1Title: "Software Developer",
-      pillar1Desc: "The focus of my work involves the design of backend systems and applications that are informed by infrastructure considerations, emphasizing scalability, performance, and a well-structured architecture. My expertise spans systems programming, automation, application programming interface (API) engineering, and the development of reliable software, all underpinned by an infrastructure-first engineering philosophy.",
+      pillar1Desc: "Scalable backend systems, performant APIs, clean architecture, and automation with an infrastructure-first mindset.",
       pillar2Title: "Network Engineer",
-      pillar2Desc: "Designing secure, resilient, and scalable network environments with a pronounced emphasis on routing, infrastructure reliability, and operational efficiency. Engaging in enterprise networking, systems administration, automation, and infrastructure design through practical engineering and real-world laboratory environments."
+      pillar2Desc: "Resilient enterprise routing, switching, secure VPNs, telemetry, and automated network infrastructure."
     },
     skills: {
       badge: "02 / Expert Capabilities",
@@ -56,7 +61,7 @@ export const translations = {
       }
     },
     contact: {
-      badge: "04 / Open Connection",
+      badge: "LET'S CONNECT",
       title: "Let’s Build & Engineer Together",
 
       name: "Name",
@@ -73,8 +78,8 @@ export const translations = {
       btnTransmit: "Transmit Message",
 
       placeholders: {
-      name: "Bonheur Emmanuel",
-      email: "bonheur.ndeze@example.com)",
+      name: "[NAMES]",
+      email: "[EMAIL_ADDRESS]",
       subject: "Backend Architecture / Network Infrastructure",
       message: "Tell me about your project, technical challenges, infrastructure goals, or scaling requirements..."
       },
@@ -82,7 +87,7 @@ export const translations = {
       infos: {
         title: "Contact Information",
         description:
-          "Whether you need a software developer, a network engineer, or a professional who can bridge both worlds, I help design reliable, scalable, and efficient solutions tailored to real operational needs. From backend systems and API architecture to secure network infrastructure, automation, and hybrid environments, I can contribute independently on either side or work on projects where both disciplines intersect. If you’re building something meaningful, let’s start the conversation.",
+          "Whether you need a backend developer, a network engineer, or a systems architect to bridge both worlds, I design reliable, scalable, and efficient solutions tailored to real operational needs.",
         location: "Location",
         emailLabel: "Email",
 
@@ -97,16 +102,16 @@ export const translations = {
       },
     platforms: {
       badge: "02 / Platforms & Systems I Build",
-      intro: "Interested in the systems I engineer? Discover some of the platforms, toolkits, and automation ecosystems l've developed, bridging clean backend software, enterprise networking, and robust infrastructure.",
-      boutika: {
+      intro: "Explore core platforms, toolkits, and automation ecosystems I've engineered across software and network infrastructure.",
+      biasharaOne: {
         badge: "Multi-Tenant SaaS Platform",
-        title: "Boutika Platform",
-        p1: "Boutika is a modern SaaS ecosystem integrating inventory, customer management, secure payments, and sales orchestration into a unified digital platform.",
-        p2: "I engineered the scalable backend APIs, caching layers, role-based ACLs, and production deployment workflows using Django and Next.js.",
-        p3: "Explore the organization below to view the clean, modular system architecture and codebase in detail.",
-        detailedP1: "Boutika is a modern SaaS platform designed to help businesses manage operations through a unified digital ecosystem. It integrates customer management, inventory tracking, payments, analytics, sales orchestration, and reliable, scalable architecture.",
-        detailedP2: "I work on the engineering and infrastructure aspects, focusing on backend systems, APIs, access control, caching strategies, and deployment workflows. The platform features a Django backend, a Next.js dashboard, mobile apps, and tools for scalable production.",
-        detailedP3: "The project emphasizes clean architecture, modular engineering, security, multi-currency support, and high-integrity transactions.",
+        title: "BiasharaOne Platform",
+        p1: "BiasharaOne is a unified SaaS ecosystem combining multi-store inventory, customer workflows, secure payments, and sales orchestration.",
+        p2: "Engineered with modular Django REST APIs, PostgreSQL, Next.js, and automated Docker CI/CD deployments.",
+        p3: "Explore the organization and architecture on GitHub.",
+        detailedP1: "BiasharaOne provides commerce automation for growing businesses with multi-branch stock tracking and secure transactions.",
+        detailedP2: "Built around scalable backend APIs, strict access controls, caching layers, and production deployment workflows.",
+        detailedP3: "Designed for high throughput, data integrity, and multi-currency billing.",
         arch: "System Architecture",
         tag1: "Multi-Tenant Engine",
         tag2: "Django REST API",
@@ -114,15 +119,15 @@ export const translations = {
         tag4: "Role-Based ACL",
         tag5: "Caching Layers",
         tag6: "CI/CD Docker",
-        ctaOrg: "View Organization"
+        ctaOrg: "View on GitHub"
       },
       netpulse: {
         badge: "Networking & CLI Automation",
         title: "NetPulse Toolkit",
-        p1: "NetPulse is an extensible Python CLI toolkit designed to facilitate network diagnostics, high-speed port scanning, connectivity testing, and infrastructure analysis for systems engineers.",
-        p2: "Powered by a high-performance async IO engine. View the repository or PyPI package below to read the comprehensive technical documentation.",
-        detailedP1: "NetPulse is a toolkit developed in Python, designed to facilitate network diagnostics, monitoring, and operational visibility specifically for engineers and administrators. It provides a range of tools for network discovery, connectivity testing, and infrastructure analysis, all accessible through a lightweight and extensible command-line interface.",
-        detailedP2: "Emphasizing performance, usability, and cross-platform compatibility, NetPulse reflects a commitment to networking, systems engineering, and automation, merging in-depth infrastructure expertise with sound software engineering practices.",
+        p1: "NetPulse is an async Python CLI toolkit for network diagnostics, fast port scanning, ICMP telemetry, and infrastructure inspection.",
+        p2: "Powered by an async IO engine. Available on PyPI and GitHub with comprehensive technical documentation.",
+        detailedP1: "NetPulse provides network diagnostics and device discovery with a lightweight, cross-platform terminal interface.",
+        detailedP2: "Engineered for speed, performance, and cross-platform compatibility across systems.",
         diag: "Diagnostics Stack",
         tag1: "Python / PyPI",
         tag2: "Port Scanner",
@@ -134,8 +139,8 @@ export const translations = {
         ctaPypi: "View on PyPI"
       },
       moreProjects: {
-        title: "More projects. More experiments. More ideas.",
-        desc: "Explore additional work on GitHub and dedicated project pages.",
+        title: "Explore More Projects & Experiments",
+        desc: "Browse open-source repositories, network automation tools, and research notes.",
         ctaGithub: "GitHub Profile",
         ctaPages: "View More"
       }
@@ -169,9 +174,9 @@ export const translations = {
         category: "Category",
         general: "General",
         inThisArticle: "IN THIS ARTICLE",
-        promoTitle: "Discover Boutika",
-        promoDesc: "Boutika is a modern digital marketplace that helps businesses showcase products, connect with customers, and grow their presence through a seamless online experience.",
-        promoBtn: "Visit Boutika",
+        promoTitle: "Discover BiasharaOne",
+        promoDesc: "BiasharaOne is a unified digital commerce ecosystem that helps businesses manage inventory, sales, and customer relations with ease.",
+        promoBtn: "Visit BiasharaOne",
         clapLabel: "Like Post",
         likedLabel: "Liked!",
         likeSingle: "Like",
@@ -230,9 +235,9 @@ export const translations = {
         category: "Category",
         general: "General",
         inThisArticle: "IN THIS ARTICLE",
-        promoTitle: "Discover Boutika",
-        promoDesc: "Boutika is a modern digital marketplace that helps businesses showcase products, connect with customers, and grow their presence through a seamless online experience.",
-        promoBtn: "Visit Boutika",
+        promoTitle: "Discover BiasharaOne",
+        promoDesc: "BiasharaOne is a unified digital commerce ecosystem that helps businesses manage inventory, sales, and customer relations with ease.",
+        promoBtn: "Visit BiasharaOne",
         clapLabel: "Clap Project",
         likedLabel: "Clapped!",
         likeSingle: "Clap",
@@ -257,7 +262,12 @@ export const translations = {
     nav: {
       about: "À propos",
       skills: "Compétences",
+      articles: "Articles",
+      posts: "Publications",
       projects: "Projets",
+      archives: "Archives",
+      tags: "Tags",
+      search: "Recherche",
       blog: "Blog",
       contact: "Contact"
     },
@@ -275,12 +285,12 @@ export const translations = {
     about: {
       badge: "01 / Approche Architecturale",
       title: "À La Convergence Du Logiciel Et De L’Infrastructure",
-      p1: "Je conçois des systèmes à l’intersection de l’ingénierie réseau et du développement logiciel, là où l’infrastructure, l’automatisation et les architectures backend se rejoignent. Mon approche repose sur une compréhension approfondie des flux de données, de la communication entre systèmes et de la conception de plateformes fiables, pensées dès leur fondation pour répondre aux exigences de performance et de résilience.",
-      p2: "Plutôt que d’opposer logiciel et infrastructure, je les considère comme les composantes d’un même écosystème technique. Des services backend évolutifs aux environnements réseau sécurisés, mon travail consiste à construire des systèmes cohérents, performants et durables, capables de répondre efficacement aux réalités opérationnelles modernes.",
+      p1: "Je conçois des systèmes à l'intersection de l'ingénierie réseau et du développement logiciel. Axé sur la résilience des flux de données, des APIs performantes et des infrastructures à faible latence.",
+      p2: "Le logiciel et l'infrastructure forment un écosystème unifié. Je bâtis des solutions évolutives, robustes et pensées pour la production.",
       pillar1Title: "Développeur Logiciel",
-      pillar1Desc: "Conception de systèmes backend et d’applications pensées avec une approche orientée infrastructure, en mettant l’accent sur la scalabilité, la performance et la qualité architecturale. Mon travail couvre l’ingénierie logicielle, l’automatisation, la conception d’API ainsi que le développement de solutions fiables et maintenables adaptées aux environnements techniques modernes.",
+      pillar1Desc: "Architectures backend modulaires, APIs performantes, conception de bases de données et automatisation orientée infrastructure.",
       pillar2Title: "Ingénieur Réseau",
-      pillar2Desc: "Conception d’environnements réseau sécurisés, résilients et évolutifs avec une attention particulière portée au routage, à la fiabilité des infrastructures et à l’efficacité opérationnelle. Intervention sur les réseaux d’entreprise, l’administration système, l’automatisation et l’architecture d’infrastructure à travers une approche pratique basée sur l’ingénierie et les environnements de laboratoire.",
+      pillar2Desc: "Routage d'entreprise, commutation, VPNs sécurisés, télémétrie et automatisation d'infrastructure réseau."
     },
     skills: {
       badge: "02 / Capacités Clés",
@@ -311,7 +321,7 @@ export const translations = {
     },
     contact: {
       badge: "04 / Collaboration Ouverte",
-      title: "Construisons quelque chose d’exceptionnel",
+      title: "Construisons ensemble",
       name: "Nom complet",
       email: "Adresse e-mail",
       subject: "Sujet",
@@ -327,12 +337,12 @@ export const translations = {
       name: "Bonheur Emmanuel",
       email: "bonheur.ndeze@exemple.com)",
       subject: "Architecture backend / Infrastructure réseau",
-      message: "Parlez-moi de votre projet, de vos défis techniques ou de votre infrastructure actuelle..."
+      message: "Parlez-moi de votre projet, de vos défis techniques ou de votre infrastructure..."
       },
 
       infos: {
         title: "Restons en contact",
-        description:"Vous avez besoin d’un développeur logiciel, d’un ingénieur réseau, ou d’un profil capable de faire le lien entre les deux ? Je vous accompagne dans la conception de solutions fiables, performantes et évolutives; qu’il s’agisse de développement backend, d’architecture réseau, d’automatisation ou d’infrastructures hybrides. Que votre projet soit déjà lancé ou encore à l’étape d’idée, échangeons ensemble et construisons une solution adaptée à vos besoins.",
+        description: "Que vous ayez besoin d'un développeur backend, d'un ingénieur réseau ou d'un profil capable de lier les deux mondes, je conçois des solutions fiables, performantes et adaptées à vos défis opérationnels.",
         location: "Localisation",
         emailLabel: "Adresse e-mail",
 
@@ -348,16 +358,16 @@ export const translations = {
 
     platforms: {
       badge: "02 / Plateformes et Systèmes que je construis",
-      intro: "Intéressé par les systèmes que je conçois ? Découvrez quelques-unes des plateformes, boîtes à outils et écosystèmes d'automatisation que j'ai développés, reliant logiciel backend propre, réseaux d'entreprise et infrastructure robuste.",
-      boutika: {
+      intro: "Découvrez les plateformes, boîtes à outils et écosystèmes d'automatisation que j'ai conçus.",
+      biasharaOne: {
         badge: "Plateforme SaaS Multi-Tenant",
-        title: "Plateforme Boutika",
-        p1: "Boutika est un écosystème SaaS moderne qui intègre le suivi des stocks, la gestion client, les paiements multi-devises sécurisés et l'orchestration des ventes au sein d'une plateforme numérique unifiée.",
-        p2: "J'ai conçu l'architecture de l'API backend, les systèmes de cache, les contrôles d'accès et les workflows de déploiement avec Django et Next.js.",
-        p3: "Explorez l'organisation ci-dessous pour découvrir en détail le code et cette architecture modulaire propre.",
-        detailedP1: "Boutika est une plateforme SaaS moderne conçue pour aider les entreprises à gérer leurs opérations à travers un écosystème numérique unifié. La plateforme intègre la gestion des clients, le suivi des stocks, les paiements, les analyses de données ainsi que l’orchestration des ventes au sein d’une architecture fiable et évolutive.",
-        detailedP2: "Je contribue principalement aux aspects liés à l’ingénierie logicielle et à l’infrastructure, notamment sur les systèmes backend, les APIs, la gestion des accès, les stratégies de cache ainsi que les workflows de déploiement. L’écosystème repose sur un backend développé avec Django, un tableau de bord administratif sous Next.js, des applications mobiles ainsi que des outils pensés pour des environnements de production évolutifs.",
-        detailedP3: "Le projet met un accent particulier sur une architecture propre et modulaire, la sécurité, la gestion multi-devises ainsi que l’intégrité des transactions.",
+        title: "Plateforme BiasharaOne",
+        p1: "BiasharaOne est un écosystème SaaS unifié intégrant gestion des stocks, workflows clients, paiements sécurisés et orchestration des ventes.",
+        p2: "Conçu avec une API REST Django modulaire, PostgreSQL, Next.js et des déploiements automatisés Docker CI/CD.",
+        p3: "Explorez l'organisation et l'architecture système sur GitHub.",
+        detailedP1: "BiasharaOne automatise les opérations commerciales avec suivi multi-boutiques et transactions sécurisées.",
+        detailedP2: "Bâti sur des APIs backend évolutives, contrôles d'accès rigoureux, couches de cache et workflows de production.",
+        detailedP3: "Optimisé pour la haute disponibilité, l'intégrité des données et les règlements multi-devises.",
         arch: "Architecture Système",
         tag1: "Moteur Multi-Tenant",
         tag2: "API REST Django",
@@ -365,15 +375,15 @@ export const translations = {
         tag4: "ACL Rôle",
         tag5: "Couches de Cache",
         tag6: "Docker CI/CD",
-        ctaOrg: "Voir l'Organisation"
+        ctaOrg: "Voir sur GitHub"
       },
       netpulse: {
         badge: "Réseau et Automatisation CLI",
         title: "Boîte à Outils NetPulse",
-        p1: "NetPulse est une boîte à outils CLI extensible développée en Python, conçue pour offrir aux ingénieurs et administrateurs des diagnostics réseau profonds, un scanner de ports asynchrone et des tests de connectivité ICMP.",
-        p2: "Propulsé par un moteur asynchrone ultra-performant. Explorez le dépôt ou le package sur PyPI ci-dessous pour accéder à la documentation technique complète.",
-        detailedP1: "NetPulse est une boîte à outils développée en Python, conçue pour faciliter le diagnostic réseau, la supervision et la visibilité opérationnelle destinés aux ingénieurs et administrateurs systèmes et réseaux. Elle propose un ensemble d’outils dédiés à la découverte réseau, aux tests de connectivité ainsi qu’à l’analyse des infrastructures, le tout accessible via une interface en ligne de commande légère, flexible et extensible.",
-        detailedP2: "Axé sur les performances, la simplicité d’utilisation et la compatibilité multiplateforme, NetPulse reflète une véritable passion pour le networking, l’ingénierie des systèmes et l’automatisation, en combinant une expertise approfondie des infrastructures avec des pratiques solides de développement logiciel.",
+        p1: "NetPulse est une boîte à outils CLI asynchrone en Python pour les diagnostics réseau, scans de ports, tests ICMP et inspection d'infrastructure.",
+        p2: "Moteur async IO haute performance. Disponible sur PyPI et GitHub.",
+        detailedP1: "NetPulse offre une visibilité opérationnelle et des diagnostics réseau rapides via le terminal.",
+        detailedP2: "Conçu pour la performance et l'automatisation sous Linux, macOS et Windows.",
         diag: "Outils de Diagnostic",
         tag1: "Python / PyPI",
         tag2: "Scanner de Ports",
@@ -385,8 +395,8 @@ export const translations = {
         ctaPypi: "Voir sur PyPI"
       },
       moreProjects: {
-        title: "Plus de projets. Plus d’expérimentations. Plus d’idées.",
-        desc: "Découvrez d’autres réalisations, outils et travaux disponibles sur GitHub ainsi que sur les pages dédiées aux projets.",
+        title: "Plus de projets & expérimentations",
+        desc: "Explorez mes dépôts open-source, outils d'automatisation et notes de recherche.",
         ctaGithub: "Profil GitHub",
         ctaPages: "Voir plus"
       }
@@ -420,9 +430,9 @@ export const translations = {
         category: "Catégorie",
         general: "Général",
         inThisArticle: "DANS CET ARTICLE",
-        promoTitle: "Découvrez Boutika",
-        promoDesc: "Boutika est une place de marché numérique moderne qui aide les entreprises à présenter leurs produits, à se connecter avec leurs clients et à développer leur présence grâce à une expérience en ligne transparente.",
-        promoBtn: "Visiter Boutika",
+        promoTitle: "Découvrez BiasharaOne",
+        promoDesc: "BiasharaOne est un écosystème de commerce digital unifié facilitant la gestion des stocks, des ventes et des clients.",
+        promoBtn: "Visiter BiasharaOne",
         clapLabel: "J'aime",
         likedLabel: "Aimé !",
         likeSingle: "J'aime",
@@ -481,9 +491,9 @@ export const translations = {
         technologies: "Technologies",
         general: "Général",
         inThisArticle: "DANS CET ARTICLE",
-        promoTitle: "Découvrez Boutika",
-        promoDesc: "Boutika est une place de marché numérique moderne qui aide les entreprises à présenter leurs produits, à se connecter avec leurs clients et à développer leur présence grâce à une expérience en ligne transparente.",
-        promoBtn: "Visiter Boutika",
+        promoTitle: "Découvrez BiasharaOne",
+        promoDesc: "BiasharaOne est un écosystème de commerce digital unifié facilitant la gestion des stocks, des ventes et des clients.",
+        promoBtn: "Visiter BiasharaOne",
         clapLabel: "Clapper",
         likedLabel: "Clappé !",
         likeSingle: "Clap",

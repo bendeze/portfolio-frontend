@@ -152,7 +152,7 @@ export function MermaidDiagram({
       ) : (
         <div
           ref={containerRef}
-          className="w-full min-w-full flex justify-center items-center select-none overflow-x-auto p-4 sm:p-6 [&>svg]:max-w-none [&>svg]:w-auto [&>svg]:h-auto [&>svg]:min-w-[280px]"
+          className="w-full min-w-full flex justify-center items-center select-none overflow-x-auto p-4 sm:p-6 [&>svg]:max-w-none [&>svg]:w-auto [&>svg]:h-auto [&>svg]:min-w-[280px] [&_svg]:filter-none [&_svg_*]:filter-none [&_svg_*]:drop-shadow-none [&_svg_*]:shadow-none [&_rect]:filter-none [&_polygon]:filter-none [&_circle]:filter-none [&_path]:filter-none [&_.node]:filter-none [&_.cluster]:filter-none"
           dangerouslySetInnerHTML={{ __html: svgContent }}
         />
       )}

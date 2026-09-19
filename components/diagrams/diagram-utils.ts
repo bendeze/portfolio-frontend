@@ -199,6 +199,28 @@ export async function renderMermaidSafely(
       securityLevel: "loose",
       fontFamily: "var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace",
       theme: isDark ? "dark" : "default",
+      themeCSS: `
+        *, *::before, *::after, rect, circle, path, polygon, g, .node, .cluster, .label, .label-container {
+          filter: none !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+          drop-shadow: none !important;
+          -webkit-filter: none !important;
+        }
+        .node rect, .node circle, .node polygon, .node path, .node ellipse {
+          filter: none !important;
+          box-shadow: none !important;
+          stroke-width: 1px !important;
+        }
+        .cluster rect {
+          filter: none !important;
+          box-shadow: none !important;
+        }
+      `,
+      flowchart: {
+        htmlLabels: true,
+        useMaxWidth: true,
+      },
       themeVariables: isDark
         ? {
             darkMode: true,
@@ -258,9 +280,15 @@ export async function renderMermaidSafely(
     const { svg } = await mermaid.render(uniqueId, code);
 
     // Clean inline max-width so diagram fits container responsively
-    const responsiveSvg = svg.replace(/style="max-width:\s*[^"]+;?"/i, "");
+    // and strip any filter defs, filter attributes, or drop-shadows
+    const cleanSvg = svg
+      .replace(/style="max-width:\s*[^"]+;?"/i, "")
+      .replace(/<filter[\s\S]*?<\/filter>/gi, "")
+      .replace(/\s*filter="[^"]*"/gi, "")
+      .replace(/\s*filter='[^']*'/gi, "")
+      .replace(/filter:[^;"]+;?/gi, "");
 
-    setCachedMermaidSvg(code, isDark, responsiveSvg);
-    return responsiveSvg;
+    setCachedMermaidSvg(code, isDark, cleanSvg);
+    return cleanSvg;
   });
 }

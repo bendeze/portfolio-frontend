@@ -51,7 +51,17 @@ export function PlantUMLDiagram({
 
       try {
         const plantumlEncoder = (await import("plantuml-encoder")).default;
-        const encoded = plantumlEncoder.encode(cleanedCode);
+        
+        let codeWithNoShadow = cleanedCode;
+        if (!/skinparam\s+shadowing/i.test(codeWithNoShadow)) {
+          if (/^@startuml/m.test(codeWithNoShadow)) {
+            codeWithNoShadow = codeWithNoShadow.replace(/^@startuml\b/m, "@startuml\nskinparam shadowing false\n");
+          } else {
+            codeWithNoShadow = `@startuml\nskinparam shadowing false\n${codeWithNoShadow}\n@enduml`;
+          }
+        }
+
+        const encoded = plantumlEncoder.encode(codeWithNoShadow);
 
         const serverUrl =
           process.env.NEXT_PUBLIC_PLANTUML_SERVER_URL ||

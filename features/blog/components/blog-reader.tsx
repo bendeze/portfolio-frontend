@@ -298,10 +298,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h1 
           id={slug} 
-          className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-foreground mt-14 mb-6 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-3"
+          className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-foreground mt-8 mb-3 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-2"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-lg">#</span>
+          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-base">#</span>
           {children}
         </h1>
       );
@@ -311,10 +311,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h2 
           id={slug} 
-          className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-foreground mt-12 mb-5 scroll-mt-24 group relative border-b border-border/10 pb-2 cursor-pointer"
+          className="text-lg sm:text-xl font-bold font-mono tracking-tight text-foreground mt-7 mb-2.5 scroll-mt-24 group relative border-b border-border/10 pb-1.5 cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-base">#</span>
+          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-sm">#</span>
           {children}
         </h2>
       );
@@ -324,10 +324,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h3 
           id={slug} 
-          className="text-lg sm:text-xl font-bold font-mono tracking-tight text-foreground mt-8 mb-3 scroll-mt-24 group relative cursor-pointer"
+          className="text-base sm:text-lg font-bold font-mono tracking-tight text-foreground mt-5 mb-2 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-sm">#</span>
+          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-xs">#</span>
           {children}
         </h3>
       );
@@ -337,7 +337,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h4 
           id={slug} 
-          className="text-base sm:text-lg font-bold font-mono tracking-tight text-foreground mt-6 mb-2.5 scroll-mt-24 group relative cursor-pointer"
+          className="text-sm sm:text-base font-bold font-mono tracking-tight text-foreground mt-4 mb-1.5 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/60 font-mono font-thin text-xs">#</span>
@@ -350,10 +350,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h5 
           id={slug} 
-          className="text-sm sm:text-base font-bold font-mono tracking-tight text-foreground mt-5 mb-2 scroll-mt-24 group relative cursor-pointer"
+          className="text-xs sm:text-sm font-bold font-mono tracking-tight text-foreground mt-3 mb-1 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/50 font-mono font-thin text-xs">#</span>
+          <span className="absolute -left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/50 font-mono font-thin text-[10px]">#</span>
           {children}
         </h5>
       );
@@ -363,16 +363,16 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h6 
           id={slug} 
-          className="text-xs sm:text-sm font-semibold font-mono tracking-tight text-foreground mt-4 mb-2 scroll-mt-24 group relative cursor-pointer"
+          className="text-xs font-semibold font-mono tracking-tight text-foreground mt-3 mb-1 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/40 font-mono font-thin text-xs">#</span>
+          <span className="absolute -left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/40 font-mono font-thin text-[10px]">#</span>
           {children}
         </h6>
       );
     },
     p: ({ children }: any) => (
-      <p className="text-[14px] sm:text-[15px] leading-[1.85] text-muted-foreground/95 dark:text-zinc-300 font-mono my-6 font-normal tracking-normal antialiased">
+      <p className="text-[13.5px] sm:text-[14.5px] leading-[1.75] text-muted-foreground/95 dark:text-zinc-300 font-mono my-3.5 font-normal tracking-normal antialiased">
         {children}
       </p>
     ),
@@ -397,27 +397,27 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       <SchemaDiagram code={code || sql || children} {...props} />
     ),
     code: ({ children }: any) => (
-      <code className="text-foreground bg-zinc-100 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[13px] font-medium">
+      <code className="text-foreground bg-zinc-100 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[12.5px] font-medium">
         {children}
       </code>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-[#ebcb00] bg-zinc-50 dark:bg-zinc-900/40 pl-5 pr-4 py-3.5 my-6 rounded-r-lg font-mono text-[13px] sm:text-[14px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
+      <blockquote className="border-l-2 border-[#ebcb00] bg-zinc-50/50 dark:bg-zinc-900/30 pl-4 pr-3 py-2 my-3.5 rounded-r font-mono text-[13px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
         {children}
       </blockquote>
     ),
     ul: ({ children }: any) => (
-      <ul className="list-disc pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
+      <ul className="list-disc pl-5 my-3 space-y-1 text-[13.5px] sm:text-[14.5px] leading-[1.7] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="list-decimal pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
+      <ol className="list-decimal pl-5 my-3 space-y-1 text-[13.5px] sm:text-[14.5px] leading-[1.7] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ol>
     ),
     li: ({ children }: any) => (
-      <li className="pl-1">
+      <li className="pl-0.5">
         {children}
       </li>
     ),
@@ -432,19 +432,19 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       </a>
     ),
     table: ({ children }: any) => (
-      <div className="my-6 w-full overflow-x-auto rounded-lg border border-border/40 bg-zinc-50/50 dark:bg-zinc-950">
+      <div className="my-3.5 w-full overflow-x-auto rounded border-[0.5px] border-border/40 bg-zinc-50/50 dark:bg-zinc-950">
         <table className="w-full border-collapse text-left text-xs font-mono">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="border-b border-border/40 bg-zinc-100/60 dark:bg-zinc-900/60 font-semibold text-foreground font-mono">
+      <thead className="border-b-[0.5px] border-border/40 bg-zinc-100/60 dark:bg-zinc-900/60 font-semibold text-foreground font-mono">
         {children}
       </thead>
     ),
     tbody: ({ children }: any) => (
-      <tbody className="divide-y divide-border/10 font-mono">
+      <tbody className="divide-y-[0.5px] divide-border/10 font-mono">
         {children}
       </tbody>
     ),
@@ -454,22 +454,22 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       </tr>
     ),
     th: ({ children }: any) => (
-      <th className="px-4 py-3 font-semibold text-foreground/90 font-mono text-[11px] uppercase tracking-wider">
+      <th className="px-3 py-2 font-semibold text-foreground/90 font-mono text-[11px] uppercase tracking-wider">
         {children}
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-4 py-3 text-muted-foreground/90 dark:text-zinc-300/90 font-mono leading-relaxed text-xs">
+      <td className="px-3 py-2 text-muted-foreground/90 dark:text-zinc-300/90 font-mono leading-relaxed text-xs">
         {children}
       </td>
     ),
     img: ({ src, alt }: any) => {
       if (!src) return null;
       return (
-        <span className="block my-8 space-y-2 select-none">
+        <span className="block my-5 space-y-1.5 select-none">
           <ReaderImage src={src} alt={alt || "Article illustration"} />
           {alt && (
-            <span className="block text-center text-xs text-muted-foreground font-mono italic">
+            <span className="block text-center text-[11px] text-muted-foreground font-mono italic">
               {alt}
             </span>
           )}
@@ -477,7 +477,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       );
     },
     hr: () => (
-      <hr className="my-10 border-t border-border/40" />
+      <hr className="my-6 border-t border-border/40" />
     ),
   };
 
@@ -491,11 +491,11 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
         /> 
       </div>
 
-      <div className="w-full bg-background dark:bg-[#030303] text-foreground min-h-screen py-24 px-6 md:px-12 lg:px-20 select-text">
+      <div className="w-full bg-background dark:bg-[#030303] text-foreground min-h-screen py-12 px-4 md:px-8 lg:px-12 select-text">
         <div className="max-w-7xl mx-auto">
           
           {/* Back button */}
-          <Button variant="ghost" asChild className="mb-10 -ml-4 rounded-full group cursor-pointer hover:bg-black/[0.03] dark:hover:bg-white/[0.03] transition-colors">
+          <Button variant="ghost" asChild className="mb-6 -ml-4 rounded-full group cursor-pointer hover:bg-black/[0.03] dark:hover:bg-white/[0.03] transition-colors">
             <Link href="/blog">
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
               {t("blog.reader.back")}
@@ -503,7 +503,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
           </Button>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             
             {/* --- LEFT COLUMN: STICKY ARTICLE DETAILS & TABLE OF CONTENTS --- */}
             <aside className="lg:col-span-3 lg:sticky lg:top-28 lg:h-[calc(100vh-10rem)] overflow-y-auto hidden lg:block scrollbar-none pr-4">
@@ -608,11 +608,11 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
             </aside>
 
             {/* --- RIGHT COLUMN: ARTICLE READER BODY --- */}
-            <main className="lg:col-span-9 max-w-3xl w-full mx-auto space-y-10">
+            <main className="lg:col-span-9 max-w-3xl w-full mx-auto space-y-6">
               
-              <header className="space-y-5">
+              <header className="space-y-3">
                 {/* Meta Detail badges (Mobile Only, hidden on desktop viewports) */}
-                <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-muted-foreground uppercase tracking-[0.2em] lg:hidden">
+                <div className="flex flex-wrap items-center gap-3 text-[10px] font-mono text-muted-foreground uppercase tracking-[0.2em] lg:hidden">
                   <div className="flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5 text-gray-500" />
                     <time>{formatDate(post.created_at, true)}</time>
@@ -623,16 +623,16 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
                     <span>{post.reading_time} {t("blog.reader.minRead")}</span>
                   </div>
                   <span>•</span>
-                  <span className="px-2.5 py-0.5 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] text-[9px] font-bold text-gray-500 dark:text-gray-400">
+                  <span className="px-2 py-0.5 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] text-[9px] font-bold text-gray-500 dark:text-gray-400">
                     {getLocalizedCategoryDisplay(post.category)}
                   </span>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight text-foreground font-mono">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-tight text-foreground font-mono">
                   {post.title}
                 </h1>
                 
-                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-[#ebcb00] pl-4 py-1">
+                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-[#ebcb00] pl-3 py-0.5">
                   {post.summary}
                 </p>
               </header>

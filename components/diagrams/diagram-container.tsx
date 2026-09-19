@@ -86,13 +86,13 @@ export function DiagramContainer({
       <div
         ref={containerRef}
         className={cn(
-          "relative my-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent overflow-hidden transition-all duration-200 shadow-none",
+          "relative my-4 rounded-md border-[0.5px] border-zinc-300/80 dark:border-zinc-800 bg-transparent overflow-hidden transition-all duration-200 shadow-none",
           isFullscreen ? "hidden" : "block",
           className
         )}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-zinc-200 dark:border-zinc-800 bg-transparent">
+        <div className="flex flex-wrap items-center justify-between gap-1.5 px-3 py-1.5 border-b-[0.5px] border-zinc-300/80 dark:border-zinc-800 bg-transparent">
           {/* Left Title & Badge */}
           <div className="flex items-center gap-2">
             {icon && <span className="text-zinc-500 dark:text-zinc-400">{icon}</span>}
@@ -101,7 +101,7 @@ export function DiagramContainer({
                 {title}
               </span>
             )}
-            <span className="rounded bg-transparent border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+            <span className="rounded bg-transparent border-[0.5px] border-zinc-300/80 dark:border-zinc-800 px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
               {badge}
             </span>
           </div>
@@ -109,15 +109,15 @@ export function DiagramContainer({
           {/* Right Toolbar Controls */}
           <div className="flex items-center gap-1">
             {/* Tab switchers */}
-            <div className="flex items-center rounded-md bg-transparent p-0.5 border border-zinc-200 dark:border-zinc-800 text-[11px] font-mono">
+            <div className="flex items-center rounded bg-transparent p-0.5 border-[0.5px] border-zinc-300/80 dark:border-zinc-800 text-[10px] font-mono">
               {availableTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => handleTabSelect(tab.id)}
                   className={cn(
-                    "flex items-center gap-1.5 px-2.5 py-1 rounded transition-all font-medium cursor-pointer",
+                    "flex items-center gap-1 px-2 py-0.5 rounded transition-all font-medium cursor-pointer",
                     activeTab === tab.id
-                      ? "bg-transparent text-[#ebcb00] font-semibold border border-[#ebcb00]/50 shadow-none"
+                      ? "bg-transparent text-[#ebcb00] font-semibold border-[0.5px] border-[#ebcb00]/50 shadow-none"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -127,7 +127,7 @@ export function DiagramContainer({
               ))}
             </div>
 
-            <div className="h-4 w-[1px] bg-border/40 mx-1 hidden sm:block" />
+            <div className="h-3.5 w-[1px] bg-border/40 mx-0.5 hidden sm:block" />
 
             {/* Zoom Controls (Active only in diagram view) */}
             {activeTab === "diagram" && allowZoom && (
@@ -136,25 +136,25 @@ export function DiagramContainer({
                   onClick={handleZoomOut}
                   title="Zoom Out"
                   aria-label="Zoom Out"
-                  className="p-1.5 rounded-md text-zinc-500 hover:text-[#ebcb00] transition-colors cursor-pointer"
+                  className="p-1 rounded text-zinc-500 hover:text-[#ebcb00] transition-colors cursor-pointer"
                 >
-                  <ZoomOut className="h-3.5 w-3.5" />
+                  <ZoomOut className="h-3 w-3" />
                 </button>
                 <button
                   onClick={handleResetZoom}
                   title="Reset Zoom"
                   aria-label="Reset Zoom"
-                  className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer font-mono text-[10px]"
+                  className="p-1 rounded text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer font-mono text-[9px]"
                 >
-                  <RotateCcw className="h-3.5 w-3.5" />
+                  <RotateCcw className="h-3 w-3" />
                 </button>
                 <button
                   onClick={handleZoomIn}
                   title="Zoom In"
                   aria-label="Zoom In"
-                  className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
+                  className="p-1 rounded text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
                 >
-                  <ZoomIn className="h-3.5 w-3.5" />
+                  <ZoomIn className="h-3 w-3" />
                 </button>
               </div>
             )}
@@ -165,9 +165,9 @@ export function DiagramContainer({
                 onClick={onDownloadSvg}
                 title="Download SVG"
                 aria-label="Download SVG"
-                className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
+                className="p-1 rounded text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
               >
-                <Download className="h-3.5 w-3.5" />
+                <Download className="h-3 w-3" />
               </button>
             )}
 
@@ -176,12 +176,12 @@ export function DiagramContainer({
               onClick={handleCopyCode}
               title={copied ? "Copied!" : "Copy Code"}
               aria-label={copied ? "Copied!" : "Copy Code"}
-              className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer flex items-center gap-1"
+              className="p-1 rounded text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer flex items-center gap-1"
             >
               {copied ? (
-                <Check className="h-3.5 w-3.5 text-green-500" />
+                <Check className="h-3 w-3 text-green-500" />
               ) : (
-                <Copy className="h-3.5 w-3.5" />
+                <Copy className="h-3 w-3" />
               )}
             </button>
 
@@ -190,21 +190,21 @@ export function DiagramContainer({
               onClick={toggleFullscreen}
               title="Fullscreen"
               aria-label="Fullscreen"
-              className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
+              className="p-1 rounded text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
             >
-              <Maximize2 className="h-3.5 w-3.5" />
+              <Maximize2 className="h-3 w-3" />
             </button>
           </div>
         </div>
 
         {/* Content Body */}
-        <div className="relative min-h-[180px] p-6 sm:p-8 overflow-x-auto overflow-y-hidden select-text">
+        <div className="relative min-h-[100px] p-3 sm:p-5 overflow-x-auto overflow-y-hidden select-text">
           {activeTab === "code" ? (
-            <div className="rounded-lg border border-zinc-200/80 dark:border-zinc-800 bg-zinc-950 p-4 font-mono text-xs text-zinc-100 overflow-x-auto leading-relaxed">
+            <div className="rounded border-[0.5px] border-zinc-200/80 dark:border-zinc-800 bg-zinc-950 p-3 font-mono text-xs text-zinc-100 overflow-x-auto leading-relaxed">
               <pre>{code.trim()}</pre>
             </div>
           ) : (
-            <div className="w-full min-w-full flex items-center justify-center overflow-x-auto py-2">
+            <div className="w-full min-w-full flex items-center justify-center overflow-x-auto py-1">
               <div
                 className="transition-transform duration-150 origin-top flex items-center justify-center"
                 style={{

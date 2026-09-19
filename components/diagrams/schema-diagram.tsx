@@ -302,37 +302,32 @@ export function SchemaDiagram({
       ) : activeTab === "diagram" ? (
         <div className="w-full space-y-5">
           {/* Schema Search & Stats Header */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-3 border-b border-border/30">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 pb-3 border-b-[0.5px] border-zinc-200/60 dark:border-zinc-800/60">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-muted-foreground">
-                <strong className="text-foreground font-semibold">{tables.length}</strong>{" "}
-                {tables.length === 1 ? "table" : "tables"} detected
+              <span className="text-xs font-bold font-mono text-foreground">
+                Tables Overview
               </span>
-              <span className="text-muted-foreground/40">•</span>
-              <span className="text-xs font-mono text-muted-foreground">
-                <strong className="text-foreground font-semibold">
-                  {tables.reduce((acc, t) => acc + t.columns.length, 0)}
-                </strong>{" "}
-                columns
+              <span className="text-[10px] font-mono text-muted-foreground px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 border-[0.5px] border-zinc-200 dark:border-zinc-800">
+                {tables.length} {tables.length === 1 ? "entity" : "entities"}
               </span>
             </div>
 
             {tables.length > 1 && (
-              <div className="relative w-full sm:w-56">
+              <div className="relative w-full sm:w-52">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Filter tables or columns..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-3 py-1 text-xs rounded-lg border border-border/50 bg-black/[0.02] dark:bg-white/[0.02] placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-blue-500/50"
+                  className="w-full pl-8 pr-3 py-1 text-xs rounded border-[0.5px] border-zinc-300/80 dark:border-zinc-800 bg-transparent placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-[#ebcb00]"
                 />
               </div>
             )}
           </div>
 
           {/* Tables Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 items-start">
             {filteredTables.map((table) => {
               const isTargeted = highlightedTable === table.name;
 
@@ -343,40 +338,40 @@ export function SchemaDiagram({
                   onMouseEnter={() => setHighlightedTable(table.name)}
                   onMouseLeave={() => setHighlightedTable(null)}
                   className={cn(
-                    "rounded-md border bg-transparent shadow-none overflow-hidden transition-colors duration-150",
+                    "rounded border-[0.5px] bg-transparent shadow-none overflow-hidden transition-colors duration-150",
                     isTargeted
                       ? "border-[#ebcb00] ring-1 ring-[#ebcb00]"
-                      : "border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700"
+                      : "border-zinc-300/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700"
                   )}
                 >
                   {/* Table Header */}
-                  <div className="flex items-center justify-between px-3.5 py-2 bg-transparent border-b border-zinc-200 dark:border-zinc-800">
-                    <div className="flex items-center gap-2">
-                      <Database className="h-3.5 w-3.5 text-[#ebcb00]" />
+                  <div className="flex items-center justify-between px-3 py-1.5 bg-transparent border-b-[0.5px] border-zinc-200 dark:border-zinc-800">
+                    <div className="flex items-center gap-1.5">
+                      <Database className="h-3 w-3 text-[#ebcb00]" />
                       <span className="font-mono text-xs font-bold text-foreground tracking-tight">
                         {table.name}
                       </span>
                     </div>
-                    <span className="font-mono text-[10px] text-muted-foreground px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                    <span className="font-mono text-[9px] text-muted-foreground px-1 py-0.2 rounded bg-zinc-100 dark:bg-zinc-900 border-[0.5px] border-zinc-200 dark:border-zinc-800">
                       {table.columns.length} cols
                     </span>
                   </div>
 
                   {/* Columns Table */}
-                  <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60 text-xs font-mono">
+                  <div className="divide-y-[0.5px] divide-zinc-200/50 dark:divide-zinc-800/50 text-xs font-mono">
                     {table.columns.map((col) => (
                       <div
                         key={col.name}
-                        className="flex items-center justify-between px-3.5 py-2 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors"
+                        className="flex items-center justify-between px-3 py-1 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors"
                       >
                         {/* Column Name & Key Badges */}
-                        <div className="flex items-center gap-1.5 min-w-0 pr-2">
+                        <div className="flex items-center gap-1 min-w-0 pr-2">
                           {col.isPrimary ? (
                             <span
                               title="Primary Key"
                               className="flex items-center text-[#ebcb00] flex-shrink-0"
                             >
-                              <Key className="h-3 w-3" />
+                              <Key className="h-2.5 w-2.5" />
                             </span>
                           ) : col.isForeign ? (
                             <span
@@ -384,10 +379,10 @@ export function SchemaDiagram({
                               className="flex items-center text-[#ebcb00] flex-shrink-0 cursor-pointer"
                               onClick={() => setHighlightedTable(col.foreignTable || null)}
                             >
-                              <LinkIcon className="h-3 w-3" />
+                              <LinkIcon className="h-2.5 w-2.5" />
                             </span>
                           ) : (
-                            <span className="w-3 h-3 flex-shrink-0" />
+                            <span className="w-2.5 h-2.5 flex-shrink-0" />
                           )}
 
                           <span
@@ -406,7 +401,7 @@ export function SchemaDiagram({
                           {col.isForeign && col.foreignTable && (
                             <span
                               onClick={() => setHighlightedTable(col.foreignTable || null)}
-                              className="cursor-pointer text-[9px] px-1.5 py-0.2 rounded bg-[#ebcb00]/10 text-[#ebcb00] border border-[#ebcb00]/20 hover:bg-[#ebcb00]/20 transition-colors"
+                              className="cursor-pointer text-[9px] px-1 py-0.2 rounded bg-[#ebcb00]/10 text-[#ebcb00] border-[0.5px] border-[#ebcb00]/20 hover:bg-[#ebcb00]/20 transition-colors"
                             >
                               → {col.foreignTable}
                             </span>
@@ -414,10 +409,10 @@ export function SchemaDiagram({
                         </div>
 
                         {/* Column Type & Constraints */}
-                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                        <div className="flex items-center gap-1 flex-shrink-0">
                           <span
                             className={cn(
-                              "px-1.5 py-0.5 rounded text-[10px] font-semibold border bg-zinc-100 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
+                              "px-1 py-0.2 rounded text-[9px] font-semibold border-[0.5px] bg-zinc-100 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
                             )}
                           >
                             {col.type}

@@ -186,8 +186,8 @@ skinparam UsecaseBorderThickness 1
         </div>
       ) : (
         svgUrl && (
-          <div className={`flex flex-col items-center justify-center w-full space-y-4 ${isLoading ? "sr-only" : "block"}`}>
-            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-md p-4 bg-transparent border border-zinc-200 dark:border-zinc-800 shadow-none">
+          <div className={`flex flex-col items-center justify-center w-full space-y-3 ${isLoading ? "sr-only" : "block"}`}>
+            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded p-2.5 sm:p-3 bg-transparent border-[0.5px] border-zinc-300/80 dark:border-zinc-800 shadow-none">
               {/* PlantUML SVG Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

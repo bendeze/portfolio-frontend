@@ -209,40 +209,41 @@ export async function renderMermaidSafely(
         }
         .node rect, .node circle, .node polygon, .node path, .node ellipse {
           fill: transparent !important;
-          stroke: ${isDark ? "#52525b" : "#a1a1aa"} !important;
-          stroke-width: 1px !important;
+          stroke: ${isDark ? "#52525b" : "#d4d4d8"} !important;
+          stroke-width: 0.6px !important;
           stroke-dasharray: none !important;
           rx: 4px !important;
           ry: 4px !important;
         }
         .node:hover rect, .node:hover circle, .node:hover polygon, .node:hover path {
           stroke: #ebcb00 !important;
+          stroke-width: 1px !important;
         }
         .node .label {
-          color: ${isDark ? "#f4f4f5" : "#0f172a"} !important;
-          fill: ${isDark ? "#f4f4f5" : "#0f172a"} !important;
+          color: ${isDark ? "#f4f4f5" : "#000000"} !important;
+          fill: ${isDark ? "#f4f4f5" : "#000000"} !important;
           font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, monospace !important;
           font-size: 13px !important;
           font-weight: 500 !important;
           text-shadow: none !important;
         }
         .node .label text, .node text {
-          fill: ${isDark ? "#f4f4f5" : "#0f172a"} !important;
+          fill: ${isDark ? "#f4f4f5" : "#000000"} !important;
         }
         .edgePath path.path, .flowchart-link, path.flowchart-link, .edge-thickness-normal {
-          stroke: ${isDark ? "#71717a" : "#94a3b8"} !important;
+          stroke: ${isDark ? "#ffffff" : "#000000"} !important;
           stroke-width: 1px !important;
           fill: none !important;
         }
-        marker path, .marker, marker[id*="arrowhead"] path, marker[id*="crosshead"] path {
-          fill: ${isDark ? "#71717a" : "#94a3b8"} !important;
-          stroke: ${isDark ? "#71717a" : "#94a3b8"} !important;
+        marker path, .marker, marker[id*="arrowhead"] path, marker[id*="crosshead"] path, marker[id*="barbEnd"] path {
+          fill: ${isDark ? "#ffffff" : "#000000"} !important;
+          stroke: ${isDark ? "#ffffff" : "#000000"} !important;
         }
         .cluster rect {
           fill: transparent !important;
-          stroke: ${isDark ? "#3f3f46" : "#cbd5e1"} !important;
-          stroke-width: 1px !important;
-          stroke-dasharray: 4 4 !important;
+          stroke: ${isDark ? "#3f3f46" : "#e4e4e7"} !important;
+          stroke-width: 0.6px !important;
+          stroke-dasharray: 3 3 !important;
           rx: 6px !important;
         }
         .labelBkg, .edgeLabel rect {
@@ -250,8 +251,8 @@ export async function renderMermaidSafely(
           stroke: transparent !important;
         }
         .edgeLabel {
-          color: ${isDark ? "#a1a1aa" : "#64748b"} !important;
-          fill: ${isDark ? "#a1a1aa" : "#64748b"} !important;
+          color: ${isDark ? "#d4d4d8" : "#27272a"} !important;
+          fill: ${isDark ? "#d4d4d8" : "#27272a"} !important;
           font-size: 11px !important;
         }
       `,
@@ -259,6 +260,9 @@ export async function renderMermaidSafely(
         htmlLabels: true,
         useMaxWidth: true,
         curve: "basis",
+        padding: 8,
+        nodeSpacing: 25,
+        rankSpacing: 28,
       },
       themeVariables: isDark
         ? {
@@ -267,20 +271,20 @@ export async function renderMermaidSafely(
             primaryColor: "transparent",
             primaryTextColor: "#f4f4f5",
             primaryBorderColor: "#52525b",
-            lineColor: "#71717a",
+            lineColor: "#ffffff",
             secondaryColor: "transparent",
             tertiaryColor: "transparent",
             nodeBorder: "#52525b",
             clusterBkg: "transparent",
             clusterBorder: "#3f3f46",
-            defaultLinkColor: "#71717a",
+            defaultLinkColor: "#ffffff",
             titleColor: "#fafafa",
             edgeLabelBackground: "transparent",
             actorBkg: "transparent",
             actorBorder: "#52525b",
             actorTextColor: "#f4f4f5",
-            actorLineColor: "#71717a",
-            signalColor: "#f4f4f5",
+            actorLineColor: "#ffffff",
+            signalColor: "#ffffff",
             signalTextColor: "#f4f4f5",
             labelBoxBkgColor: "transparent",
             labelBoxBorderColor: "#52525b",
@@ -290,26 +294,26 @@ export async function renderMermaidSafely(
             darkMode: false,
             background: "transparent",
             primaryColor: "transparent",
-            primaryTextColor: "#0f172a",
-            primaryBorderColor: "#a1a1aa",
-            lineColor: "#94a3b8",
+            primaryTextColor: "#000000",
+            primaryBorderColor: "#d4d4d8",
+            lineColor: "#000000",
             secondaryColor: "transparent",
             tertiaryColor: "transparent",
-            nodeBorder: "#a1a1aa",
+            nodeBorder: "#d4d4d8",
             clusterBkg: "transparent",
-            clusterBorder: "#cbd5e1",
-            defaultLinkColor: "#94a3b8",
-            titleColor: "#0f172a",
+            clusterBorder: "#e4e4e7",
+            defaultLinkColor: "#000000",
+            titleColor: "#000000",
             edgeLabelBackground: "transparent",
             actorBkg: "transparent",
-            actorBorder: "#a1a1aa",
-            actorTextColor: "#0f172a",
-            actorLineColor: "#94a3b8",
-            signalColor: "#0f172a",
-            signalTextColor: "#0f172a",
+            actorBorder: "#d4d4d8",
+            actorTextColor: "#000000",
+            actorLineColor: "#000000",
+            signalColor: "#000000",
+            signalTextColor: "#000000",
             labelBoxBkgColor: "transparent",
-            labelBoxBorderColor: "#a1a1aa",
-            labelTextColor: "#0f172a",
+            labelBoxBorderColor: "#d4d4d8",
+            labelTextColor: "#000000",
           },
     });
 

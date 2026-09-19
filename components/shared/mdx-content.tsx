@@ -41,7 +41,7 @@ interface MdxContentProps {
 
 export function MdxContent({ source }: MdxContentProps) {
   return (
-    <div className="prose prose-zinc dark:prose-invert max-w-none">
+    <div className="prose prose-zinc dark:prose-invert max-w-none font-mono text-[13px] sm:text-sm">
       {/* @ts-expect-error RSC types are still stabilizing */}
       <MDXRemote source={source} components={components} options={options} />
     </div>

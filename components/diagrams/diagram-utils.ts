@@ -1,5 +1,5 @@
 /**
- * Utility functions for robust diagram rendering and code sanitization
+ * Utility functions for robust diagram rendering, caching, and code sanitization
  */
 
 /**
@@ -158,25 +158,109 @@ class MermaidQueue {
 export const mermaidQueue = new MermaidQueue();
 
 /**
- * Cleans up any stale temporary elements created by Mermaid from document.body
+ * Global SVG cache: avoids re-rendering when theme or state toggles
  */
-export function cleanupMermaidDomElements(elementId?: string) {
-  if (typeof document === "undefined") return;
+const mermaidSvgCache = new Map<string, string>();
 
-  try {
-    if (elementId) {
-      const el = document.getElementById(elementId);
-      if (el) el.remove();
-      const dEl = document.getElementById(`d${elementId}`);
-      if (dEl) dEl.remove();
-    }
+export function getCachedMermaidSvg(code: string, isDark: boolean): string | undefined {
+  const key = `${isDark ? "dark" : "light"}::${code}`;
+  return mermaidSvgCache.get(key);
+}
 
-    // Clean any orphaned dmermaid elements or error SVGs placed in body
-    const orphans = document.querySelectorAll(
-      'body > div[id^="dmermaid"], body > svg[id^="dmermaid"], body > div[id^="mermaid"]'
-    );
-    orphans.forEach((el) => el.remove());
-  } catch {
-    // Ignore DOM cleanup errors
+export function setCachedMermaidSvg(code: string, isDark: boolean, svg: string): void {
+  const key = `${isDark ? "dark" : "light"}::${code}`;
+  mermaidSvgCache.set(key, svg);
+}
+
+let diagramCounter = 0;
+
+/**
+ * Render Mermaid code to SVG safely through sequential queue with caching
+ */
+export async function renderMermaidSafely(
+  code: string,
+  isDark: boolean
+): Promise<string> {
+  const cached = getCachedMermaidSvg(code, isDark);
+  if (cached) {
+    return cached;
   }
+
+  return mermaidQueue.enqueue(async () => {
+    // Check cache again in case another job just resolved it
+    const doubleCheck = getCachedMermaidSvg(code, isDark);
+    if (doubleCheck) return doubleCheck;
+
+    const mermaid = (await import("mermaid")).default;
+
+    mermaid.initialize({
+      startOnLoad: false,
+      suppressErrorRendering: true,
+      securityLevel: "loose",
+      fontFamily: "var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif",
+      theme: isDark ? "dark" : "default",
+      themeVariables: isDark
+        ? {
+            darkMode: true,
+            background: "#09090b",
+            primaryColor: "#27272a",
+            primaryTextColor: "#f4f4f5",
+            primaryBorderColor: "#3f3f46",
+            lineColor: "#71717a",
+            secondaryColor: "#18181b",
+            tertiaryColor: "#141416",
+            nodeBorder: "#3f3f46",
+            clusterBkg: "#18181b",
+            clusterBorder: "#27272a",
+            defaultLinkColor: "#a1a1aa",
+            titleColor: "#fafafa",
+            edgeLabelBackground: "#18181b",
+            actorBkg: "#27272a",
+            actorBorder: "#3f3f46",
+            actorTextColor: "#f4f4f5",
+            actorLineColor: "#71717a",
+            signalColor: "#f4f4f5",
+            signalTextColor: "#f4f4f5",
+            labelBoxBkgColor: "#27272a",
+            labelBoxBorderColor: "#3f3f46",
+            labelTextColor: "#f4f4f5",
+          }
+        : {
+            darkMode: false,
+            background: "#ffffff",
+            primaryColor: "#f4f4f5",
+            primaryTextColor: "#18181b",
+            primaryBorderColor: "#e4e4e7",
+            lineColor: "#71717a",
+            secondaryColor: "#fafafa",
+            tertiaryColor: "#ffffff",
+            nodeBorder: "#d4d4d8",
+            clusterBkg: "#fafafa",
+            clusterBorder: "#e4e4e7",
+            defaultLinkColor: "#52525b",
+            titleColor: "#18181b",
+            edgeLabelBackground: "#ffffff",
+            actorBkg: "#f4f4f5",
+            actorBorder: "#e4e4e7",
+            actorTextColor: "#18181b",
+            actorLineColor: "#71717a",
+            signalColor: "#18181b",
+            signalTextColor: "#18181b",
+            labelBoxBkgColor: "#f4f4f5",
+            labelBoxBorderColor: "#e4e4e7",
+            labelTextColor: "#18181b",
+          },
+    });
+
+    diagramCounter += 1;
+    const uniqueId = `mermaid_diag_${Date.now()}_${diagramCounter}`;
+
+    const { svg } = await mermaid.render(uniqueId, code);
+
+    // Clean inline max-width so diagram fits container responsively
+    const responsiveSvg = svg.replace(/style="max-width:\s*[^"]+;?"/i, "");
+
+    setCachedMermaidSvg(code, isDark, responsiveSvg);
+    return responsiveSvg;
+  });
 }

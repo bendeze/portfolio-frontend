@@ -27,6 +27,7 @@ export function PlantUMLDiagram({
 
   useEffect(() => {
     let isMounted = true;
+    let timer: NodeJS.Timeout | null = null;
 
     if (!cleanedCode) {
       setIsEncoding(false);
@@ -39,6 +40,14 @@ export function PlantUMLDiagram({
       setIsEncoding(true);
       setIsImageLoading(true);
       setError(null);
+
+      // Watchdog timeout to prevent infinite loader
+      timer = setTimeout(() => {
+        if (isMounted) {
+          setIsImageLoading(false);
+          setIsEncoding(false);
+        }
+      }, 7000);
 
       try {
         const plantumlEncoder = (await import("plantuml-encoder")).default;
@@ -71,6 +80,7 @@ export function PlantUMLDiagram({
 
     return () => {
       isMounted = false;
+      if (timer) clearTimeout(timer);
     };
   }, [cleanedCode, renderCount]);
 
@@ -149,11 +159,7 @@ export function PlantUMLDiagram({
         </div>
       ) : (
         svgUrl && (
-          <div
-            className={`flex flex-col items-center justify-center w-full space-y-4 ${
-              isLoading ? "hidden" : "block"
-            }`}
-          >
+          <div className={`flex flex-col items-center justify-center w-full space-y-4 ${isLoading ? "sr-only" : "block"}`}>
             <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-lg p-2 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xs">
               {/* PlantUML SVG Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}

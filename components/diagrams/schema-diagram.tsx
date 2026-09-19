@@ -421,7 +421,7 @@ export function SchemaDiagram({
                           {!col.isNullable && !col.isPrimary && (
                             <span
                               title="NOT NULL"
-                              className="text-[9px] text-zinc-400 font-sans uppercase"
+                              className="text-[9px] text-zinc-400 font-mono uppercase"
                             >
                               req
                             </span>
@@ -429,7 +429,7 @@ export function SchemaDiagram({
                           {col.isUnique && !col.isPrimary && (
                             <span
                               title="UNIQUE"
-                              className="text-[9px] text-purple-400 font-sans uppercase"
+                              className="text-[9px] text-purple-400 font-mono uppercase"
                             >
                               uniq
                             </span>

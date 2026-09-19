@@ -343,27 +343,27 @@ export function SchemaDiagram({
                   onMouseEnter={() => setHighlightedTable(table.name)}
                   onMouseLeave={() => setHighlightedTable(null)}
                   className={cn(
-                    "rounded-lg border bg-zinc-50/50 dark:bg-zinc-900/40 shadow-none overflow-hidden transition-colors duration-150",
+                    "rounded-md border bg-white dark:bg-zinc-900 shadow-none overflow-hidden transition-colors duration-150",
                     isTargeted
-                      ? "border-blue-500 ring-1 ring-blue-500"
-                      : "border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
+                      ? "border-blue-500 dark:border-blue-400 ring-1 ring-blue-500"
+                      : "border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600"
                   )}
                 >
-                  {/* Table Header */}
-                  <div className="flex items-center justify-between px-3.5 py-2.5 bg-zinc-100/70 dark:bg-zinc-800/70 border-b border-border/40">
+                  {/* Table Header (Draw.io ERD Title Bar) */}
+                  <div className="flex items-center justify-between px-3.5 py-2 bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-300 dark:border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <Database className="h-3.5 w-3.5 text-blue-500 dark:text-blue-400" />
-                      <span className="font-mono text-xs font-bold text-foreground">
+                      <Database className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+                      <span className="font-mono text-xs font-bold text-foreground tracking-tight">
                         {table.name}
                       </span>
                     </div>
-                    <span className="font-mono text-[10px] text-muted-foreground px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.04]">
+                    <span className="font-mono text-[10px] text-muted-foreground px-1.5 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-700/60 border border-zinc-300/40 dark:border-zinc-600/40">
                       {table.columns.length} cols
                     </span>
                   </div>
 
                   {/* Columns Table */}
-                  <div className="divide-y divide-border/20 text-xs font-mono">
+                  <div className="divide-y divide-zinc-200 dark:divide-zinc-800 text-xs font-mono">
                     {table.columns.map((col) => (
                       <div
                         key={col.name}

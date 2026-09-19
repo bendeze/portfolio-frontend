@@ -52,16 +52,28 @@ export function PlantUMLDiagram({
       try {
         const plantumlEncoder = (await import("plantuml-encoder")).default;
         
-        let codeWithNoShadow = cleanedCode;
-        if (!/skinparam\s+shadowing/i.test(codeWithNoShadow)) {
-          if (/^@startuml/m.test(codeWithNoShadow)) {
-            codeWithNoShadow = codeWithNoShadow.replace(/^@startuml\b/m, "@startuml\nskinparam shadowing false\n");
+        let codeWithDrawioStyle = cleanedCode;
+        const drawioSkinparams = `
+skinparam shadowing false
+skinparam roundcorner 4
+skinparam BoxPadding 10
+skinparam ParticipantPadding 10
+skinparam defaultFontName monospace
+skinparam defaultFontSize 12
+skinparam ActivityBorderThickness 1.5
+skinparam ClassBorderThickness 1.5
+skinparam RectangleBorderThickness 1.5
+skinparam SequenceLifeLineBorderThickness 1.5
+`;
+        if (!/skinparam\s+shadowing/i.test(codeWithDrawioStyle)) {
+          if (/^@startuml/m.test(codeWithDrawioStyle)) {
+            codeWithDrawioStyle = codeWithDrawioStyle.replace(/^@startuml\b/m, `@startuml\n${drawioSkinparams}\n`);
           } else {
-            codeWithNoShadow = `@startuml\nskinparam shadowing false\n${codeWithNoShadow}\n@enduml`;
+            codeWithDrawioStyle = `@startuml\n${drawioSkinparams}\n${codeWithDrawioStyle}\n@enduml`;
           }
         }
 
-        const encoded = plantumlEncoder.encode(codeWithNoShadow);
+        const encoded = plantumlEncoder.encode(codeWithDrawioStyle);
 
         const serverUrl =
           process.env.NEXT_PUBLIC_PLANTUML_SERVER_URL ||
@@ -170,7 +182,7 @@ export function PlantUMLDiagram({
       ) : (
         svgUrl && (
           <div className={`flex flex-col items-center justify-center w-full space-y-4 ${isLoading ? "sr-only" : "block"}`}>
-            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-lg p-3 bg-zinc-50/50 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-zinc-800/60 shadow-none">
+            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-md p-4 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 shadow-none">
               {/* PlantUML SVG Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

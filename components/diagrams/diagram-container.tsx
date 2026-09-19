@@ -86,13 +86,13 @@ export function DiagramContainer({
       <div
         ref={containerRef}
         className={cn(
-          "relative my-8 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950 overflow-hidden transition-all duration-300 shadow-none",
+          "relative my-8 rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden transition-all duration-200 shadow-none",
           isFullscreen ? "hidden" : "block",
           className
         )}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-900/60">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-zinc-300 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
           {/* Left Title & Badge */}
           <div className="flex items-center gap-2">
             {icon && <span className="text-zinc-500 dark:text-zinc-400">{icon}</span>}
@@ -101,7 +101,7 @@ export function DiagramContainer({
                 {title}
               </span>
             )}
-            <span className="rounded-md bg-zinc-200/60 dark:bg-zinc-800/80 border border-zinc-300/40 dark:border-zinc-700/60 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-600 dark:text-zinc-300">
+            <span className="rounded bg-zinc-200/80 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
               {badge}
             </span>
           </div>
@@ -109,15 +109,15 @@ export function DiagramContainer({
           {/* Right Toolbar Controls */}
           <div className="flex items-center gap-1">
             {/* Tab switchers */}
-            <div className="flex items-center rounded-lg bg-zinc-200/60 dark:bg-zinc-800/60 p-0.5 border border-zinc-300/40 dark:border-zinc-700/40 text-[11px] font-mono">
+            <div className="flex items-center rounded-md bg-zinc-200/70 dark:bg-zinc-800/80 p-0.5 border border-zinc-300/80 dark:border-zinc-700 text-[11px] font-mono">
               {availableTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => handleTabSelect(tab.id)}
                   className={cn(
-                    "flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer",
+                    "flex items-center gap-1.5 px-2.5 py-1 rounded transition-all font-medium cursor-pointer",
                     activeTab === tab.id
-                      ? "bg-white dark:bg-zinc-900 text-foreground font-semibold border border-zinc-200 dark:border-zinc-800 shadow-none"
+                      ? "bg-white dark:bg-zinc-900 text-foreground font-semibold border border-zinc-300 dark:border-zinc-700 shadow-none"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >

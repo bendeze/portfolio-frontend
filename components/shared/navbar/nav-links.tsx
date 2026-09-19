@@ -28,7 +28,7 @@ export function NavLinks({
       className={cn(
         'flex',
         isColumn
-          ? 'flex-col space-y-6'
+          ? 'flex-col space-y-2.5'
           : 'items-center space-x-6 text-sm font-medium',
         className
       )}
@@ -42,6 +42,7 @@ export function NavLinks({
         }
 
         const nameKey = item.name.toLowerCase()
+        const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
 
         return (
           <Link
@@ -49,14 +50,28 @@ export function NavLinks({
             href={href}     
             onClick={onClick}
             className={cn(
-              'transition-colors font-mono font-semibold uppercase tracking-[0.16em]',
+              'group inline-flex items-center gap-1 font-mono uppercase tracking-wider transition-all duration-200 select-none cursor-pointer',
               isColumn
-                ? 'text-xs text-muted-foreground hover:text-foreground py-1.5'
-                : 'text-[10px] text-muted-foreground hover:text-foreground',
-              pathname === item.href && "text-foreground font-black" 
+                ? 'text-[11px] py-0.5 border-b border-transparent hover:border-dashed hover:border-[#ebcb00] hover:text-[#ebcb00]'
+                : 'text-[10px] hover:text-[#ebcb00]',
+              isActive
+                ? 'text-[#ebcb00] font-bold border-dashed border-[#ebcb00]'
+                : 'text-zinc-500 dark:text-zinc-400'
             )}
           >
-            {t(`nav.${nameKey}`)}
+            {isColumn && (
+              <span
+                className={cn(
+                  'text-[9px] transition-all duration-200',
+                  isActive
+                    ? 'text-[#ebcb00]'
+                    : 'text-zinc-400 dark:text-zinc-600 group-hover:text-[#ebcb00] group-hover:translate-x-0.5'
+                )}
+              >
+                /
+              </span>
+            )}
+            <span>{t(`nav.${nameKey}`) || item.name}</span>
           </Link>
         )
       })}

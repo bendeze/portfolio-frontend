@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react"; 
+import React, { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MorphingText } from "../ui/primitives/texts/morphing";
 import { cn } from "@/lib/utils";
@@ -37,14 +37,14 @@ export function Hero() {
   const prefix = t("hero.welcome");
   const suffix = " Bonheur Ndeze";
   const welcomeText = `${prefix}${suffix}`;
-  
+
   const [typedText, setTypedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
 
   useEffect(() => {
     setTypedText("");
     setTypingDone(false);
-    
+
     let index = 0;
     const interval = setInterval(() => {
       setTypedText(welcomeText.slice(0, index + 1));
@@ -103,23 +103,23 @@ export function Hero() {
   }), [shouldReduceMotion]);
 
   const itemVariants: Variants = useMemo(() => ({
-    hidden: { 
-      opacity: 0, 
-      y: shouldReduceMotion ? 0 : 25 
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 25
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.6, 
-        ease: "easeOut" 
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
       }
     },
   }), [shouldReduceMotion]);
 
   return (
     <section className={cn("relative flex min-h-[100vh] flex-col items-center",
-    "justify-center overflow-hidden bg-background dark:bg-[#030303] px-6 py-20 md:py-0 text-center")}>
+      "justify-center overflow-hidden bg-background dark:bg-[#030303] px-6 py-20 md:py-0 text-center")}>
 
       {/* Interactive Dot Grid Background with Cursor Dispersal */}
       <DotDispersalCanvas />
@@ -136,7 +136,7 @@ export function Hero() {
       >
 
         <MotionH1
-          className="mb-4 text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+          className="mb-4 text-4xl font-mono tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
         >
           <span className="text-gray-700 dark:text-muted-foreground">
             {typedText.slice(0, prefix.length)}
@@ -145,7 +145,7 @@ export function Hero() {
             {typedText.slice(prefix.length)}
           </span>
           {!typingDone && (
-            <span className="inline-block w-[3px] h-[0.8em] align-middle bg-foreground ml-1.5 animate-pulse" />
+            <span className="inline-block w-[3px] h-[0.8em] align-middle bg-[#ebcb00] ml-1.5 animate-pulse" />
           )}
         </MotionH1>
 
@@ -154,22 +154,22 @@ export function Hero() {
           variants={itemVariants}
           initial="hidden"
           animate={showRoles ? "visible" : "hidden"}
-          className="mb-6 h-12 sm:h-20 flex justify-center items-center"
+          className="mb-6 h-12 sm:h-20 flex justify-center items-center font-mono"
         >
-            <MorphingText
-                text={translatedRoles}
-                loop={true}
-                holdDelay={2500}
-                className="font-semibold leading-none text-gray-900 dark:text-muted-foreground"
-                style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }} 
-            />
+          <MorphingText
+            text={translatedRoles}
+            loop={true}
+            holdDelay={2500}
+            className="font-semibold leading-none text-gray-900 dark:text-muted-foreground font-mono"
+            style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
+          />
         </MotionDiv>
 
         <MotionP
           variants={itemVariants}
           initial="hidden"
           animate={showCenterpiece ? "visible" : "hidden"}
-          className="mx-auto mb-10 max-w-2xl text-base text-gray-800 dark:text-muted-foreground sm:text-lg md:text-xl leading-relaxed"
+          className="mx-auto mb-10 max-w-2xl text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 leading-relaxed"
         >
           {t("hero.centerpiece")}
         </MotionP>
@@ -179,11 +179,11 @@ export function Hero() {
           variants={itemVariants}
           initial="hidden"
           animate={showButtons ? "visible" : "hidden"}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row font-mono"
         >
           <Button 
             size="lg" 
-            className="group min-w-[160px] text-base"
+            className="group min-w-[165px] h-12 text-xs sm:text-sm font-mono rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-[#ebcb00] hover:text-black dark:hover:bg-[#ebcb00] dark:hover:text-black transition-all duration-200 cursor-pointer shadow-sm active:scale-98"
             onClick={handleScrollTo("#projects")}
           >
             {t("hero.ctaBuild")}
@@ -193,10 +193,10 @@ export function Hero() {
           <Button 
             variant="outline" 
             size="lg" 
-            className="min-w-[160px] text-base"
+            className="group min-w-[165px] h-12 text-xs sm:text-sm font-mono rounded-xl bg-transparent dark:hover:bg-[#030303] text-foreground border border-dashed border-zinc-400/80 dark:border-zinc-700 hover:border-[#ebcb00] hover:text-[#09090b] dark:hover:border-[#ebcb00] dark:hover:text-[#ebcb00] transition-all duration-200 cursor-pointer active:scale-98"
             onClick={handleScrollTo("#contact")}
           >
-            <Mail className="mr-2 h-4 w-4" />
+            <Mail className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
             {t("hero.ctaContact")}
           </Button>
         </MotionDiv>

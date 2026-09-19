@@ -2,27 +2,19 @@ import { Hero } from "@/components/sections/hero";
 import { AboutSection } from "@/components/sections/about";
 import { TechMarqueeSection } from "@/components/sections/tech-marquee";
 import { PlatformsSection } from "@/components/sections/platforms";
-import { BlogSection, BlogPost } from "@/components/sections/blog";
-import { SkillsSection } from "@/components/sections/skills";
+import { BlogSection } from "@/components/sections/blog";
 import { ContactSection } from "@/components/sections/contact";
 import { YoutubeVideosSection } from "@/components/sections/youtube-videos";
-import { safeFetch } from "@/lib/api-fetch";
 import { getLatestYouTubeVideos } from "@/lib/youtube";
-
-export const dynamic = "force-dynamic";
-
-interface BlogApiResponse {
-  results: BlogPost[];
-}
+import { getAllContent } from "@/lib/content";
 
 export default async function Home() {
-  const blogData = await safeFetch<BlogApiResponse>(
-    "/blog/?page_size=10",
-    {},
-    { results: [] }
+  // Read latest publications (Articles + Posts) statically from local Git Markdown
+  const articles = getAllContent("articles");
+  const posts = getAllContent("posts");
+  const publications = [...articles, ...posts].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
-
-  const posts = blogData?.results || [];
 
   const youtubeChannelId = process.env.YOUTUBE_CHANNEL_ID || "";
   const youtubeVideos = await getLatestYouTubeVideos(youtubeChannelId, 10);
@@ -33,10 +25,9 @@ export default async function Home() {
       <AboutSection />
       <TechMarqueeSection />
       <PlatformsSection />
-      <BlogSection posts={posts} />
+      <BlogSection items={publications} />
       <YoutubeVideosSection videos={youtubeVideos} />
       <ContactSection />
     </div>
   );
 }
-

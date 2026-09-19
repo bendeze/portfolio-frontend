@@ -116,13 +116,13 @@ export function MermaidDiagram({
       title={title}
       badge="MERMAID"
       code={cleanedChart || chart}
-      icon={<GitBranch className="h-3.5 w-3.5 text-indigo-500 dark:text-indigo-400" />}
+      icon={<GitBranch className="h-3.5 w-3.5 text-[#ebcb00]" />}
       className={className}
       onDownloadSvg={svgContent ? handleDownloadSvg : undefined}
     >
       {isLoading && !svgContent ? (
         <div className="flex flex-col items-center justify-center py-12 text-muted-foreground gap-3 select-none">
-          <Loader2 className="h-6 w-6 animate-spin text-indigo-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#ebcb00]" />
           <span className="text-xs font-mono tracking-wide">Rendering diagram...</span>
         </div>
       ) : error && !svgContent ? (

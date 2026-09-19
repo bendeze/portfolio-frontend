@@ -343,27 +343,27 @@ export function SchemaDiagram({
                   onMouseEnter={() => setHighlightedTable(table.name)}
                   onMouseLeave={() => setHighlightedTable(null)}
                   className={cn(
-                    "rounded-md border bg-white dark:bg-zinc-900 shadow-none overflow-hidden transition-colors duration-150",
+                    "rounded-md border bg-transparent shadow-none overflow-hidden transition-colors duration-150",
                     isTargeted
-                      ? "border-blue-500 dark:border-blue-400 ring-1 ring-blue-500"
-                      : "border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-600"
+                      ? "border-[#ebcb00] ring-1 ring-[#ebcb00]"
+                      : "border-zinc-300 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700"
                   )}
                 >
-                  {/* Table Header (Draw.io ERD Title Bar) */}
-                  <div className="flex items-center justify-between px-3.5 py-2 bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-300 dark:border-zinc-700">
+                  {/* Table Header */}
+                  <div className="flex items-center justify-between px-3.5 py-2 bg-transparent border-b border-zinc-200 dark:border-zinc-800">
                     <div className="flex items-center gap-2">
-                      <Database className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+                      <Database className="h-3.5 w-3.5 text-[#ebcb00]" />
                       <span className="font-mono text-xs font-bold text-foreground tracking-tight">
                         {table.name}
                       </span>
                     </div>
-                    <span className="font-mono text-[10px] text-muted-foreground px-1.5 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-700/60 border border-zinc-300/40 dark:border-zinc-600/40">
+                    <span className="font-mono text-[10px] text-muted-foreground px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                       {table.columns.length} cols
                     </span>
                   </div>
 
                   {/* Columns Table */}
-                  <div className="divide-y divide-zinc-200 dark:divide-zinc-800 text-xs font-mono">
+                  <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60 text-xs font-mono">
                     {table.columns.map((col) => (
                       <div
                         key={col.name}
@@ -374,14 +374,14 @@ export function SchemaDiagram({
                           {col.isPrimary ? (
                             <span
                               title="Primary Key"
-                              className="flex items-center text-amber-500 flex-shrink-0"
+                              className="flex items-center text-[#ebcb00] flex-shrink-0"
                             >
                               <Key className="h-3 w-3" />
                             </span>
                           ) : col.isForeign ? (
                             <span
                               title={`Foreign Key -> ${col.foreignTable}(${col.foreignColumn})`}
-                              className="flex items-center text-cyan-500 flex-shrink-0 cursor-pointer"
+                              className="flex items-center text-[#ebcb00] flex-shrink-0 cursor-pointer"
                               onClick={() => setHighlightedTable(col.foreignTable || null)}
                             >
                               <LinkIcon className="h-3 w-3" />
@@ -406,7 +406,7 @@ export function SchemaDiagram({
                           {col.isForeign && col.foreignTable && (
                             <span
                               onClick={() => setHighlightedTable(col.foreignTable || null)}
-                              className="cursor-pointer text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
+                              className="cursor-pointer text-[9px] px-1.5 py-0.2 rounded bg-[#ebcb00]/10 text-[#ebcb00] border border-[#ebcb00]/20 hover:bg-[#ebcb00]/20 transition-colors"
                             >
                               → {col.foreignTable}
                             </span>
@@ -417,8 +417,7 @@ export function SchemaDiagram({
                         <div className="flex items-center gap-1.5 flex-shrink-0">
                           <span
                             className={cn(
-                              "px-1.5 py-0.5 rounded text-[10px] font-semibold border",
-                              getTypeBadgeColor(col.type)
+                              "px-1.5 py-0.5 rounded text-[10px] font-semibold border bg-zinc-100 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
                             )}
                           >
                             {col.type}

@@ -402,7 +402,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       </code>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-indigo-500/80 bg-zinc-50 dark:bg-zinc-900/40 pl-5 pr-4 py-3.5 my-6 rounded-r-lg font-mono text-[13px] sm:text-[14px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
+      <blockquote className="border-l-2 border-[#ebcb00] bg-zinc-50 dark:bg-zinc-900/40 pl-5 pr-4 py-3.5 my-6 rounded-r-lg font-mono text-[13px] sm:text-[14px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
         {children}
       </blockquote>
     ),
@@ -426,7 +426,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
         href={href} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 font-mono font-medium underline underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-colors"
+        className="text-[#ebcb00] hover:text-[#ffd700] font-mono font-medium underline underline-offset-4 decoration-[#ebcb00]/40 hover:decoration-[#ebcb00] transition-colors"
       >
         {children}
       </a>
@@ -486,7 +486,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       {/* 0. Scrolling Progress Bar Indicator */}
       <div className="fixed top-0 left-0 right-0 h-[3px] bg-border/20 z-50">
         <motion.div 
-          className="h-full bg-gradient-to-r from-gray-500 via-black-500 to-gray-500 dark:bg-gradient-to-r dark:from-gray-50 via-white-100 to-gray-100" 
+          className="h-full bg-[#ebcb00]" 
           style={{ width: `${scrollProgress * 100}%` }}
         /> 
       </div>
@@ -632,7 +632,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
                   {post.title}
                 </h1>
                 
-                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-indigo-500/80 pl-4 py-1">
+                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-[#ebcb00] pl-4 py-1">
                   {post.summary}
                 </p>
               </header>
@@ -645,7 +645,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
               )}
  
               {/* Markdown Content (Styled customly) */}
-              <div className="relative pt-4 selection:bg-gray-500/10 dark:selection:bg-gray-200/50">
+              <div className="relative pt-4 selection:bg-[#ebcb00]/20 selection:text-foreground">
                 <MDXRemote {...mdxSource} components={mdxComponents} />
               </div>
 

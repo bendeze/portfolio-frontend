@@ -86,13 +86,13 @@ export function DiagramContainer({
       <div
         ref={containerRef}
         className={cn(
-          "relative my-8 rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden transition-all duration-200 shadow-none",
+          "relative my-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent overflow-hidden transition-all duration-200 shadow-none",
           isFullscreen ? "hidden" : "block",
           className
         )}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-zinc-300 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-zinc-200 dark:border-zinc-800 bg-transparent">
           {/* Left Title & Badge */}
           <div className="flex items-center gap-2">
             {icon && <span className="text-zinc-500 dark:text-zinc-400">{icon}</span>}
@@ -101,7 +101,7 @@ export function DiagramContainer({
                 {title}
               </span>
             )}
-            <span className="rounded bg-zinc-200/80 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
+            <span className="rounded bg-transparent border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
               {badge}
             </span>
           </div>
@@ -109,7 +109,7 @@ export function DiagramContainer({
           {/* Right Toolbar Controls */}
           <div className="flex items-center gap-1">
             {/* Tab switchers */}
-            <div className="flex items-center rounded-md bg-zinc-200/70 dark:bg-zinc-800/80 p-0.5 border border-zinc-300/80 dark:border-zinc-700 text-[11px] font-mono">
+            <div className="flex items-center rounded-md bg-transparent p-0.5 border border-zinc-200 dark:border-zinc-800 text-[11px] font-mono">
               {availableTabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -117,7 +117,7 @@ export function DiagramContainer({
                   className={cn(
                     "flex items-center gap-1.5 px-2.5 py-1 rounded transition-all font-medium cursor-pointer",
                     activeTab === tab.id
-                      ? "bg-white dark:bg-zinc-900 text-foreground font-semibold border border-zinc-300 dark:border-zinc-700 shadow-none"
+                      ? "bg-transparent text-[#ebcb00] font-semibold border border-[#ebcb00]/50 shadow-none"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -136,7 +136,7 @@ export function DiagramContainer({
                   onClick={handleZoomOut}
                   title="Zoom Out"
                   aria-label="Zoom Out"
-                  className="p-1.5 rounded-md text-zinc-500 hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-md text-zinc-500 hover:text-[#ebcb00] transition-colors cursor-pointer"
                 >
                   <ZoomOut className="h-3.5 w-3.5" />
                 </button>

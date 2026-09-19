@@ -55,15 +55,20 @@ export function PlantUMLDiagram({
         let codeWithDrawioStyle = cleanedCode;
         const drawioSkinparams = `
 skinparam shadowing false
+skinparam backgroundColor transparent
 skinparam roundcorner 4
 skinparam BoxPadding 10
 skinparam ParticipantPadding 10
 skinparam defaultFontName monospace
 skinparam defaultFontSize 12
-skinparam ActivityBorderThickness 1.5
-skinparam ClassBorderThickness 1.5
-skinparam RectangleBorderThickness 1.5
-skinparam SequenceLifeLineBorderThickness 1.5
+skinparam ActivityBorderThickness 1
+skinparam ClassBorderThickness 1
+skinparam RectangleBorderThickness 1
+skinparam SequenceLifeLineBorderThickness 1
+skinparam PackageBorderThickness 1
+skinparam ComponentBorderThickness 1
+skinparam StateBorderThickness 1
+skinparam UsecaseBorderThickness 1
 `;
         if (!/skinparam\s+shadowing/i.test(codeWithDrawioStyle)) {
           if (/^@startuml/m.test(codeWithDrawioStyle)) {
@@ -136,13 +141,13 @@ skinparam SequenceLifeLineBorderThickness 1.5
       title={title}
       badge="PLANTUML"
       code={cleanedCode || code}
-      icon={<Network className="h-3.5 w-3.5 text-purple-500 dark:text-purple-400" />}
+      icon={<Network className="h-3.5 w-3.5 text-[#ebcb00]" />}
       className={className}
       onDownloadSvg={svgUrl ? handleDownloadSvg : undefined}
     >
       {isLoading && (
         <div className="flex flex-col items-center justify-center py-12 text-muted-foreground gap-3 select-none">
-          <Loader2 className="h-6 w-6 animate-spin text-purple-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#ebcb00]" />
           <span className="text-xs font-mono tracking-wide">Generating PlantUML diagram...</span>
         </div>
       )}
@@ -171,7 +176,7 @@ skinparam SequenceLifeLineBorderThickness 1.5
                 href={editorUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] font-mono text-indigo-500 hover:underline"
+                className="inline-flex items-center gap-1 text-[11px] font-mono text-[#ebcb00] hover:underline"
               >
                 <span>View Online</span>
                 <ExternalLink className="h-3 w-3" />
@@ -182,7 +187,7 @@ skinparam SequenceLifeLineBorderThickness 1.5
       ) : (
         svgUrl && (
           <div className={`flex flex-col items-center justify-center w-full space-y-4 ${isLoading ? "sr-only" : "block"}`}>
-            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-md p-4 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 shadow-none">
+            <div className="w-full flex justify-center items-center overflow-x-auto select-none rounded-md p-4 bg-transparent border border-zinc-200 dark:border-zinc-800 shadow-none">
               {/* PlantUML SVG Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

@@ -300,10 +300,10 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h1 
           id={slug} 
-          className="text-3xl sm:text-4xl font-black tracking-tight text-foreground mt-14 mb-8 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-3"
+          className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-foreground mt-14 mb-6 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-3"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-xl">#</span>
+          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-lg">#</span>
           {children}
         </h1>
       );
@@ -313,10 +313,10 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h2 
           id={slug} 
-          className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mt-12 mb-6 scroll-mt-24 group relative border-b border-border/10 pb-2 cursor-pointer"
+          className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-foreground mt-12 mb-5 scroll-mt-24 group relative border-b border-border/10 pb-2 cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-lg">#</span>
+          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-base">#</span>
           {children}
         </h2>
       );
@@ -326,10 +326,10 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h3 
           id={slug} 
-          className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-8 mb-4 scroll-mt-24 group relative cursor-pointer"
+          className="text-lg sm:text-xl font-bold font-mono tracking-tight text-foreground mt-8 mb-3 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-base">#</span>
+          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-sm">#</span>
           {children}
         </h3>
       );
@@ -339,10 +339,10 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h4 
           id={slug} 
-          className="text-lg sm:text-xl font-bold tracking-tight text-foreground mt-6 mb-3 scroll-mt-24 group relative cursor-pointer"
+          className="text-base sm:text-lg font-bold font-mono tracking-tight text-foreground mt-6 mb-2.5 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/60 font-mono font-thin text-sm">#</span>
+          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/60 font-mono font-thin text-xs">#</span>
           {children}
         </h4>
       );
@@ -352,7 +352,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h5 
           id={slug} 
-          className="text-base sm:text-lg font-bold tracking-tight text-foreground mt-5 mb-2.5 scroll-mt-24 group relative cursor-pointer"
+          className="text-sm sm:text-base font-bold font-mono tracking-tight text-foreground mt-5 mb-2 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/50 font-mono font-thin text-xs">#</span>
@@ -365,7 +365,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       return (
         <h6 
           id={slug} 
-          className="text-sm sm:text-base font-semibold tracking-tight text-foreground mt-4 mb-2 scroll-mt-24 group relative cursor-pointer"
+          className="text-xs sm:text-sm font-semibold font-mono tracking-tight text-foreground mt-4 mb-2 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/40 font-mono font-thin text-xs">#</span>
@@ -374,7 +374,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       );
     },
     p: ({ children }: any) => (
-      <p className="text-[15px] sm:text-[16px] leading-[1.8] text-muted-foreground/90 dark:text-zinc-300/90 font-sans my-5 font-normal tracking-wide antialiased">
+      <p className="text-[14px] sm:text-[15px] leading-[1.85] text-muted-foreground/95 dark:text-zinc-300 font-mono my-6 font-normal tracking-normal antialiased">
         {children}
       </p>
     ),
@@ -399,22 +399,22 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       <SchemaDiagram code={code || sql || children} {...props} />
     ),
     code: ({ children }: any) => (
-      <code className="text-gray-500 dark:text-gray-200 bg-gray-500/[0.04] dark:bg-gray-400/[0.04] border border-gray-500/10 dark:border-gray-400/10 px-1.5 py-0.5 rounded font-mono text-[13px] font-bold">
+      <code className="text-foreground bg-zinc-100 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[13px] font-medium">
         {children}
       </code>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-gray-500 bg-gray-500/[0.01] pl-6 pr-4 py-3 my-6 rounded-r-xl font-serif italic text-base sm:text-lg text-muted-foreground/80 dark:text-zinc-400/80">
+      <blockquote className="border-l-2 border-[#ebcb00] bg-zinc-50 dark:bg-zinc-900/40 pl-5 pr-4 py-3.5 my-6 rounded-r-lg font-mono text-[13px] sm:text-[14px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
         {children}
       </blockquote>
     ),
     ul: ({ children }: any) => (
-      <ul className="list-disc pl-6 my-6 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-muted-foreground/90 dark:text-zinc-300/90">
+      <ul className="list-disc pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="list-decimal pl-6 my-6 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-muted-foreground/90 dark:text-zinc-300/90">
+      <ol className="list-decimal pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ol>
     ),
@@ -428,30 +428,30 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
         href={href} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-semibold underline underline-offset-4 decoration-blue-500/30 hover:decoration-blue-500 transition-colors"
+        className="text-[#ebcb00] hover:text-[#ffd700] font-mono font-medium underline underline-offset-4 decoration-[#ebcb00]/40 hover:decoration-[#ebcb00] transition-colors"
       >
         {children}
       </a>
     ),
     table: ({ children }: any) => (
-      <div className="my-6 w-full overflow-x-auto rounded-xl border border-border/40 bg-black/[0.01] dark:bg-white/[0.01] shadow-xs">
-        <table className="w-full border-collapse text-left text-sm">
+      <div className="my-6 w-full overflow-x-auto rounded-lg border border-border/40 bg-zinc-50/50 dark:bg-zinc-950">
+        <table className="w-full border-collapse text-left text-xs font-mono">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="border-b border-border/40 bg-black/[0.02] dark:bg-white/[0.02] font-semibold text-foreground">
+      <thead className="border-b border-border/40 bg-zinc-100/60 dark:bg-zinc-900/60 font-semibold text-foreground font-mono">
         {children}
       </thead>
     ),
     tbody: ({ children }: any) => (
-      <tbody className="divide-y divide-border/10">
+      <tbody className="divide-y divide-border/10 font-mono">
         {children}
       </tbody>
     ),
     tr: ({ children }: any) => (
-      <tr className="hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-colors">
+      <tr className="hover:bg-zinc-100/30 dark:hover:bg-zinc-900/30 transition-colors">
         {children}
       </tr>
     ),
@@ -461,7 +461,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-4 py-3 text-muted-foreground/90 dark:text-zinc-300/90 font-sans leading-relaxed">
+      <td className="px-4 py-3 text-muted-foreground/90 dark:text-zinc-300/90 font-mono leading-relaxed">
         {children}
       </td>
     ),
@@ -487,7 +487,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
     <>
       <div className="fixed top-0 left-0 right-0 h-[3px] bg-border/20 z-50">
         <motion.div 
-          className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:bg-gradient-to-r dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400" 
+          className="h-full bg-[#ebcb00]" 
           style={{ width: `${scrollProgress * 100}%` }}
         /> 
       </div>
@@ -620,11 +620,11 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                   </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black dark:text-white font-sans">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight text-foreground font-mono">
                   {project.title}
                 </h1>
                 
-                <p className="text-gray-600 dark:text-gray-400 font-sans text-sm sm:text-base leading-relaxed border-l-4 border-indigo-500/90 pl-4 py-0.5 font-light">
+                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-[#ebcb00] pl-4 py-1">
                   {project.description}
                 </p>
               </header>
@@ -635,7 +635,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                 </div>
               )}
  
-              <div className="relative pt-4 selection:bg-indigo-500/10 dark:selection:bg-indigo-200/50">
+              <div className="relative pt-4 selection:bg-[#ebcb00]/20 selection:text-foreground">
                 <MDXRemote {...mdxSource} components={mdxComponents} />
               </div>
 
@@ -653,7 +653,7 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                         animate={{ opacity: 1, y: -32, scale: 1.1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="absolute left-6 text-xs font-mono font-bold text-indigo-500 dark:text-indigo-400 pointer-events-none select-none"
+                        className="absolute left-6 text-xs font-mono font-bold text-[#ebcb00] pointer-events-none select-none"
                       >
                         +1
                       </motion.span>
@@ -668,13 +668,13 @@ export function ProjectReader({ project, headings, mdxSource }: ProjectReaderPro
                     className={cn(
                       "group/clap relative flex items-center justify-center gap-2.5 px-6 py-3 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all select-none border cursor-pointer",
                       userClaps >= 50
-                        ? "border-indigo-500/30 bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 cursor-default"
+                        ? "border-[#ebcb00]/30 bg-[#ebcb00]/10 text-[#ebcb00] cursor-default"
                         : userClaps > 0
-                        ? "border-indigo-500/20 bg-indigo-500/5 hover:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300"
+                        ? "border-[#ebcb00]/20 bg-[#ebcb00]/5 hover:bg-[#ebcb00]/10 text-[#ebcb00]"
                         : "border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-zinc-600 dark:text-white/70"
                     )}
                   >
-                    <ThumbsUp className={cn("h-4 w-4 transition-transform group-hover/clap:scale-110", userClaps > 0 ? "fill-indigo-500/10 dark:fill-indigo-400/20 stroke-indigo-500 dark:stroke-indigo-400" : "")} />
+                    <ThumbsUp className={cn("h-4 w-4 transition-transform group-hover/clap:scale-110", userClaps > 0 ? "fill-[#ebcb00]/20 stroke-[#ebcb00]" : "")} />
                     <span>
                       {userClaps >= 50 
                         ? t("projects.clappedBtn") || "Bravo !" 

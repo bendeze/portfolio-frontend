@@ -198,17 +198,22 @@ export function DiagramContainer({
         </div>
 
         {/* Content Body */}
-        <div className="relative min-h-[160px] p-4 sm:p-6 overflow-x-auto select-text">
+        <div className="relative min-h-[160px] p-4 sm:p-6 overflow-x-auto overflow-y-hidden select-text">
           {activeTab === "code" ? (
             <div className="rounded-xl border border-white/5 bg-zinc-950 p-4 font-mono text-xs text-zinc-100 overflow-x-auto leading-relaxed">
               <pre>{code.trim()}</pre>
             </div>
           ) : (
-            <div
-              className="w-full flex items-center justify-center transition-transform duration-150 origin-center"
-              style={{ transform: `scale(${zoom})` }}
-            >
-              {children}
+            <div className="w-full min-w-full flex items-center justify-center overflow-x-auto">
+              <div
+                className="transition-transform duration-150 origin-top flex items-center justify-center"
+                style={{
+                  transform: zoom === 1 ? undefined : `scale(${zoom})`,
+                  transformOrigin: "center top",
+                }}
+              >
+                {children}
+              </div>
             </div>
           )}
         </div>
@@ -273,8 +278,11 @@ export function DiagramContainer({
             {/* Fullscreen Body */}
             <div className="flex-1 flex items-center justify-center overflow-auto p-4">
               <div
-                className="w-full h-full flex items-center justify-center transition-transform duration-150 origin-center"
-                style={{ transform: `scale(${zoom})` }}
+                className="w-full flex items-center justify-center transition-transform duration-150"
+                style={{
+                  transform: zoom === 1 ? undefined : `scale(${zoom})`,
+                  transformOrigin: "center center",
+                }}
               >
                 {children}
               </div>

@@ -4,6 +4,7 @@ import React from "react";
 import { MermaidDiagram } from "./mermaid-diagram";
 import { PlantUMLDiagram } from "./plantuml-diagram";
 import { SchemaDiagram } from "./schema-diagram";
+import { detectDiagramType, cleanDiagramSource } from "./diagram-utils";
 
 export interface EnhancedCodeBlockProps {
   children?: React.ReactNode;
@@ -47,35 +48,23 @@ export function DiagramCodeDetector({
     rawContent = extractTextContent(children);
   }
 
-  const normalizedLang = (targetClassName || "")
-    .replace(/^language-/, "")
-    .toLowerCase()
-    .trim();
+  // Detect type from language tag and content signatures
+  const diagramType = detectDiagramType(rawContent, targetClassName);
+  const cleanedContent = cleanDiagramSource(rawContent);
 
   // 1. Mermaid
-  if (normalizedLang === "mermaid") {
-    return <MermaidDiagram chart={rawContent} />;
+  if (diagramType === "mermaid") {
+    return <MermaidDiagram chart={cleanedContent || rawContent} />;
   }
 
   // 2. PlantUML
-  if (
-    normalizedLang === "plantuml" ||
-    normalizedLang === "puml" ||
-    normalizedLang === "uml"
-  ) {
-    return <PlantUMLDiagram code={rawContent} />;
+  if (diagramType === "plantuml") {
+    return <PlantUMLDiagram code={cleanedContent || rawContent} />;
   }
 
   // 3. Database Schema / SQL DDL
-  if (
-    normalizedLang === "sql-schema" ||
-    normalizedLang === "schema-sql" ||
-    normalizedLang === "schema" ||
-    normalizedLang === "db-schema" ||
-    normalizedLang === "erd" ||
-    normalizedLang === "dbml"
-  ) {
-    return <SchemaDiagram code={rawContent} />;
+  if (diagramType === "schema") {
+    return <SchemaDiagram code={cleanedContent || rawContent} />;
   }
 
   // 4. Fallback to standard CodeBlock

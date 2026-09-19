@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { DiagramContainer } from "./diagram-container";
 import { MermaidDiagram } from "./mermaid-diagram";
+import { cleanDiagramSource } from "./diagram-utils";
 import { cn } from "@/lib/utils";
 
 export interface ColumnDefinition {
@@ -42,7 +43,8 @@ export interface SchemaDiagramProps {
  */
 export function parseSqlDdl(sql: string): TableDefinition[] {
   const tables: TableDefinition[] = [];
-  const cleanSql = sql.replace(/--.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "");
+  const cleaned = cleanDiagramSource(sql);
+  const cleanSql = cleaned.replace(/--.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "");
 
   // Match CREATE TABLE blocks
   const tableRegex = /CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?["`]?([a-zA-Z0-9_]+)["`]?\s*\(([\s\S]*?)\);/gi;

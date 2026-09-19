@@ -144,7 +144,7 @@ export function MermaidDiagram({
               <RefreshCw className="h-3 w-3" />
               <span>Retry</span>
             </button>
-            <span className="text-[10px] text-zinc-500 font-sans">
+            <span className="text-[10px] text-zinc-500 font-mono">
               or switch to the &quot;Source&quot; tab above
             </span>
           </div>

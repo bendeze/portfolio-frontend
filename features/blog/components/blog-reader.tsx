@@ -298,10 +298,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h1 
           id={slug} 
-          className="text-3xl sm:text-4xl font-black tracking-tight text-foreground mt-14 mb-8 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-3"
+          className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-foreground mt-14 mb-6 scroll-mt-24 group relative cursor-pointer border-b border-border/20 pb-3"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-xl">#</span>
+          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-lg">#</span>
           {children}
         </h1>
       );
@@ -311,10 +311,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h2 
           id={slug} 
-          className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mt-12 mb-6 scroll-mt-24 group relative border-b border-border/10 pb-2 cursor-pointer"
+          className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-foreground mt-12 mb-5 scroll-mt-24 group relative border-b border-border/10 pb-2 cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-lg">#</span>
+          <span className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500 font-mono font-thin text-base">#</span>
           {children}
         </h2>
       );
@@ -324,10 +324,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h3 
           id={slug} 
-          className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-8 mb-4 scroll-mt-24 group relative cursor-pointer"
+          className="text-lg sm:text-xl font-bold font-mono tracking-tight text-foreground mt-8 mb-3 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-base">#</span>
+          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/80 font-mono font-thin text-sm">#</span>
           {children}
         </h3>
       );
@@ -337,10 +337,10 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h4 
           id={slug} 
-          className="text-lg sm:text-xl font-bold tracking-tight text-foreground mt-6 mb-3 scroll-mt-24 group relative cursor-pointer"
+          className="text-base sm:text-lg font-bold font-mono tracking-tight text-foreground mt-6 mb-2.5 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
-          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/60 font-mono font-thin text-sm">#</span>
+          <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/60 font-mono font-thin text-xs">#</span>
           {children}
         </h4>
       );
@@ -350,7 +350,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h5 
           id={slug} 
-          className="text-base sm:text-lg font-bold tracking-tight text-foreground mt-5 mb-2.5 scroll-mt-24 group relative cursor-pointer"
+          className="text-sm sm:text-base font-bold font-mono tracking-tight text-foreground mt-5 mb-2 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/50 font-mono font-thin text-xs">#</span>
@@ -363,7 +363,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       return (
         <h6 
           id={slug} 
-          className="text-sm sm:text-base font-semibold tracking-tight text-foreground mt-4 mb-2 scroll-mt-24 group relative cursor-pointer"
+          className="text-xs sm:text-sm font-semibold font-mono tracking-tight text-foreground mt-4 mb-2 scroll-mt-24 group relative cursor-pointer"
           onClick={() => scrollTo(slug)}
         >
           <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500/40 font-mono font-thin text-xs">#</span>
@@ -372,7 +372,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       );
     },
     p: ({ children }: any) => (
-      <p className="text-[15px] sm:text-[16px] leading-[1.8] text-muted-foreground/90 dark:text-zinc-300/90 font-sans my-5 font-normal tracking-wide antialiased">
+      <p className="text-[14px] sm:text-[15px] leading-[1.85] text-muted-foreground/95 dark:text-zinc-300 font-mono my-6 font-normal tracking-normal antialiased">
         {children}
       </p>
     ),
@@ -397,22 +397,22 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       <SchemaDiagram code={code || sql || children} {...props} />
     ),
     code: ({ children }: any) => (
-      <code className="text-gray-500 dark:text-gray-200 bg-gray-500/[0.04] dark:bg-gray-400/[0.04] border border-gray-500/10 dark:border-gray-400/10 px-1.5 py-0.5 rounded font-mono text-[13px] font-bold">
+      <code className="text-foreground bg-zinc-100 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[13px] font-medium">
         {children}
       </code>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-gray-500 bg-gray-500/[0.01] pl-6 pr-4 py-3 my-6 rounded-r-xl font-serif italic text-base sm:text-lg text-muted-foreground/80 dark:text-zinc-400/80">
+      <blockquote className="border-l-2 border-indigo-500/80 bg-zinc-50 dark:bg-zinc-900/40 pl-5 pr-4 py-3.5 my-6 rounded-r-lg font-mono text-[13px] sm:text-[14px] text-zinc-600 dark:text-zinc-400 not-italic leading-relaxed">
         {children}
       </blockquote>
     ),
     ul: ({ children }: any) => (
-      <ul className="list-disc pl-6 my-6 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-muted-foreground/90 dark:text-zinc-300/90">
+      <ul className="list-disc pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="list-decimal pl-6 my-6 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-muted-foreground/90 dark:text-zinc-300/90">
+      <ol className="list-decimal pl-6 my-6 space-y-2 text-[14px] sm:text-[15px] leading-[1.8] text-muted-foreground/95 dark:text-zinc-300 font-mono">
         {children}
       </ol>
     ),
@@ -426,30 +426,30 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
         href={href} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-semibold underline underline-offset-4 decoration-blue-500/30 hover:decoration-blue-500 transition-colors"
+        className="text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 font-mono font-medium underline underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-colors"
       >
         {children}
       </a>
     ),
     table: ({ children }: any) => (
-      <div className="my-6 w-full overflow-x-auto rounded-xl border border-border/40 bg-black/[0.01] dark:bg-white/[0.01] shadow-xs">
-        <table className="w-full border-collapse text-left text-sm">
+      <div className="my-6 w-full overflow-x-auto rounded-lg border border-border/40 bg-zinc-50/50 dark:bg-zinc-950">
+        <table className="w-full border-collapse text-left text-xs font-mono">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="border-b border-border/40 bg-black/[0.02] dark:bg-white/[0.02] font-semibold text-foreground">
+      <thead className="border-b border-border/40 bg-zinc-100/60 dark:bg-zinc-900/60 font-semibold text-foreground font-mono">
         {children}
       </thead>
     ),
     tbody: ({ children }: any) => (
-      <tbody className="divide-y divide-border/10">
+      <tbody className="divide-y divide-border/10 font-mono">
         {children}
       </tbody>
     ),
     tr: ({ children }: any) => (
-      <tr className="hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-colors">
+      <tr className="hover:bg-zinc-100/30 dark:hover:bg-zinc-900/30 transition-colors">
         {children}
       </tr>
     ),
@@ -459,7 +459,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-4 py-3 text-muted-foreground/90 dark:text-zinc-300/90 font-sans leading-relaxed">
+      <td className="px-4 py-3 text-muted-foreground/90 dark:text-zinc-300/90 font-mono leading-relaxed text-xs">
         {children}
       </td>
     ),
@@ -510,32 +510,32 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
               <div className="space-y-8 pt-1">
                 
                 {/* Article Details Card Mockup */}
-                <div className="space-y-4">
-                  <h4 className="text-[16px] font-bold text-black dark:text-white font-sans">
+                <div className="space-y-4 font-mono">
+                  <h4 className="text-[14px] font-bold text-foreground font-mono">
                     {t("blog.reader.details")}
                   </h4>
                   
-                  <div className="space-y-4 font-sans text-xs select-none">
+                  <div className="space-y-4 font-mono text-xs select-none">
                     {/* Published */}
                     <div className="space-y-1">
-                      <span className="block text-muted-foreground/90 font-medium">{t("blog.reader.published")}</span>
-                      <time className="block text-foreground font-semibold">
+                      <span className="block text-muted-foreground/80 font-normal">{t("blog.reader.published")}</span>
+                      <time className="block text-foreground font-medium">
                         {formatDate(post.created_at, true)}
                       </time>
                     </div>
 
                     {/* Reading time */}
                     <div className="space-y-1">
-                      <span className="block text-muted-foreground/90 font-medium">{t("blog.reader.readingTime")}</span>
-                      <span className="block text-foreground font-semibold">
+                      <span className="block text-muted-foreground/80 font-normal">{t("blog.reader.readingTime")}</span>
+                      <span className="block text-foreground font-medium">
                         {post.reading_time} {t("blog.reader.minRead")}
                       </span>
                     </div>
 
                     {/* Category */}
                     <div className="space-y-1.5">
-                      <span className="block text-muted-foreground/90 font-medium">{t("blog.reader.category")}</span>
-                      <span className="inline-block px-3 py-1 rounded-full border border-border bg-black/[0.02] dark:bg-white/[0.02] text-[10px] font-bold text-foreground">
+                      <span className="block text-muted-foreground/80 font-normal">{t("blog.reader.category")}</span>
+                      <span className="inline-block px-2.5 py-0.5 rounded-md border border-border bg-zinc-100 dark:bg-zinc-900 text-[10px] font-medium text-foreground">
                         {getLocalizedCategoryDisplay(post.category)}
                       </span>
                     </div>
@@ -546,12 +546,12 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
 
                 {/* Table of Contents List Mockup */}
                 {headings.length > 0 && (
-                  <div>
-                    <h4 className="text-[10px] font-black text-muted-foreground/90 font-sans tracking-widest uppercase mb-4">
+                  <div className="font-mono">
+                    <h4 className="text-[10px] font-bold text-muted-foreground/90 font-mono tracking-widest uppercase mb-4">
                       {t("blog.reader.inThisArticle")}
                     </h4>
                     
-                    <nav className="relative flex flex-col gap-1 border-l border-border/40 pl-1 select-none">
+                    <nav className="relative flex flex-col gap-1 border-l border-border/40 pl-1 select-none font-mono">
                       {headings.map((heading) => {
                         const isActive = activeId === heading.slug;
                         
@@ -566,7 +566,7 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
                             key={heading.slug}
                             onClick={() => scrollTo(heading.slug)}
                             style={{ paddingLeft: getPaddingLeft(heading.level) }}
-                            className={`relative text-left py-1.5 transition-all duration-200 font-sans text-[12px] leading-snug cursor-pointer group text-muted-foreground hover:text-foreground ${
+                            className={`relative text-left py-1.5 transition-all duration-200 font-mono text-[11px] leading-snug cursor-pointer group text-muted-foreground hover:text-foreground ${
                               isActive 
                                 ? "text-foreground font-bold" 
                                 : ""
@@ -628,11 +628,11 @@ export function BlogReader({ post, headings, mdxSource }: BlogReaderProps) {
                   </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black dark:text-white font-sans">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight text-foreground font-mono">
                   {post.title}
                 </h1>
                 
-                <p className="text-gray-600 dark:text-gray-400 font-sans text-sm sm:text-base leading-relaxed border-l-4 border-gray-500/90 pl-4 py-0.5 font-light">
+                <p className="text-muted-foreground font-mono text-xs sm:text-sm leading-relaxed border-l-2 border-indigo-500/80 pl-4 py-1">
                   {post.summary}
                 </p>
               </header>

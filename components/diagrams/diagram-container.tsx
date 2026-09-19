@@ -86,22 +86,22 @@ export function DiagramContainer({
       <div
         ref={containerRef}
         className={cn(
-          "relative my-8 rounded-2xl border border-border/60 bg-zinc-950/[0.03] dark:bg-zinc-950/60 shadow-sm overflow-hidden transition-all duration-300",
+          "relative my-8 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950 overflow-hidden transition-all duration-300 shadow-none",
           isFullscreen ? "hidden" : "block",
           className
         )}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 border-b border-border/40 bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-md">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-900/60">
           {/* Left Title & Badge */}
           <div className="flex items-center gap-2">
             {icon && <span className="text-zinc-500 dark:text-zinc-400">{icon}</span>}
             {title && (
-              <span className="text-xs font-semibold text-foreground font-sans tracking-tight">
+              <span className="text-xs font-semibold text-foreground font-mono tracking-tight">
                 {title}
               </span>
             )}
-            <span className="rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300/60 dark:border-zinc-700/60 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-600 dark:text-zinc-300">
+            <span className="rounded-md bg-zinc-200/60 dark:bg-zinc-800/80 border border-zinc-300/40 dark:border-zinc-700/60 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-600 dark:text-zinc-300">
               {badge}
             </span>
           </div>
@@ -109,7 +109,7 @@ export function DiagramContainer({
           {/* Right Toolbar Controls */}
           <div className="flex items-center gap-1">
             {/* Tab switchers */}
-            <div className="flex items-center rounded-lg bg-zinc-200/80 dark:bg-zinc-800/80 p-0.5 border border-border/50 text-[11px] font-sans">
+            <div className="flex items-center rounded-lg bg-zinc-200/60 dark:bg-zinc-800/60 p-0.5 border border-zinc-300/40 dark:border-zinc-700/40 text-[11px] font-mono">
               {availableTabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -117,7 +117,7 @@ export function DiagramContainer({
                   className={cn(
                     "flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer",
                     activeTab === tab.id
-                      ? "bg-white dark:bg-zinc-900 text-foreground shadow-xs font-semibold"
+                      ? "bg-white dark:bg-zinc-900 text-foreground font-semibold border border-zinc-200 dark:border-zinc-800 shadow-none"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -198,13 +198,13 @@ export function DiagramContainer({
         </div>
 
         {/* Content Body */}
-        <div className="relative min-h-[160px] p-4 sm:p-6 overflow-x-auto overflow-y-hidden select-text">
+        <div className="relative min-h-[180px] p-6 sm:p-8 overflow-x-auto overflow-y-hidden select-text">
           {activeTab === "code" ? (
-            <div className="rounded-xl border border-white/5 bg-zinc-950 p-4 font-mono text-xs text-zinc-100 overflow-x-auto leading-relaxed">
+            <div className="rounded-lg border border-zinc-200/80 dark:border-zinc-800 bg-zinc-950 p-4 font-mono text-xs text-zinc-100 overflow-x-auto leading-relaxed">
               <pre>{code.trim()}</pre>
             </div>
           ) : (
-            <div className="w-full min-w-full flex items-center justify-center overflow-x-auto">
+            <div className="w-full min-w-full flex items-center justify-center overflow-x-auto py-2">
               <div
                 className="transition-transform duration-150 origin-top flex items-center justify-center"
                 style={{
@@ -222,13 +222,13 @@ export function DiagramContainer({
       {/* Fullscreen Overlay Modal */}
       <AnimatePresence>
         {isFullscreen && (
-          <div className="fixed inset-0 z-50 flex flex-col bg-background/95 dark:bg-zinc-950/95 backdrop-blur-xl p-4 sm:p-8">
+          <div className="fixed inset-0 z-50 flex flex-col bg-background dark:bg-zinc-950 p-4 sm:p-8">
             {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-border/40 pb-4 mb-4">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4 mb-4">
               <div className="flex items-center gap-3">
                 {icon && <span className="text-zinc-400">{icon}</span>}
-                <span className="text-sm font-bold text-foreground font-sans">{title}</span>
-                <span className="rounded-full bg-zinc-200 dark:bg-zinc-800 border border-border px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-foreground">
+                <span className="text-sm font-bold text-foreground font-mono">{title}</span>
+                <span className="rounded-md bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-foreground">
                   {badge}
                 </span>
               </div>

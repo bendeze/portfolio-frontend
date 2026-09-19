@@ -152,7 +152,7 @@ export function MermaidDiagram({
       ) : (
         <div
           ref={containerRef}
-          className="w-full min-w-full flex justify-center items-center select-none overflow-x-auto p-2 [&>svg]:max-w-none [&>svg]:w-auto [&>svg]:h-auto [&>svg]:min-w-[200px]"
+          className="w-full min-w-full flex justify-center items-center select-none overflow-x-auto p-4 sm:p-6 [&>svg]:max-w-none [&>svg]:w-auto [&>svg]:h-auto [&>svg]:min-w-[280px]"
           dangerouslySetInnerHTML={{ __html: svgContent }}
         />
       )}

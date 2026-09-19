@@ -13,15 +13,28 @@ export interface EnhancedCodeBlockProps {
 }
 
 /**
- * Extracts raw string content from React node children
+ * Extracts raw string content from React node children, preserving line breaks
  */
 export function extractTextContent(node: React.ReactNode): string {
   if (typeof node === "string") return node;
   if (typeof node === "number") return String(node);
   if (!node) return "";
-  if (Array.isArray(node)) return node.map(extractTextContent).join("");
-  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
-    return extractTextContent(node.props?.children);
+  
+  if (Array.isArray(node)) {
+    return node.map(extractTextContent).join("");
+  }
+  
+  if (React.isValidElement<{ children?: React.ReactNode; className?: string; "data-line"?: string }>(node)) {
+    const isLine =
+      typeof node.props?.className === "string" &&
+      node.props.className.includes("line");
+    const hasDataLine = node.props && "data-line" in node.props;
+
+    const inner = extractTextContent(node.props?.children);
+    if (isLine || hasDataLine) {
+      return `${inner}\n`;
+    }
+    return inner;
   }
   return "";
 }
@@ -34,14 +47,24 @@ export function DiagramCodeDetector({
   children,
   className,
   fallbackRenderer,
-}: EnhancedCodeBlockProps) {
+  ...restProps
+}: EnhancedCodeBlockProps & Record<string, any>) {
   let targetClassName = className || "";
   let rawContent = "";
 
-  if (React.isValidElement<{ className?: string; children?: React.ReactNode }>(children)) {
+  // Check language from data attributes (from rehype-pretty-code or markdown)
+  const dataLang = restProps["data-language"] || restProps["data-lang"] || "";
+  if (dataLang) {
+    targetClassName = `${targetClassName} language-${dataLang}`;
+  }
+
+  if (React.isValidElement<{ className?: string; children?: React.ReactNode; "data-language"?: string }>(children)) {
     const childProps = children.props;
     if (childProps?.className) {
       targetClassName = `${targetClassName} ${childProps.className}`.trim();
+    }
+    if (childProps?.["data-language"]) {
+      targetClassName = `${targetClassName} language-${childProps["data-language"]}`.trim();
     }
     rawContent = extractTextContent(childProps?.children);
   } else {

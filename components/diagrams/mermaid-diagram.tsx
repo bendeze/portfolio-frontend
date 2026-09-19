@@ -52,8 +52,6 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     let isMounted = true;
 
@@ -106,7 +104,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
     };
   }, [cleanedChart, isDark]);
 
-  // Pan & Zoom handlers matching GitHub controller
+  // Pan & Zoom handlers
   const handleZoomIn = () => setZoom((prev) => Math.min(Number((prev + 0.15).toFixed(2)), 3));
   const handleZoomOut = () => setZoom((prev) => Math.max(Number((prev - 0.15).toFixed(2)), 0.4));
   const handleReset = () => {
@@ -133,9 +131,9 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
     handleReset();
   };
 
-  // Drag to pan
+  // Mouse Drag to Pan
   const onMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return; // only main left click
+    if (e.button !== 0) return;
     setIsDragging(true);
     setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
   };
@@ -153,7 +151,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
 
   const onMouseUp = () => setIsDragging(false);
 
-  // Wheel zoom with Ctrl or trackpad pinch
+  // Wheel zoom with Ctrl or meta
   const handleWheel = (e: React.WheelEvent) => {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
@@ -176,44 +174,11 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
     );
   }
 
-  const diagramBody = (
-    <div
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={onMouseUp}
-      onWheel={handleWheel}
-      className={`relative w-full overflow-hidden flex items-center justify-center select-none ${
-        isFullscreen ? "h-[calc(100vh-80px)] cursor-grab" : "min-h-[160px] cursor-grab"
-      } ${isDragging ? "cursor-grabbing" : ""}`}
-    >
-      {isLoading && !svgContent ? (
-        <div className="flex items-center justify-center py-12 text-zinc-400 gap-2">
-          <Loader2 className="h-5 w-5 animate-spin text-[#ebcb00]" />
-          <span className="text-xs font-mono">Rendering diagram...</span>
-        </div>
-      ) : (
-        <div
-          className="flex items-center justify-center transition-transform duration-75 ease-out origin-center"
-          style={{
-            transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-          }}
-        >
-          <div
-            className="flex items-center justify-center [&>svg]:max-w-full [&>svg]:h-auto [&>svg]:w-auto [&>svg]:mx-auto"
-            dangerouslySetInnerHTML={{ __html: svgContent }}
-          />
-        </div>
-      )}
-    </div>
-  );
-
   return (
     <>
       {/* Normal In-Article Diagram View */}
       <div
-        className={`group relative my-6 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/40 ${
+        className={`group relative my-6 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/40 overflow-hidden ${
           className || ""
         }`}
       >
@@ -221,8 +186,8 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
         <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
           <button
             onClick={toggleFullscreen}
-            title="Expand to Fullscreen"
-            aria-label="Expand to Fullscreen"
+            title="Expand Fullscreen"
+            aria-label="Expand Fullscreen"
             className="p-1.5 rounded-md bg-white/90 dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700/80 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors shadow-xs cursor-pointer"
           >
             <Maximize2 className="h-3.5 w-3.5" />
@@ -242,13 +207,41 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
         </div>
 
         {/* Diagram Canvas */}
-        <div className="p-3 sm:p-6">{diagramBody}</div>
+        <div
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
+          onWheel={handleWheel}
+          className={`relative w-full min-h-[160px] p-4 sm:p-6 overflow-hidden flex items-center justify-center select-none ${
+            isDragging ? "cursor-grabbing" : "cursor-grab"
+          }`}
+        >
+          {isLoading && !svgContent ? (
+            <div className="flex items-center justify-center py-12 text-zinc-400 gap-2">
+              <Loader2 className="h-5 w-5 animate-spin text-[#ebcb00]" />
+              <span className="text-xs font-mono">Rendering diagram...</span>
+            </div>
+          ) : (
+            <div
+              className="flex items-center justify-center transition-transform duration-75 ease-out origin-center"
+              style={{
+                transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+              }}
+            >
+              <div
+                className="flex items-center justify-center [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:w-auto [&_svg]:mx-auto [&_svg]:block"
+                dangerouslySetInnerHTML={{ __html: svgContent }}
+              />
+            </div>
+          )}
+        </div>
 
         {/* Bottom-Right GitHub-Style D-Pad Pan & Zoom Controller */}
         <div className="absolute bottom-2.5 right-2.5 z-20 opacity-85 group-hover:opacity-100 transition-opacity select-none">
-          <div className="grid grid-cols-2 gap-1 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xs p-1 rounded-md border border-zinc-200 dark:border-zinc-700/80 shadow-xs">
+          <div className="flex flex-col gap-1 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xs p-1 rounded-md border border-zinc-200 dark:border-zinc-700/80 shadow-xs">
             {/* Row 1: Up, ZoomIn */}
-            <div className="flex gap-1 col-span-2 justify-end">
+            <div className="flex gap-1 justify-end">
               <button
                 onClick={() => handlePan(0, 40)}
                 title="Pan Up"
@@ -268,7 +261,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
             </div>
 
             {/* Row 2: Left, Reset, Right */}
-            <div className="flex gap-1 col-span-2 justify-end">
+            <div className="flex gap-1 justify-end">
               <button
                 onClick={() => handlePan(40, 0)}
                 title="Pan Left"
@@ -296,7 +289,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
             </div>
 
             {/* Row 3: Down, ZoomOut */}
-            <div className="flex gap-1 col-span-2 justify-end">
+            <div className="flex gap-1 justify-end">
               <button
                 onClick={() => handlePan(0, -40)}
                 title="Pan Down"
@@ -320,9 +313,9 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
 
       {/* Fullscreen Overlay Modal (GitHub Style) */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-zinc-950/90 backdrop-blur-md p-4 sm:p-6 animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex flex-col bg-zinc-950/95 backdrop-blur-md p-4 sm:p-6 animate-in fade-in duration-200">
           {/* Header Bar */}
-          <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-zinc-100">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-zinc-100 shrink-0">
             <span className="font-mono text-xs text-zinc-400">
               {title || "Diagram Viewer (Drag to pan, Ctrl+Scroll to zoom)"}
             </span>
@@ -343,13 +336,32 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
             </div>
           </div>
 
-          {/* Canvas */}
-          <div className="flex-1 flex items-center justify-center overflow-hidden">
-            {diagramBody}
+          {/* Fullscreen Canvas */}
+          <div
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+            onWheel={handleWheel}
+            className={`flex-1 flex items-center justify-center overflow-hidden select-none ${
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            }`}
+          >
+            <div
+              className="flex items-center justify-center transition-transform duration-75 ease-out origin-center"
+              style={{
+                transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+              }}
+            >
+              <div
+                className="flex items-center justify-center [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:w-auto [&_svg]:mx-auto [&_svg]:block"
+                dangerouslySetInnerHTML={{ __html: svgContent }}
+              />
+            </div>
           </div>
 
           {/* D-Pad Controller in Fullscreen */}
-          <div className="absolute bottom-6 right-6 z-50">
+          <div className="absolute bottom-6 right-6 z-50 select-none">
             <div className="flex flex-col gap-1 bg-zinc-900/90 backdrop-blur-xs p-1.5 rounded-lg border border-zinc-700 shadow-lg">
               <div className="flex gap-1 justify-end">
                 <button

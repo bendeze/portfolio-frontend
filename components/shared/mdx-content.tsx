@@ -16,6 +16,12 @@ const components = {
   ),
   p: (props: React.HTMLAttributes<HTMLHeadingElement>) => <p {...props} className="leading-7 [&:not(:first-child)]:mt-6" />,
   pre: (props: any) => <DiagramCodeDetector {...props} />,
+  figure: (props: any) => {
+    if (props && props["data-rehype-pretty-code-figure"] !== undefined) {
+      return <>{props.children}</>;
+    }
+    return <figure {...props} />;
+  },
   Mermaid: (props: any) => <MermaidDiagram chart={props.chart || props.children} {...props} />,
   PlantUML: (props: any) => <PlantUMLDiagram code={props.code || props.children} {...props} />,
   DatabaseSchema: (props: any) => <SchemaDiagram code={props.code || props.sql || props.children} {...props} />,

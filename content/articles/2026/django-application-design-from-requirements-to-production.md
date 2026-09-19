@@ -147,20 +147,22 @@ Ask:
 > *"What additional information should a person have beyond their login credentials?"*
 
 ```mermaid
-classDiagram
-    class User {
-        +UUID id
-        +String email
-        +String password_hash
-        +Boolean is_active
-    }
-    class Profile {
-        +String display_name
-        +String phone_number
-        +String avatar_url
-        +JSON preferences
-    }
-    User "1" *-- "1" Profile : composition
+flowchart LR
+    subgraph UserEntity ["User (Auth & Identity)"]
+        U1["id : UUID (PK)"]
+        U2["email : String"]
+        U3["password_hash : String"]
+        U4["is_active : Boolean"]
+    end
+
+    subgraph ProfileEntity ["Profile (User Data)"]
+        P1["display_name : String"]
+        P2["phone_number : String"]
+        P3["avatar_url : String"]
+        P4["preferences : JSON"]
+    end
+
+    UserEntity --- |"1 : 1 Composition"| ProfileEntity
 ```
 
 > **Requirements describe behavior. Architecture describes structure. Code describes implementation.** Do not collapse all three into one conversation.
@@ -335,7 +337,7 @@ orders/
 Instead of letting other apps directly mutate foreign models:
 
 ```python
-# ❌ Anti-pattern: Deep coupling across app boundaries
+# Anti-pattern: Deep coupling across app boundaries
 order.customer.account.wallet.balance -= order.total
 order.customer.account.wallet.save()
 ```
@@ -343,7 +345,7 @@ order.customer.account.wallet.save()
 Use dedicated domain service interfaces:
 
 ```python
-# ✅ Clean pattern: Domain service handles internal state transitions
+# Clean pattern: Domain service handles internal state transitions
 payment = payment_service.capture_order_payment(
     order=order,
     idempotency_key=request_id
@@ -436,9 +438,9 @@ Consider operations, telemetry, and CI before deploying the first release:
 
 ```mermaid
 flowchart TD
-    GitPush[Git Commit & Push] --> CI[CI Pipeline]
+    GitPush[Git Commit & Push] --> CIPipeline
     
-    subgraph CI Pipeline
+    subgraph CIPipeline ["CI Pipeline"]
         L1[Ruff Linting & Formatting] --> L2[Mypy Type Checking]
         L2 --> L3[Pytest Suite with Coverage]
         L3 --> L4[Docker Image Build & Security Scan]
@@ -447,7 +449,7 @@ flowchart TD
     L4 --> Registry[(Container Registry)]
     Registry --> CD[CD Deployment]
     
-    subgraph Production Runtime
+    subgraph ProductionRuntime ["Production Runtime"]
         Traefik[TLS Reverse Proxy] --> Web[Django ASGI/WSGI Web Workers]
         Traefik --> Static[Cloudflare / S3 CDN]
         Web --> DB[(PostgreSQL 16 High-Availability)]

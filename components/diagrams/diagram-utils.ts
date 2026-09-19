@@ -198,78 +198,7 @@ export async function renderMermaidSafely(
       suppressErrorRendering: true,
       securityLevel: "loose",
       fontFamily: "var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace",
-      theme: isDark ? "dark" : "default",
-      themeCSS: `
-        *, *::before, *::after {
-          filter: none !important;
-          box-shadow: none !important;
-          text-shadow: none !important;
-        }
-        .node rect, .node circle, .node polygon, .node path, .node ellipse {
-          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
-          stroke: ${isDark ? "#3f3f46" : "#d4d4d8"} !important;
-          stroke-width: 1px !important;
-          rx: 6px !important;
-          ry: 6px !important;
-        }
-        .node .label {
-          color: ${isDark ? "#f4f4f5" : "#18181b"} !important;
-          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
-          font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, monospace !important;
-          font-size: 13px !important;
-          font-weight: 500 !important;
-        }
-        .node .label text, .node text {
-          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
-        }
-        .edgePath path.path, .flowchart-link, path.flowchart-link, .edge-thickness-normal {
-          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
-          stroke-width: 1.2px !important;
-        }
-        marker path, .marker, marker[id*="arrowhead"] path, marker[id*="crosshead"] path, marker[id*="barbEnd"] path {
-          fill: ${isDark ? "#a1a1aa" : "#71717a"} !important;
-          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
-        }
-        .cluster rect {
-          fill: ${isDark ? "#121215" : "#fbfbfb"} !important;
-          stroke: ${isDark ? "#27272a" : "#e4e4e7"} !important;
-          stroke-width: 1px !important;
-          rx: 8px !important;
-        }
-        .cluster text {
-          fill: ${isDark ? "#a1a1aa" : "#71717a"} !important;
-          font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace !important;
-          font-size: 12px !important;
-          font-weight: 600 !important;
-        }
-        .labelBkg, .edgeLabel rect {
-          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
-          stroke: ${isDark ? "#27272a" : "#e4e4e7"} !important;
-          stroke-width: 0.5px !important;
-          rx: 3px !important;
-        }
-        .edgeLabel {
-          color: ${isDark ? "#d4d4d8" : "#52525b"} !important;
-          fill: ${isDark ? "#d4d4d8" : "#52525b"} !important;
-          font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace !important;
-          font-size: 11px !important;
-        }
-        .actor {
-          fill: ${isDark ? "#18181b" : "#ffffff"} !important;
-          stroke: ${isDark ? "#3f3f46" : "#d4d4d8"} !important;
-        }
-        .actor text {
-          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
-        }
-        .messageText {
-          fill: ${isDark ? "#f4f4f5" : "#18181b"} !important;
-          font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
-          font-size: 12px !important;
-        }
-        .messageLine0, .messageLine1 {
-          stroke: ${isDark ? "#a1a1aa" : "#71717a"} !important;
-        }
-      `,
+      theme: isDark ? "dark" : "neutral",
       flowchart: {
         htmlLabels: true,
         useMaxWidth: true,
@@ -282,52 +211,24 @@ export async function renderMermaidSafely(
         ? {
             darkMode: true,
             background: "transparent",
-            primaryColor: "#18181b",
-            primaryTextColor: "#f4f4f5",
-            primaryBorderColor: "#3f3f46",
-            lineColor: "#a1a1aa",
-            secondaryColor: "#18181b",
-            tertiaryColor: "#121215",
+            mainBkg: "#18181b",
             nodeBorder: "#3f3f46",
+            nodeTextColor: "#f4f4f5",
+            lineColor: "#a1a1aa",
+            textColor: "#f4f4f5",
             clusterBkg: "#121215",
             clusterBorder: "#27272a",
-            defaultLinkColor: "#a1a1aa",
-            titleColor: "#fafafa",
-            edgeLabelBackground: "#18181b",
-            actorBkg: "#18181b",
-            actorBorder: "#3f3f46",
-            actorTextColor: "#f4f4f5",
-            actorLineColor: "#a1a1aa",
-            signalColor: "#a1a1aa",
-            signalTextColor: "#f4f4f5",
-            labelBoxBkgColor: "#18181b",
-            labelBoxBorderColor: "#3f3f46",
-            labelTextColor: "#f4f4f5",
           }
         : {
             darkMode: false,
             background: "transparent",
-            primaryColor: "#ffffff",
-            primaryTextColor: "#18181b",
-            primaryBorderColor: "#d4d4d8",
-            lineColor: "#71717a",
-            secondaryColor: "#ffffff",
-            tertiaryColor: "#fbfbfb",
+            mainBkg: "#ffffff",
             nodeBorder: "#d4d4d8",
+            nodeTextColor: "#18181b",
+            lineColor: "#71717a",
+            textColor: "#18181b",
             clusterBkg: "#fbfbfb",
             clusterBorder: "#e4e4e7",
-            defaultLinkColor: "#71717a",
-            titleColor: "#18181b",
-            edgeLabelBackground: "#ffffff",
-            actorBkg: "#ffffff",
-            actorBorder: "#d4d4d8",
-            actorTextColor: "#18181b",
-            actorLineColor: "#71717a",
-            signalColor: "#71717a",
-            signalTextColor: "#18181b",
-            labelBoxBkgColor: "#ffffff",
-            labelBoxBorderColor: "#d4d4d8",
-            labelTextColor: "#18181b",
           },
     });
 

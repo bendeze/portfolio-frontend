@@ -28,16 +28,16 @@ export function ScrollRevealIntro({ text }: ScrollRevealIntroProps) {
   return (
     <div ref={containerRef} className="w-full text-left my-4 relative">
       {/* Invisible static text placeholder to lock layout height */}
-      <p className="text-xl sm:text-2xl lg:text-3xl font-medium leading-relaxed tracking-tight opacity-0 select-none pointer-events-none font-sans">
+      <p className="text-lg sm:text-xl lg:text-2xl font-mono font-medium leading-relaxed tracking-tight opacity-0 select-none pointer-events-none">
         {text}
       </p>
 
       {/* Absolutely positioned typing container */}
       <div className="absolute inset-0">
-        <p className="text-xl sm:text-2xl lg:text-3xl font-medium leading-relaxed tracking-tight text-gray-900 dark:text-zinc-100 font-sans">
+        <p className="text-lg sm:text-xl lg:text-2xl font-mono font-medium leading-relaxed tracking-tight text-gray-900 dark:text-zinc-100">
           {typedText}
           {!isDone && (
-            <span className="inline-block w-[3px] h-[0.8em] align-middle bg-foreground ml-1.5 animate-pulse" />
+            <span className="inline-block w-[3px] h-[0.8em] align-middle bg-[#ebcb00] ml-1.5 animate-pulse" />
           )}
         </p>
       </div>

@@ -101,31 +101,31 @@ export function PlatformsSection() {
   const projectsData: ProjectData[] = [
     {
       id: 0,
-      badge: t("platforms.boutika.badge"),
-      title: t("platforms.boutika.title"),
+      badge: t("platforms.biasharaOne.badge"),
+      title: t("platforms.biasharaOne.title"),
       iconName: "globe",
-      p1: t("platforms.boutika.p1"),
-      p2: t("platforms.boutika.p2"),
-      p3: t("platforms.boutika.p3"),
-      techLabel: t("platforms.boutika.arch"),
+      p1: t("platforms.biasharaOne.p1"),
+      p2: t("platforms.biasharaOne.p2"),
+      p3: t("platforms.biasharaOne.p3"),
+      techLabel: t("platforms.biasharaOne.arch"),
       tags: [
-        t("platforms.boutika.tag1"),
-        t("platforms.boutika.tag2"),
-        t("platforms.boutika.tag3"),
-        t("platforms.boutika.tag4"),
-        t("platforms.boutika.tag5"),
-        t("platforms.boutika.tag6"),
+        t("platforms.biasharaOne.tag1"),
+        t("platforms.biasharaOne.tag2"),
+        t("platforms.biasharaOne.tag3"),
+        t("platforms.biasharaOne.tag4"),
+        t("platforms.biasharaOne.tag5"),
+        t("platforms.biasharaOne.tag6"),
       ],
       ctas: [
         {
-          label: t("platforms.boutika.ctaOrg"),
-          href: "https://github.com/boutika-platform",
+          label: t("platforms.biasharaOne.ctaOrg"),
+          href: "https://github.com/biasharaOne",
           icon: "github"
         }
       ],
-      detailedP1: t("platforms.boutika.detailedP1"),
-      detailedP2: t("platforms.boutika.detailedP2"),
-      detailedP3: t("platforms.boutika.detailedP3"),
+      detailedP1: t("platforms.biasharaOne.detailedP1"),
+      detailedP2: t("platforms.biasharaOne.detailedP2"),
+      detailedP3: t("platforms.biasharaOne.detailedP3"),
     },
     {
       id: 1,
@@ -146,7 +146,7 @@ export function PlatformsSection() {
       ctas: [
         {
           label: t("platforms.netpulse.ctaRepo"),
-          href: "https://github.com/bonheurNE07/netpulse",
+          href: "https://github.com/bendeze/netpulse",
           icon: "github"
         },
         {
@@ -167,7 +167,7 @@ export function PlatformsSection() {
       ref={sectionRef}
       id="projects"
       aria-labelledby="platforms-heading"
-      className="relative w-full py-14 bg-background dark:bg-[#030303] px-4 sm:px-8 lg:px-16 overflow-hidden select-none"
+      className="relative w-full py-14 bg-background px-4 sm:px-8 lg:px-16 overflow-hidden select-none"
     >
       {/* Subtle ambient lighting details (Strictly neutral/gray) */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-zinc-500/5 blur-[120px] pointer-events-none -z-10" />

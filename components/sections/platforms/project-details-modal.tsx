@@ -4,6 +4,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Globe, Terminal, Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TagBadge } from "@/components/shared/tag-badge";
 import { cn } from "@/lib/utils";
 import { ProjectData } from "./project-card";
 
@@ -48,15 +49,14 @@ export function ProjectDetailsModal({
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
             className={cn(
-              "relative w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-[32px] border shadow-2xl flex flex-col gap-6 cursor-default p-6 sm:p-10 lg:p-12",
-              "border-white/5 dark:border-zinc-200 bg-[#030303] dark:bg-white text-white dark:text-black"
+              "relative w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-[28px] border border-dashed border-zinc-300 dark:border-zinc-800 bg-card text-foreground shadow-2xl flex flex-col gap-6 cursor-default p-6 sm:p-10 lg:p-12"
             )}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 p-2.5 rounded-full border border-white/10 dark:border-zinc-200 bg-white/5 dark:bg-zinc-100 hover:bg-white/10 dark:hover:bg-zinc-200 transition-colors text-zinc-300 dark:text-zinc-700"
+              className="absolute top-6 right-6 p-2.5 rounded-full border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent hover:border-[#ebcb00] hover:text-[#ebcb00] transition-colors text-foreground cursor-pointer"
               aria-label="Close details"
             >
               <X className="h-5 w-5" />
@@ -67,24 +67,24 @@ export function ProjectDetailsModal({
               {/* Left Side: Full detailed copy in terminal monospace font */}
               <div className="lg:col-span-8 space-y-6 text-left">
                 <div className="space-y-2">
-                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold flex items-center gap-2">
-                    <IconComponent className="h-4 w-4 text-zinc-400 dark:text-zinc-500" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#ebcb00] font-semibold flex items-center gap-2">
+                    <IconComponent className="h-4 w-4 text-[#ebcb00]" />
                     {project.badge}
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-black text-white dark:text-black">
+                  <h3 className="text-3xl sm:text-4xl font-mono font-bold text-foreground">
                     {project.title}
                   </h3>
                 </div>
 
-                <div className="space-y-6 pt-6 border-t border-white/10 dark:border-zinc-200">
-                  <p className="text-zinc-300 dark:text-zinc-800 text-sm sm:text-base font-mono leading-relaxed">
+                <div className="space-y-6 pt-6 border-t border-border/40">
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base font-mono leading-relaxed">
                     {project.detailedP1}
                   </p>
-                  <p className="text-zinc-300 dark:text-zinc-800 text-sm sm:text-base font-mono leading-relaxed pt-4 border-t border-white/10 dark:border-zinc-200">
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base font-mono leading-relaxed pt-4 border-t border-border/40">
                     {project.detailedP2}
                   </p>
                   {project.detailedP3 && (
-                    <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm font-mono italic leading-relaxed pt-4 border-t border-white/10 dark:border-zinc-200">
+                    <p className="text-zinc-500 dark:text-zinc-500 text-xs sm:text-sm font-mono italic leading-relaxed pt-4 border-t border-border/40">
                       {project.detailedP3}
                     </p>
                   )}
@@ -92,26 +92,21 @@ export function ProjectDetailsModal({
               </div>
 
               {/* Right Side: Architecture & CTAs */}
-              <div className="lg:col-span-4 w-full flex flex-col justify-between h-full space-y-6 lg:pl-6 border-t lg:border-t-0 lg:border-l border-white/10 dark:border-zinc-200 pt-6 lg:pt-0">
+              <div className="lg:col-span-4 w-full flex flex-col justify-between h-full space-y-6 lg:pl-6 border-t lg:border-t-0 lg:border-l border-border/40 pt-6 lg:pt-0">
                 {/* Tech Highlights Grid */}
                 <div className="space-y-3">
-                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 text-left">
+                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 text-left">
                     {project.techLabel}
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-x-3 gap-y-1.5">
                     {project.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] font-mono py-1 px-2.5 rounded-md border border-white/10 dark:border-zinc-200 bg-white/5 dark:bg-zinc-100 text-zinc-300 dark:text-zinc-800"
-                      >
-                        {tag}
-                      </span>
+                      <TagBadge key={idx} tag={tag} />
                     ))}
                   </div>
                 </div>
 
                 {/* CTAs */}
-                <div className="pt-6 border-t border-white/10 dark:border-zinc-200 flex flex-col gap-3">
+                <div className="pt-6 border-t border-border/40 flex flex-col gap-3">
                   {project.ctas.map((cta, idx) => {
                     const CtaIcon = CtaIconMap[cta.icon] || ExternalLink;
                     return (
@@ -124,7 +119,7 @@ export function ProjectDetailsModal({
                       >
                         <Button
                           variant="outline"
-                          className="w-full flex items-center justify-center gap-2 border-white/10 dark:border-zinc-200 bg-transparent hover:bg-white/10 dark:hover:bg-zinc-100 text-white dark:text-black hover:text-white dark:hover:text-black"
+                          className="w-full flex items-center justify-center gap-2 border-border bg-background hover:bg-muted hover:border-[#ebcb00] hover:text-[#ebcb00] text-foreground font-mono text-xs transition-colors"
                         >
                           <CtaIcon className="h-4 w-4" />
                           {cta.label}

@@ -88,16 +88,16 @@ export function Footer() {
   }, [state, charIndex, queueIndex, displayedText, isInView, queue]);
 
   return (
-    <footer className="bg-background dark:bg-[#030303] border-t border-border/40">
+    <footer className="bg-background border-t border-border/40 font-mono">
       <div className="w-full py-12 px-6 md:px-12 lg:px-20">
 
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12 w-full">
           <FooterBrand />
           <div className="flex flex-row items-start justify-center md:justify-end gap-8 sm:gap-22 md:gap-28 w-full md:w-auto">
-            <NavLinks direction="column" className="space-y-3 text-sm pt-2 sm:pt-0" />
+            <NavLinks direction="column" className="space-y-1.5 pt-1 sm:pt-0" />
             <div className="flex flex-col gap-4">
               <EmailCTA />
-              <Socials showModeToggle={false} showYoutube={true} />
+              <Socials showModeToggle={false} showYoutube={true} showWhatsapp={true} />
             </div>
           </div>
         </div>
@@ -105,17 +105,17 @@ export function Footer() {
         {/* Dynamic Typewriter Cinematic Text */}
         <MotionDiv ref={containerRef} className="my-16 text-center select-none overflow-hidden w-full">
           <MotionH1
-            className="mb-4 text-4xl font-black tracking-tighter sm:text-6xl md:text-7xl lg:text-[6.2vw] leading-none text-black dark:text-white font-mono break-words lg:whitespace-nowrap w-full"
+            className="mb-4 text-4xl font-mono tracking-tighter sm:text-6xl md:text-7xl lg:text-[6.2vw] leading-none text-[#ebcb00] font-mono break-words lg:whitespace-nowrap w-full"
           >
             {displayedText}
             {state !== "finished" && (
-              <span className="animate-pulse duration-700 text-gray-500 dark:text-gray-600 font-thin ml-1">|</span>
+              <span className="animate-pulse duration-700 text-gray-900 dark:text-gray-100 font-thin ml-1">|</span>
             )}
           </MotionH1>
         </MotionDiv>
 
-        <div className="mt-10 mx-auto border-t border-border/40 pt-6 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Ndeze Emmanuel. All rights reserved.</p>
+        <div className="mt-10 mx-auto border-t-2 border-border/40 border-dashed pt-6 flex flex-col items-center gap-4 md:flex-row md:justify-center">
+          <p className="text-xs text-muted-foreground font-mono">&copy; {new Date().getFullYear()} Emmanuel Bonheur Ndeze. All rights reserved.</p>
         </div>
       </div>
     </footer>

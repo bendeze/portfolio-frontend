@@ -21,8 +21,8 @@ export function BrandLogo() {
       transition: { type: 'spring' as const, stiffness: 350, damping: 22 }
     },
     hover: { 
-      y: -6, 
-      color: "var(--color-primary, #6366f1)", // beautiful interactive transition
+      y: -5, 
+      color: "#ebcb00", // brand yellow accent
       transition: { 
         type: 'spring' as const, 
         stiffness: 400, 

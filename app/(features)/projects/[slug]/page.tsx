@@ -1,80 +1,53 @@
 import { notFound } from "next/navigation";
-import { serialize } from "next-mdx-remote/serialize";
-import remarkGfm from "remark-gfm";
-
-import { safeFetch } from "@/lib/api-fetch";
-import { ProjectSchema, PaginatedResponseSchema } from "@/features/projects/schemas";
-import { extractHeadings } from "@/features/blog/utils/headings";
-import { resolveEmbeddableMedia } from "@/features/blog/utils/media";
-import { ProjectReader } from "@/features/projects/components/project-reader";
-
-export const dynamic = "force-dynamic";
+import { Metadata } from "next";
+import { getAllContent, getContentBySlug, getAdjacentContent } from "@/lib/content";
+import { ContentReader } from "@/components/reader/content-reader";
+import { MdxContent } from "@/components/shared/mdx-content";
 
 interface ProjectPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const responseData = await safeFetch<any>("/projects/?page_size=100", {}, null);
-  if (!responseData) return [];
-
-  const parsed = PaginatedResponseSchema.safeParse(responseData);
-  if (!parsed.success) return [];
-
-  return parsed.data.results.map((project) => ({
+  const projects = getAllContent("projects");
+  return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  
-  const rawProject = await safeFetch<any>(`/projects/${slug}/`, {}, null);
-  if (!rawProject) {
-    return { title: "Project Not Found" };
-  }
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const project = getContentBySlug("projects", resolvedParams.slug);
 
-  const parsed = ProjectSchema.safeParse(rawProject);
-  if (!parsed.success) {
+  if (!project) {
     return { title: "Project Not Found" };
   }
 
   return {
-    title: `${parsed.data.title} | E.Ndeze`,
-    description: parsed.data.description,
+    title: `${project.title} | E. Ndeze Bonheur`,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      type: "article",
+      publishedTime: project.publishedAt,
+    },
   };
 }
 
-export default async function ProjectDetailPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const resolvedParams = await params;
+  const project = getContentBySlug("projects", resolvedParams.slug);
 
-  const rawProject = await safeFetch<any>(`/projects/${slug}/`, {}, null);
-  if (!rawProject) {
+  if (!project) {
     notFound();
   }
 
-  const parsed = ProjectSchema.safeParse(rawProject);
-  if (!parsed.success) {
-    console.error(`[ProjectDetailPage] Zod schema validation failed for project slug: ${slug}`, parsed.error.message);
-    notFound();
-  }
-
-  const project = parsed.data;
-
-  const resolvedContent = await resolveEmbeddableMedia(project.content);
-
-  const headings = extractHeadings(resolvedContent);
-
-  const mdxSource = await serialize(resolvedContent, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [],
-    },
-  });
+  const { prev, next } = getAdjacentContent("projects", resolvedParams.slug);
 
   return (
-    <ProjectReader project={project} headings={headings} mdxSource={mdxSource} />
+    <ContentReader item={project} prev={prev} next={next}>
+      <MdxContent source={project.content} />
+    </ContentReader>
   );
 }

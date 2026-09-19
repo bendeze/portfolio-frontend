@@ -1,74 +1,72 @@
-import { Suspense } from "react";
-import ProjectPageContent from "@/features/projects/components/project-content";
-import { ProjectSkeleton } from "@/features/projects/components/project-skeleton";
-import { safeFetch } from "@/lib/api-fetch";
-import { z } from "zod";
-import { PaginatedResponseSchema, ProjectSchema } from "@/features/projects/schemas";
+import { Metadata } from "next";
+import Link from "next/link";
+import { getAllContent, getAllTags } from "@/lib/content";
+import { ContentCard } from "@/components/reader/content-card";
+import { TagBadge } from "@/components/shared/tag-badge";
+import { Layers, Archive, ArrowRight } from "lucide-react";
 
-// Real-time server dynamic fetching for instant search & filters
-export const revalidate = 0;
+export const metadata: Metadata = {
+  title: "Projects | E. Ndeze Bonheur",
+  description: "Systems, network architectures, distributed backends, and infrastructure engineering case studies.",
+};
 
-interface ProjectPageProps {
-  searchParams: Promise<{ 
-    page?: string;
-    category?: string;
-    search?: string;
-  }>;
-}
-
-export default async function ProjectPage({ searchParams }: ProjectPageProps) {
-  const params = await searchParams;
-  const currentPage = params.page ? parseInt(params.page, 10) : 1;
-  const currentCategory = params.category || "";
-  const currentSearch = params.search || "";
-
-  // Construct server-side fetch URL matching backend query parameters
-  let fetchUrl = `/projects/?page=${currentPage}&page_size=8`;
-  if (currentCategory) {
-    fetchUrl += `&category__slug=${encodeURIComponent(currentCategory)}`;
-  }
-  if (currentSearch) {
-    fetchUrl += `&search=${encodeURIComponent(currentSearch)}`;
-  }
-
-  console.log(`[ProjectPage Server Component] Loading page: ${currentPage}, Category: "${currentCategory}", Search: "${currentSearch}"`);
-  console.log(`[ProjectPage Server Component] Fetching URL from Django: ${fetchUrl}`);
-
-  // Fetch from Django REST backend
-  const responseData = await safeFetch<any>(
-    fetchUrl, 
-    { 
-      cache: "no-store", 
-      next: { revalidate: 0 } 
-    }, 
-    null
-  );
-
-  let projectsData = { count: 0, results: [] as any[] };
-  if (responseData) {
-    const parsed = PaginatedResponseSchema.safeParse(responseData);
-    if (parsed.success) {
-      try {
-        projectsData = {
-          count: parsed.data.meta.count,
-          results: z.array(ProjectSchema).parse(parsed.data.results),
-        };
-      } catch (err: any) {
-        console.error("[ProjectPage] Error parsing projects domain mapping:", err.message || err);
-      }
-    } else {
-      console.error("[ProjectPage] Zod schema validation failed for API response:", parsed.error.message);
-    }
-  }
+export default function ProjectsPage() {
+  const projects = getAllContent("projects");
+  const tags = getAllTags();
 
   return (
-    <Suspense fallback={<ProjectSkeleton />}>
-      <ProjectPageContent 
-        postsData={projectsData}
-        currentPage={currentPage}
-        currentCategory={currentCategory}
-        currentSearch={currentSearch}
-      />
-    </Suspense>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+      {/* Header */}
+      <div className="space-y-3 pb-8 border-b-[0.5px] border-zinc-200 dark:border-zinc-800">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center gap-2 text-xs font-mono text-[#ebcb00] uppercase tracking-wider font-semibold">
+            <Layers className="h-4 w-4" />
+            <span>Case Studies & Systems</span>
+          </div>
+          <Link
+            href="/archives"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-[#ebcb00] transition-colors border border-dashed border-zinc-300 dark:border-zinc-800 rounded-md px-2.5 py-1 hover:border-[#ebcb00]"
+          >
+            <Archive className="h-3.5 w-3.5" />
+            <span>Archives Timeline</span>
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-mono font-bold text-zinc-900 dark:text-zinc-100 tracking-tight pt-2">
+          Projects
+        </h1>
+        <p className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+          A collection of my work across software development, systems, networking, and electronics.
+        </p>
+      </div>
+
+      {/* Featured Tags Bar */}
+      {tags.length > 0 && (
+        <div className="py-4 border-b-[0.5px] border-zinc-200 dark:border-zinc-800 flex flex-wrap gap-1.5 items-center justify-between">
+          <div className="flex flex-wrap gap-1.5 items-center">
+            <span className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mr-1">Tech Stack:</span>
+            {tags.slice(0, 10).map(({ tag, count }) => (
+              <TagBadge key={tag} tag={tag} count={count} />
+            ))}
+          </div>
+          <Link
+            href="/tags"
+            className="text-[11px] font-mono text-zinc-500 hover:text-[#ebcb00] transition-colors inline-flex items-center gap-1 border border-dashed border-zinc-300 dark:border-zinc-800 rounded px-2 py-0.5 hover:border-[#ebcb00]"
+          >
+            <span>View all tags ({tags.length})</span>
+            <ArrowRight className="h-2.5 w-2.5" />
+          </Link>
+        </div>
+      )}
+
+      {/* Projects List */}
+      <div className="divide-y-[0.5px] divide-zinc-200/60 dark:divide-zinc-800/60 pt-2">
+        {projects.length > 0 ? (
+          projects.map((item) => <ContentCard key={item.slug} item={item} />)
+        ) : (
+          <p className="py-12 text-center text-sm font-mono text-zinc-500">No projects published yet.</p>
+        )}
+      </div>
+    </div>
   );
 }

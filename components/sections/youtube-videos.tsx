@@ -77,10 +77,10 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
   }
 
   return (
-    <section
-      id="videos"
-      aria-labelledby="videos-heading"
-      className="relative w-full py-16 bg-background dark:bg-[#030303] px-4 sm:px-8 lg:px-16 overflow-hidden select-none"
+    <section 
+      id="videos" 
+      aria-label="YouTube Channel and Video Resources"
+      className="relative w-full py-16 bg-background px-4 sm:px-8 lg:px-16 overflow-hidden select-none"
     >
       <motion.div
         variants={containerVariants}
@@ -98,12 +98,12 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
           className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div className="space-y-2 text-left">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500 dark:text-zinc-400">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#ebcb00] font-bold">
               {t("youtube.badge") || "MEDIA"}
             </span>
             <h2
               id="videos-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white font-sans font-medium leading-none tracking-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900 dark:text-white leading-none tracking-tight"
             >
               {t("youtube.title") || "My Latest Videos"}
             </h2>
@@ -113,7 +113,7 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
             href="https://www.youtube.com/@NdezeBonheur"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto text-center px-6 py-3 sm:py-2.5 rounded-full border border-gray-300 dark:border-zinc-800 text-sm font-medium hover:bg-gray-50 dark:hover:bg-zinc-900 transition-colors bg-white dark:bg-[#030303] text-gray-900 dark:text-zinc-100 font-mono"
+            className="w-full sm:w-auto text-center px-6 py-3 sm:py-2.5 rounded-full border border-border text-sm font-medium hover:border-[#ebcb00] hover:text-[#ebcb00] transition-colors bg-card text-foreground font-mono"
           >
             {t("youtube.viewChannel") || "Go to Channel"}
           </Link>
@@ -139,15 +139,15 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
                 {/* Video Info Copy */}
                 <div className="space-y-2 px-1 text-left">
                   <a href={video.url} target="_blank" rel="noopener noreferrer" className="group">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-zinc-100 leading-snug line-clamp-2 min-h-[56px] transition-colors group-hover:text-gray-600 dark:group-hover:text-zinc-300 font-mono">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground leading-snug line-clamp-2 min-h-[56px] transition-colors group-hover:text-[#ebcb00] font-mono">
                       {video.title}
                     </h3>
                   </a>
 
                   {/* Subtitle Metadata Row: Date + Views */}
-                  <div className="flex items-center gap-3 text-xs font-medium text-gray-500 dark:text-zinc-400 font-mono">
+                  <div className="flex items-center gap-3 text-xs font-medium text-zinc-500 dark:text-zinc-400 font-mono">
                     <span>{formatDate(video.publishedAt)}</span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-zinc-700" />
+                    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
                     <span>{video.views} views</span>
                   </div>
                 </div>
@@ -164,14 +164,14 @@ export function YoutubeVideosSection({ videos = [] }: YoutubeVideosSectionProps)
           <button
             onClick={() => handleScroll("left")}
             aria-label="Scroll left"
-            className="w-12 h-12 rounded-full border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-700 dark:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-900 transition-all duration-200 active:scale-95 bg-white dark:bg-[#030303]"
+            className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground hover:border-[#ebcb00] hover:text-[#ebcb00] hover:bg-muted transition-all duration-200 active:scale-95 bg-card cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => handleScroll("right")}
             aria-label="Scroll right"
-            className="w-12 h-12 rounded-full border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-700 dark:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-900 transition-all duration-200 active:scale-95 bg-white dark:bg-[#030303]"
+            className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground hover:border-[#ebcb00] hover:text-[#ebcb00] hover:bg-muted transition-all duration-200 active:scale-95 bg-card cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

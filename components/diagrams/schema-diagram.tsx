@@ -7,11 +7,9 @@ import {
   Link as LinkIcon,
   Search,
   Layers,
-  GitGraph,
   Code as CodeIcon,
 } from "lucide-react";
 import { DiagramContainer } from "./diagram-container";
-import { MermaidDiagram } from "./mermaid-diagram";
 import { cleanDiagramSource } from "./diagram-utils";
 import { cn } from "@/lib/utils";
 
@@ -178,41 +176,7 @@ export function parseSqlDdl(sql: string): TableDefinition[] {
   return tables;
 }
 
-/**
- * Generate Mermaid ER diagram syntax from TableDefinition array
- */
-export function generateMermaidEr(tables: TableDefinition[]): string {
-  if (tables.length === 0) return "erDiagram";
 
-  let er = "erDiagram\n";
-
-  // 1. Relationships
-  const relations: string[] = [];
-  tables.forEach((t) => {
-    t.columns.forEach((c) => {
-      if (c.isForeign && c.foreignTable) {
-        relations.push(`    ${c.foreignTable} ||--o{ ${t.name} : references`);
-      }
-    });
-  });
-
-  if (relations.length > 0) {
-    er += relations.join("\n") + "\n\n";
-  }
-
-  // 2. Tables & Fields
-  tables.forEach((t) => {
-    er += `    ${t.name} {\n`;
-    t.columns.forEach((c) => {
-      const cleanType = c.type.split("(")[0].replace(/[^a-zA-Z0-9]/g, "").toLowerCase() || "string";
-      const keyFlag = c.isPrimary ? "PK" : c.isForeign ? "FK" : "";
-      er += `        ${cleanType} ${c.name} ${keyFlag}\n`;
-    });
-    er += "    }\n";
-  });
-
-  return er.trim();
-}
 
 function getTypeBadgeColor(type: string) {
   const upper = type.toUpperCase();
@@ -252,12 +216,11 @@ export function SchemaDiagram({
   title = "Database Schema",
   className,
 }: SchemaDiagramProps) {
-  const [activeTab, setActiveTab] = useState<"diagram" | "mermaid" | "code">("diagram");
+  const [activeTab, setActiveTab] = useState<"diagram" | "code">("diagram");
   const [searchQuery, setSearchQuery] = useState("");
   const [highlightedTable, setHighlightedTable] = useState<string | null>(null);
 
   const tables = useMemo(() => parseSqlDdl(code), [code]);
-  const mermaidEr = useMemo(() => generateMermaidEr(tables), [tables]);
 
   const filteredTables = useMemo(() => {
     if (!searchQuery.trim()) return tables;
@@ -282,20 +245,14 @@ export function SchemaDiagram({
       icon={<Database className="h-3.5 w-3.5 text-blue-500 dark:text-blue-400" />}
       className={className}
       activeTab={activeTab}
-      onTabChange={setActiveTab}
+      onTabChange={(tab) => setActiveTab(tab as "diagram" | "code")}
       allowZoom={false}
       availableTabs={[
         { id: "diagram", label: "Visual Tables", icon: <Layers className="h-3 w-3" /> },
-        { id: "mermaid", label: "ER Diagram", icon: <GitGraph className="h-3 w-3" /> },
         { id: "code", label: "SQL DDL", icon: <CodeIcon className="h-3 w-3" /> },
       ]}
     >
-      {activeTab === "mermaid" ? (
-        <div className="w-full">
-          <MermaidDiagram chart={mermaidEr} className="!my-0 !border-0 !bg-transparent" />
-        </div>
-      ) : activeTab === "diagram" ? (
-        <div className="w-full space-y-5">
+      <div className="w-full space-y-5">
           {/* Schema Search & Stats Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 pb-3 border-b-[0.5px] border-zinc-200/60 dark:border-zinc-800/60">
             <div className="flex items-center gap-2">
@@ -444,7 +401,6 @@ export function SchemaDiagram({
             </div>
           )}
         </div>
-      ) : null}
     </DiagramContainer>
   );
 }

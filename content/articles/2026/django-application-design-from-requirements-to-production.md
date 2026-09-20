@@ -146,23 +146,22 @@ For example, do not ask a non-technical stakeholder:
 Ask:
 > *"What additional information should a person have beyond their login credentials?"*
 
-```mermaid
-flowchart LR
-    subgraph User ["User (Auth and Identity)"]
-        U1["id: UUID (PK)"]
-        U2["email: String"]
-        U3["password_hash: String"]
-        U4["is_active: Boolean"]
-    end
+```sql-schema
+CREATE TABLE users (
+    id UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT true
+);
 
-    subgraph Profile ["Profile (User Data)"]
-        P1["display_name: String"]
-        P2["phone_number: String"]
-        P3["avatar_url: String"]
-        P4["preferences: JSON"]
-    end
-
-    User -->|"1:1 Relationship"| Profile
+CREATE TABLE profiles (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL UNIQUE REFERENCES users(id),
+    display_name VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(32),
+    avatar_url VARCHAR(512),
+    preferences JSONB DEFAULT '{}'
+);
 ```
 
 > **Requirements describe behavior. Architecture describes structure. Code describes implementation.** Do not collapse all three into one conversation.

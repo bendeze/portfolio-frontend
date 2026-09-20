@@ -21,6 +21,7 @@ export interface ContentMeta {
   metrics?: { label: string; value: string }[];
   liveUrl?: string;
   githubUrl?: string;
+  filePath?: string;
 }
 
 export interface ContentItem extends ContentMeta {
@@ -79,6 +80,8 @@ export function getAllContent(type: ContentType, includeDrafts = false): Content
       const dateStr = data.publishedAt || data.date || "2026-01-01";
       const year = new Date(dateStr).getFullYear() || 2026;
 
+      const contentRelPath = path.relative(CONTENT_DIR, filePath).replace(/\\/g, "/");
+
       const meta: ContentMeta = {
         slug,
         type,
@@ -95,6 +98,7 @@ export function getAllContent(type: ContentType, includeDrafts = false): Content
         metrics: data.metrics,
         liveUrl: data.liveUrl || data.link,
         githubUrl: data.githubUrl || data.github,
+        filePath: contentRelPath,
       };
 
       return meta;
@@ -139,6 +143,7 @@ export function getContentBySlug(type: ContentType, slug: string | string[]): Co
   const readTime = readingTime(content);
   const dateStr = data.publishedAt || data.date || "2026-01-01";
   const year = new Date(dateStr).getFullYear() || 2026;
+  const contentRelPath = path.relative(CONTENT_DIR, targetPath).replace(/\\/g, "/");
 
   return {
     slug: normalizedSlug,
@@ -156,6 +161,7 @@ export function getContentBySlug(type: ContentType, slug: string | string[]): Co
     metrics: data.metrics,
     liveUrl: data.liveUrl || data.link,
     githubUrl: data.githubUrl || data.github,
+    filePath: contentRelPath,
     content,
   };
 }

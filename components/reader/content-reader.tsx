@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { format } from "date-fns";
-import { ArrowLeft, Calendar, Clock, Share2, Check, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, Check, ExternalLink, Github, PenLine } from "lucide-react";
 import { ContentItem, ContentMeta } from "@/lib/content";
 import { TagBadge } from "@/components/shared/tag-badge";
 import { TableOfContents, TocItem } from "@/components/reader/table-of-contents";
@@ -18,11 +18,16 @@ interface ContentReaderProps {
   children?: React.ReactNode;
 }
 
+const GITHUB_REPO_URL = process.env.NEXT_PUBLIC_GITHUB_REPO_URL || "https://github.com/bendeze/portfolio-frontend";
+
 export function ContentReader({ item, prev, next, children }: ContentReaderProps) {
   const { t } = useTranslation();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
+
+  const fileSubPath = item.filePath || `${item.type}/${item.slug}.md`;
+  const githubEditUrl = `${GITHUB_REPO_URL}/edit/main/content/${fileSubPath}`;
 
   // Track scroll progress
   useEffect(() => {
@@ -207,19 +212,34 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
           <article className="lg:col-span-8 min-w-0">
             {/* Header / Title */}
             <header className="space-y-3 pb-6 mb-6 border-b-[0.5px] border-zinc-200 dark:border-zinc-800">
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-mono text-[#ebcb00] uppercase font-semibold border-b border-dashed border-[#ebcb00] pb-0.5">
-                  {item.type}
-                </span>
-                <span className="text-xs font-mono text-zinc-500">
-                  {(() => {
-                    try {
-                      return format(new Date(item.publishedAt), "yyyy-MM-dd");
-                    } catch {
-                      return item.publishedAt;
-                    }
-                  })()}
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-mono text-[#ebcb00] uppercase font-semibold border-b border-dashed border-[#ebcb00] pb-0.5">
+                    {item.type}
+                  </span>
+                  <span className="text-xs font-mono text-zinc-500">
+                    {(() => {
+                      try {
+                        return format(new Date(item.publishedAt), "yyyy-MM-dd");
+                      } catch {
+                        return item.publishedAt;
+                      }
+                    })()}
+                  </span>
+                </div>
+
+                {/* Steipete-Style "Edit on GitHub" Link */}
+                <a
+                  href={githubEditUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-[#ebcb00] dark:hover:text-[#ebcb00] transition-colors group"
+                  title="Edit this post on GitHub (Submit PR)"
+                >
+                  <span className="text-zinc-300 dark:text-zinc-700 select-none">|</span>
+                  <PenLine className="h-3.5 w-3.5 text-zinc-400 group-hover:text-[#ebcb00] transition-colors" />
+                  <span className="italic">{t("blog.reader.editOnGithub") || "Edit on GitHub"}</span>
+                </a>
               </div>
 
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight pt-2">

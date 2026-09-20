@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronUp, ChevronRight, ChevronLeft } from "lucide-react";
 import { ContentMeta } from "@/lib/content";
 import { TagBadge } from "@/components/shared/tag-badge";
+import { useTranslation } from "@/context/language-context";
 
 // Custom and standard SVG social icons matching Steipete
 function IconX({ className = "h-4 w-4" }: { className?: string }) {
@@ -95,6 +96,7 @@ interface PostFooterProps {
 }
 
 export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
+  const { t } = useTranslation();
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
@@ -173,7 +175,7 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
       {/* Share This Post On + Back to Top Row */}
       <div className="space-y-2.5">
         <div className="text-xs italic text-zinc-600 dark:text-zinc-400">
-          Share this post on:
+          {t("blog.reader.shareOn")}
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -202,7 +204,7 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
             className="inline-flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-300 hover:text-[#2a7c13] dark:hover:text-[#ebcb00] transition-all duration-200 self-start sm:self-auto cursor-pointer"
           >
             <ChevronUp className="h-4 w-4 text-[#2a7c13] dark:text-[#ebcb00]" />
-            <span>Back to Top</span>
+            <span>{t("blog.reader.backToTop")}</span>
           </button>
         </div>
       </div>
@@ -217,7 +219,7 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
             <div className="space-y-1">
               <div className="text-[11px] text-zinc-500 flex items-center gap-1">
                 <ChevronLeft className="h-3 w-3" />
-                <span>Previous Post</span>
+                <span>{t("blog.reader.previousPost")}</span>
               </div>
               <Link
                 href={`/${prev.type}/${prev.slug}`}
@@ -231,7 +233,7 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
           {next ? (
             <div className="space-y-1 sm:text-right">
               <div className="text-[11px] text-zinc-500 flex items-center gap-1 sm:justify-end">
-                <span>Next Post</span>
+                <span>{t("blog.reader.nextPost")}</span>
                 <ChevronRight className="h-3 w-3" />
               </div>
               <Link
@@ -251,7 +253,7 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
       {/* Bottom Attribution & Social Profiles Row */}
       <div className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-zinc-600 dark:text-zinc-400">
         <div>
-          <span>Steal this post → </span>
+          <span>{t("blog.reader.stealPost")} </span>
           <a
             href="https://creativecommons.org/licenses/by/4.0/"
             target="_blank"

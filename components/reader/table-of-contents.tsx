@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { List } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/context/language-context";
 
 export interface TocItem {
   id: string;
@@ -16,6 +17,7 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ items, className }: TableOfContentsProps) {
+  const { t } = useTranslation();
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
     <nav className={cn("space-y-2 text-xs font-mono select-none", className)}>
       <div className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400 font-semibold tracking-wider uppercase text-[10px]">
         <List className="h-3 w-3 text-[#ebcb00]/80" />
-        <span>Table of Contents</span>
+        <span>{t("blog.reader.tableOfContents")}</span>
       </div>
       <ul className="space-y-1.5 border-l-[0.5px] border-zinc-200 dark:border-zinc-800 pl-2">
         {items.map((item) => {

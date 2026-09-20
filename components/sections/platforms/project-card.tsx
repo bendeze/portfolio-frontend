@@ -68,7 +68,7 @@ export function ProjectCard({
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "group relative flex flex-col h-full p-6 sm:p-10 lg:p-12 rounded-[28px] border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent transition-all duration-300 will-change-transform overflow-hidden cursor-zoom-in shadow-xs",
-        "hover:border-[#2a7c13] dark:hover:border-[#ebcb00]"
+        "hover:border-[#2a7c13]/40 dark:hover:border-[#ebcb00]/30"
       )}
     >
       <div className="flex flex-col h-full justify-between gap-8 relative z-10">

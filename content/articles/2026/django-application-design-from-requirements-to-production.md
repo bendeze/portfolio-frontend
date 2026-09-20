@@ -1,6 +1,6 @@
 ---
 title: "Django Application Design: From Requirements to a Production-Ready Project"
-publishedAt: "2026-09-20"
+publishedAt: "2026-09-19"
 description: "A comprehensive guide on requirements gathering, modular monolith architecture, app boundaries, package evaluation, and production readiness in modern Django."
 tags: ["django", "python", "architecture", "backend", "system-design", "best-practices"]
 ogImage: "/placeholder_image.png"

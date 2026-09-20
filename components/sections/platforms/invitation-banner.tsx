@@ -28,7 +28,7 @@ export function InvitationBanner({
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "mt-20 p-8 sm:p-10 rounded-[28px] border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent text-center relative overflow-hidden select-none w-full shadow-xs transition-all duration-300 will-change-transform",
-        "hover:border-[#2a7c13] dark:hover:border-[#ebcb00] text-foreground"
+        "hover:border-[#ebcb00] dark:hover:border-[#ebcb00]/40 text-foreground"
       )}
     >
       <div className="space-y-4 max-w-2xl mx-auto relative z-10">

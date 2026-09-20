@@ -9,6 +9,7 @@ import { TagBadge } from "@/components/shared/tag-badge";
 import { TableOfContents, TocItem } from "@/components/reader/table-of-contents";
 import { SubscribeBox } from "@/components/newsletter/subscribe-box";
 import { PostFooter } from "@/components/reader/post-footer";
+import { useTranslation } from "@/context/language-context";
 
 interface ContentReaderProps {
   item: ContentItem;
@@ -18,6 +19,7 @@ interface ContentReaderProps {
 }
 
 export function ContentReader({ item, prev, next, children }: ContentReaderProps) {
+  const { t } = useTranslation();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
@@ -62,7 +64,11 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
   };
 
   const parentPath = item.type === "articles" ? "/articles" : item.type === "posts" ? "/posts" : "/projects";
-  const parentLabel = item.type === "articles" ? "Articles" : item.type === "posts" ? "Posts" : "Projects";
+  const parentBackText = item.type === "articles" 
+    ? t("blog.reader.backToArticles") 
+    : item.type === "posts" 
+    ? t("blog.reader.backToPosts") 
+    : t("blog.reader.backToProjects");
 
   return (
     <div className="relative min-h-screen">
@@ -82,7 +88,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
             className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-[#ebcb00] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to {parentLabel}</span>
+            <span>{parentBackText}</span>
           </Link>
         </div>
 
@@ -102,7 +108,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
                     Emmanuel Bonheur Ndeze
                   </h3>
                   <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono">
-                    Backend & Network Engineer
+                    {t("blog.reader.authorRole")}
                   </p>
                 </div>
               </div>
@@ -136,7 +142,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
                       rel="noreferrer"
                       className="inline-flex items-center gap-1 text-[11px] font-mono text-[#ebcb00] hover:underline"
                     >
-                      <span>Live Demo</span>
+                      <span>{t("blog.reader.liveDemo")}</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                   )}
@@ -148,7 +154,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
                       className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-600 dark:text-zinc-400 hover:text-[#ebcb00] transition-colors"
                     >
                       <Github className="h-3 w-3" />
-                      <span>Source</span>
+                      <span>{t("blog.reader.source")}</span>
                     </a>
                   )}
                 </div>
@@ -163,12 +169,12 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
                   {copied ? (
                     <>
                       <Check className="h-3.5 w-3.5 text-green-500" />
-                      <span className="text-green-500">Link Copied!</span>
+                      <span className="text-green-500">{t("blog.reader.linkCopied")}</span>
                     </>
                   ) : (
                     <>
                       <Share2 className="h-3.5 w-3.5" />
-                      <span>Copy Article Link</span>
+                      <span>{t("blog.reader.copyLink")}</span>
                     </>
                   )}
                 </button>
@@ -186,7 +192,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
             {item.tags.length > 0 && (
               <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 dark:border-zinc-800 border-dashed bg-zinc-50/50 dark:bg-transparent space-y-2">
                 <h4 className="text-[10px] font-mono font-semibold uppercase tracking-wider text-zinc-500">
-                  Tags
+                  {t("blog.reader.tags")}
                 </h4>
                 <div className="flex flex-wrap gap-x-3 gap-y-1">
                   {item.tags.map((tag) => (

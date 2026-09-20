@@ -1,6 +1,6 @@
 import { getAllContent } from "@/lib/content";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bonheurndeze.dev";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bonheur-ndeze.vercel.app/";
 
 function escapeXml(unsafe: string): string {
   return unsafe

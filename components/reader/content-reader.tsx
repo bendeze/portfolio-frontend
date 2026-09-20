@@ -91,7 +91,7 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
           {/* Left Rail (Desktop Sticky Sidebar) */}
           <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 select-none">
             {/* Author & Meta Widget */}
-            <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 border-dashed dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30 space-y-3.5">
+            <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 border-dashed dark:border-zinc-800 bg-zinc-50/50 dark:bg-transparent space-y-3.5">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full border border-zinc-300 dark:border-zinc-700 overflow-hidden shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -177,14 +177,14 @@ export function ContentReader({ item, prev, next, children }: ContentReaderProps
 
             {/* Dynamic TOC */}
             {tocItems.length > 0 && (
-              <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 dark:border-zinc-800 border-dashed bg-zinc-50/50 dark:bg-zinc-900/30">
+              <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 dark:border-zinc-800 border-dashed bg-zinc-50/50 dark:bg-transparent">
                 <TableOfContents items={tocItems} />
               </div>
             )}
 
             {/* Tags Widget */}
             {item.tags.length > 0 && (
-              <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 dark:border-zinc-800 border-dashed bg-zinc-50/50 dark:bg-zinc-900/30 space-y-2">
+              <div className="p-4 rounded-lg border-[0.5px] border-zinc-200 dark:border-zinc-800 border-dashed bg-zinc-50/50 dark:bg-transparent space-y-2">
                 <h4 className="text-[10px] font-mono font-semibold uppercase tracking-wider text-zinc-500">
                   Tags
                 </h4>

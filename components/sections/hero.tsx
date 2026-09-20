@@ -35,7 +35,7 @@ export function Hero() {
 
   // --- Dynamic Natural Typing Logic ---
   const prefix = t("hero.welcome");
-  const suffix = " Bonheur Ndeze";
+  const suffix = " Emmanuel Ndeze Bonheur";
   const welcomeText = `${prefix}${suffix}`;
 
   const [typedText, setTypedText] = useState("");
@@ -138,7 +138,7 @@ export function Hero() {
         <MotionH1
           className="mb-4 text-4xl font-mono tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          <span className="text-gray-700 dark:text-muted-foreground">
+          <span className="text-[#ebcb00]">
             {typedText.slice(0, prefix.length)}
           </span>
           <span className="text-gray-900 dark:text-white">
@@ -160,7 +160,7 @@ export function Hero() {
             text={translatedRoles}
             loop={true}
             holdDelay={2500}
-            className="font-semibold leading-none text-gray-900 dark:text-muted-foreground font-mono"
+            className="font-semibold leading-none text-[#ebcb00] font-mono"
             style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
           />
         </MotionDiv>

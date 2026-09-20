@@ -14,7 +14,7 @@ export const translations = {
     },
     hero: {
       status: "Available for new projects",
-      title: "NDEZE BONHEUR EMMANUEL",
+      title: "EMMANUEL NDEZE BONHEUR",
       accent: "Network and Software Engineer building scalable, reliable, and secure systems.",
       centerpiece: "Good engineering is about clarity, scalability, and building solutions that last.",
       ctaBuild: "What I Build",

@@ -47,7 +47,7 @@ export function SubscribeBox({ className, source = "publication" }: SubscribeBox
 
   return (
     <div
-      className={`my-10 p-6 sm:p-8 rounded-xl border-[0.5px] border-[#ebcb00]/40 dark:border-[#ebcb00]/30 border-dashed bg-zinc-50/90 dark:bg-[#09090b]/70 font-mono shadow-sm ${className || ""}`}
+      className={`my-10 p-6 sm:p-8 rounded-xl border-[0.5px] border-[#ebcb00]/40 dark:border-[#ebcb00]/30 border-dashed bg-transparent font-mono shadow-sm ${className || ""}`}
     >
       <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 mb-5 leading-relaxed">
         New posts, shipping stories, and nerdy links straight to your inbox.
@@ -61,7 +61,7 @@ export function SubscribeBox({ className, source = "publication" }: SubscribeBox
             onChange={(e) => setName(e.target.value)}
             placeholder="Your Name"
             disabled={status === "loading" || status === "success"}
-            className="flex-1 px-4 py-2.5 text-xs font-mono rounded-lg bg-white dark:bg-[#09090b] border-[0.5px] border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-[#ebcb00] transition-colors"
+            className="flex-1 px-4 py-2.5 text-xs font-mono rounded-lg bg-white dark:bg-[#000000] border-[0.3px] border-[#ebcb00]/40 dark:border-[#ebcb00]/30 border-dashed text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-[#ebcb00] transition-colors"
           />
           <input
             type="email"
@@ -70,7 +70,7 @@ export function SubscribeBox({ className, source = "publication" }: SubscribeBox
             placeholder="Your Email"
             required
             disabled={status === "loading" || status === "success"}
-            className="flex-1 px-4 py-2.5 text-xs font-mono rounded-lg bg-white dark:bg-[#09090b] border-[0.5px] border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-[#ebcb00] transition-colors"
+            className="flex-1 px-4 py-2.5 text-xs font-mono rounded-lg bg-white dark:bg-[#000000] border-[0.3px] border-[#ebcb00]/80 dark:border-[#ebcb00]/30 border-dashed text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-[#ebcb00] transition-colors"
           />
           <button
             type="submit"

@@ -148,7 +148,6 @@ Technical articles, dev notes, and case studies are managed as Markdown/MDX file
 
 ### Article Schema Example
 
-```markdown
 ---
 title: "Building Scalable Backend Architectures with Django & Redis"
 publishedAt: "2026-03-15"
@@ -169,7 +168,6 @@ Content supports standard Markdown, MDX component embeds, syntax-highlighted cod
 def process_event(payload: dict) -> bool:
     # Event processing logic
     return True
-```
 ```
 
 ---

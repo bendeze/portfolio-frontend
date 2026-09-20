@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, Rss } from 'lucide-react'
 import { ModeToggle } from '@/components/shared/mode-toggle'
 import { MotionDiv } from './motion-wrapper'
 import { cn } from '@/lib/utils'
@@ -39,6 +39,7 @@ interface FooterSocialsProps {
   showTelegram?: boolean
   showWhatsapp?: boolean
   showYoutube?: boolean
+  showRss?: boolean
   showEmail?: boolean
   showModeToggle?: boolean
   variant?: 'default' | 'navbar'
@@ -53,6 +54,7 @@ export function Socials({
   showTelegram = true,
   showWhatsapp = true,
   showYoutube = true,
+  showRss = true,
   showEmail = false,
   showModeToggle = true,
   variant = 'default',
@@ -176,6 +178,24 @@ export function Socials({
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
             <SvgYoutube className="h-4 w-4" />
+          </MotionDiv>
+        </Link>
+      )}
+
+      {showRss && (
+        <Link
+          href="/rss.xml"
+          target="_blank"
+          prefetch={false}
+          className="text-muted-foreground hover:text-[#2a7c13] dark:hover:text-[#ebcb00] transition-colors"
+          aria-label="RSS Feed (rss.xml)"
+          title="RSS Feed (XML)"
+        >
+          <MotionDiv
+            whileHover={{ scale: 1.15, y: -2 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          >
+            <Rss className="h-4 w-4" />
           </MotionDiv>
         </Link>
       )}

@@ -271,6 +271,16 @@ export function PostFooter({ title, tags, prev, next }: PostFooterProps) {
           >
             Code MIT
           </a>
+          <span> · </span>
+          <a
+            href="/rss.xml"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#2a7c13] dark:hover:text-[#ebcb00] hover:underline transition-colors font-mono"
+            title="Subscribe via RSS (XML)"
+          >
+            RSS Feed
+          </a>
         </div>
 
         <div className="flex items-center gap-3.5 text-zinc-600 dark:text-zinc-400">

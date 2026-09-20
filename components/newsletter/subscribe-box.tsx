@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Loader2, Check, Mail, QrCode, ExternalLink, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
+import { Loader2, Check, Mail, QrCode, ExternalLink, Sparkles, ChevronDown, ChevronUp, Rss } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "@/lib/axios";
 import { useTranslation } from "@/context/language-context";
@@ -150,7 +150,20 @@ export function SubscribeBox({ className, source = "publication" }: SubscribeBox
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400 pt-1 gap-2">
-              <span>{t("blog.newsletter.frequency")}</span>
+              <div className="flex items-center gap-2">
+                <span>{t("blog.newsletter.frequency")}</span>
+                <span className="text-zinc-300 dark:text-zinc-700">·</span>
+                <Link
+                  href="/rss.xml"
+                  target="_blank"
+                  prefetch={false}
+                  className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-[#ebcb00] transition-colors"
+                  title="Subscribe via RSS (XML Feed)"
+                >
+                  <Rss className="w-3 h-3" />
+                  <span>RSS</span>
+                </Link>
+              </div>
               
               {/* WhatsApp direct link */}
               <Link

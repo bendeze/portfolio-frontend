@@ -157,14 +157,6 @@ export function AboutSection() {
               <p className="text-zinc-500 dark:text-zinc-500 text-xs sm:text-sm font-mono leading-relaxed">
                 {t("about.p2")}
               </p>
-
-              {/* Status Micro-Badge */}
-              <div className="pt-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
-                  <span className="w-2 h-2 rounded-full bg-[#2a7c13] dark:bg-[#ebcb00] animate-pulse" />
-                  <span>CORE_PLANE: L3-L7 DUAL_STACK</span>
-                </div>
-              </div>
             </div>
 
             {/* Right Column: Visual Specialized Cards */}

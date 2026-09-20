@@ -213,24 +213,24 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
           onWheel={handleWheel}
-          className={`relative w-full min-h-[160px] p-4 sm:p-6 overflow-hidden flex items-center justify-center select-none ${
+          className={`relative w-full min-h-[120px] max-h-[500px] p-3 sm:p-5 overflow-hidden flex items-center justify-center select-none ${
             isDragging ? "cursor-grabbing" : "cursor-grab"
           }`}
         >
           {isLoading && !svgContent ? (
-            <div className="flex items-center justify-center py-12 text-zinc-400 gap-2">
+            <div className="flex items-center justify-center py-10 text-zinc-400 gap-2">
               <Loader2 className="h-5 w-5 animate-spin text-[#ebcb00]" />
               <span className="text-xs font-mono">Rendering diagram...</span>
             </div>
           ) : (
             <div
-              className="flex items-center justify-center transition-transform duration-75 ease-out origin-center"
+              className="w-full flex items-center justify-center transition-transform duration-75 ease-out origin-center"
               style={{
                 transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
               }}
             >
               <div
-                className="flex items-center justify-center [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:w-auto [&_svg]:mx-auto [&_svg]:block"
+                className="w-full flex items-center justify-center [&_svg]:max-w-full [&_svg]:max-h-[440px] [&_svg]:w-auto [&_svg]:h-auto [&_svg]:mx-auto [&_svg]:block"
                 dangerouslySetInnerHTML={{ __html: svgContent }}
               />
             </div>
@@ -348,13 +348,13 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
             }`}
           >
             <div
-              className="flex items-center justify-center transition-transform duration-75 ease-out origin-center"
+              className="w-full flex items-center justify-center transition-transform duration-75 ease-out origin-center"
               style={{
                 transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
               }}
             >
               <div
-                className="flex items-center justify-center [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:w-auto [&_svg]:mx-auto [&_svg]:block"
+                className="w-full flex items-center justify-center [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:mx-auto [&_svg]:block"
                 dangerouslySetInnerHTML={{ __html: svgContent }}
               />
             </div>

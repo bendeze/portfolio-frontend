@@ -71,38 +71,40 @@ export function detectDiagramType(
   rawContent: string,
   languageHint?: string
 ): "mermaid" | "plantuml" | "schema" | null {
-  const lang = (languageHint || "").toLowerCase().replace(/^language-/, "").trim();
+  const hint = (languageHint || "").toLowerCase();
 
-  // Explicit language matching
+  // Explicit language matching in class names or data-language
   if (
-    lang === "mermaid" ||
-    lang === "mermaid-diagram" ||
-    lang === "flowchart" ||
-    lang === "sequencediagram" ||
-    lang === "classdiagram" ||
-    lang === "statediagram" ||
-    lang === "erdiagram" ||
-    lang === "gantt" ||
-    lang === "mindmap" ||
-    lang === "gitgraph" ||
-    lang === "pie" ||
-    lang === "quadrantchart"
+    hint.includes("mermaid") ||
+    hint.includes("flowchart") ||
+    hint.includes("sequencediagram") ||
+    hint.includes("classdiagram") ||
+    hint.includes("statediagram") ||
+    hint.includes("erdiagram") ||
+    hint.includes("gantt") ||
+    hint.includes("mindmap") ||
+    hint.includes("gitgraph") ||
+    hint.includes("quadrantchart")
   ) {
     return "mermaid";
   }
 
-  if (lang === "plantuml" || lang === "puml" || lang === "uml") {
+  if (
+    hint.includes("plantuml") ||
+    hint.includes("puml") ||
+    hint.includes("uml")
+  ) {
     return "plantuml";
   }
 
   if (
-    lang === "sql-schema" ||
-    lang === "schema-sql" ||
-    lang === "schema" ||
-    lang === "db-schema" ||
-    lang === "database-schema" ||
-    lang === "erd" ||
-    lang === "dbml"
+    hint.includes("sql-schema") ||
+    hint.includes("schema-sql") ||
+    hint.includes("db-schema") ||
+    hint.includes("database-schema") ||
+    hint.includes("dbml") ||
+    hint.includes("erd") ||
+    hint.includes("schema")
   ) {
     return "schema";
   }
@@ -197,38 +199,57 @@ export async function renderMermaidSafely(
       startOnLoad: false,
       suppressErrorRendering: true,
       securityLevel: "loose",
-      fontFamily: "var(--font-mono), 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace",
+      fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      fontSize: 12,
       theme: isDark ? "dark" : "neutral",
       flowchart: {
         htmlLabels: true,
         useMaxWidth: true,
         curve: "basis",
-        padding: 12,
-        nodeSpacing: 30,
-        rankSpacing: 35,
+        padding: 6,
+        nodeSpacing: 16,
+        rankSpacing: 20,
+      },
+      sequence: {
+        diagramMarginX: 20,
+        diagramMarginY: 10,
+        actorMargin: 30,
+        width: 120,
+        height: 40,
+        boxMargin: 6,
+        boxTextMargin: 4,
+        noteMargin: 6,
+        messageMargin: 20,
+        mirrorActors: false,
+        bottomMarginAdj: 1,
+        useMaxWidth: true,
       },
       themeVariables: isDark
         ? {
             darkMode: true,
             background: "transparent",
-            mainBkg: "#18181b",
-            nodeBorder: "#3f3f46",
-            nodeTextColor: "#f4f4f5",
-            lineColor: "#a1a1aa",
-            textColor: "#f4f4f5",
-            clusterBkg: "#121215",
-            clusterBorder: "#27272a",
+            mainBkg: "#161b22",
+            nodeBorder: "#30363d",
+            nodeTextColor: "#e6edf3",
+            lineColor: "#8b949e",
+            textColor: "#e6edf3",
+            clusterBkg: "#0d1117",
+            clusterBorder: "#30363d",
+            fontSize: "12px",
+            fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
           }
         : {
             darkMode: false,
             background: "transparent",
             mainBkg: "#ffffff",
-            nodeBorder: "#d4d4d8",
-            nodeTextColor: "#18181b",
-            lineColor: "#71717a",
-            textColor: "#18181b",
-            clusterBkg: "#fbfbfb",
-            clusterBorder: "#e4e4e7",
+            nodeBorder: "#d0d7de",
+            nodeTextColor: "#1f2328",
+            lineColor: "#656d76",
+            textColor: "#1f2328",
+            clusterBkg: "#f6f8fa",
+            clusterBorder: "#d0d7de",
+            fontSize: "12px",
+            fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
           },
     });
 
@@ -237,10 +258,8 @@ export async function renderMermaidSafely(
 
     const { svg } = await mermaid.render(uniqueId, code);
 
-    // Clean inline max-width so diagram fits container responsively
-    // and strip any filter defs, filter attributes, or drop-shadows
+    // Strip unnecessary filter defs/shadows while preserving natural max-width
     const cleanSvg = svg
-      .replace(/style="max-width:\s*[^"]+;?"/i, "")
       .replace(/<filter[\s\S]*?<\/filter>/gi, "")
       .replace(/\s*filter="[^"]*"/gi, "")
       .replace(/\s*filter='[^']*'/gi, "")

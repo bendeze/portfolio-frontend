@@ -148,21 +148,21 @@ Ask:
 
 ```mermaid
 flowchart LR
-    subgraph UserEntity ["User (Auth & Identity)"]
-        U1["id : UUID (PK)"]
-        U2["email : String"]
-        U3["password_hash : String"]
-        U4["is_active : Boolean"]
+    subgraph User ["User (Auth and Identity)"]
+        U1["id: UUID (PK)"]
+        U2["email: String"]
+        U3["password_hash: String"]
+        U4["is_active: Boolean"]
     end
 
-    subgraph ProfileEntity ["Profile (User Data)"]
-        P1["display_name : String"]
-        P2["phone_number : String"]
-        P3["avatar_url : String"]
-        P4["preferences : JSON"]
+    subgraph Profile ["Profile (User Data)"]
+        P1["display_name: String"]
+        P2["phone_number: String"]
+        P3["avatar_url: String"]
+        P4["preferences: JSON"]
     end
 
-    UserEntity --- |"1 : 1 Composition"| ProfileEntity
+    User -->|"1:1 Relationship"| Profile
 ```
 
 > **Requirements describe behavior. Architecture describes structure. Code describes implementation.** Do not collapse all three into one conversation.
@@ -438,27 +438,27 @@ Consider operations, telemetry, and CI before deploying the first release:
 
 ```mermaid
 flowchart TD
-    GitPush[Git Commit & Push] --> CIPipeline
+    GitPush["Git Commit & Push"] --> L1
     
     subgraph CIPipeline ["CI Pipeline"]
-        L1[Ruff Linting & Formatting] --> L2[Mypy Type Checking]
-        L2 --> L3[Pytest Suite with Coverage]
-        L3 --> L4[Docker Image Build & Security Scan]
+        L1["Ruff Linting & Formatting"] --> L2["Mypy Type Checking"]
+        L2 --> L3["Pytest Suite with Coverage"]
+        L3 --> L4["Docker Image Build & Security Scan"]
     end
     
-    L4 --> Registry[(Container Registry)]
-    Registry --> CD[CD Deployment]
+    L4 --> Registry[("Container Registry")]
+    Registry --> CD["CD Deployment"]
     
     subgraph ProductionRuntime ["Production Runtime"]
-        Traefik[TLS Reverse Proxy] --> Web[Django ASGI/WSGI Web Workers]
-        Traefik --> Static[Cloudflare / S3 CDN]
-        Web --> DB[(PostgreSQL 16 High-Availability)]
-        Web --> Redis[(Redis Queue & Cache)]
-        Redis --> Workers[Celery Background Workers]
+        Traefik["TLS Reverse Proxy"] --> Web["Django ASGI/WSGI Web Workers"]
+        Traefik --> Static["Cloudflare / S3 CDN"]
+        Web --> DB[("PostgreSQL 16 High-Availability")]
+        Web --> Redis[("Redis Queue & Cache")]
+        Redis --> Workers["Celery Background Workers"]
         Workers --> DB
     end
     
-    CD --> ProductionRuntime
+    CD --> Traefik
 ```
 
 ---

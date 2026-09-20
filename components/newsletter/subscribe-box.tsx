@@ -35,14 +35,13 @@ export function SubscribeBox({ className, source = "publication" }: SubscribeBox
       setName("");
       setEmail("");
     } catch (err: any) {
-      if (err?.response?.data?.email) {
+      const emailError = err?.response?.data?.errors?.email || err?.response?.data?.email;
+      if (emailError) {
         setStatus("error");
-        setMessage(Array.isArray(err.response.data.email) ? err.response.data.email[0] : t("blog.newsletter.alreadySubscribed"));
+        setMessage(Array.isArray(emailError) ? emailError[0] : (typeof emailError === "string" ? emailError : t("blog.newsletter.alreadySubscribed")));
       } else {
-        setStatus("success");
-        setMessage(t("blog.newsletter.success"));
-        setName("");
-        setEmail("");
+        setStatus("error");
+        setMessage(err?.response?.data?.message || t("blog.newsletter.alreadySubscribed"));
       }
     }
   };

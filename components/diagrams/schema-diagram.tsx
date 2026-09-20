@@ -191,7 +191,7 @@ export function generateMermaidEr(tables: TableDefinition[]): string {
   tables.forEach((t) => {
     t.columns.forEach((c) => {
       if (c.isForeign && c.foreignTable) {
-        relations.push(`    ${c.foreignTable} ||--o{ ${t.name} : "1:1"`);
+        relations.push(`    ${c.foreignTable} ||--o{ ${t.name} : references`);
       }
     });
   });
@@ -283,7 +283,7 @@ export function SchemaDiagram({
       className={className}
       activeTab={activeTab}
       onTabChange={setActiveTab}
-      allowZoom={activeTab !== "diagram"}
+      allowZoom={false}
       availableTabs={[
         { id: "diagram", label: "Visual Tables", icon: <Layers className="h-3 w-3" /> },
         { id: "mermaid", label: "ER Diagram", icon: <GitGraph className="h-3 w-3" /> },
@@ -292,7 +292,7 @@ export function SchemaDiagram({
     >
       {activeTab === "mermaid" ? (
         <div className="w-full">
-          <MermaidDiagram chart={mermaidEr} title={`${title} (ER Diagram)`} />
+          <MermaidDiagram chart={mermaidEr} className="!my-0 !border-0 !bg-transparent" />
         </div>
       ) : activeTab === "diagram" ? (
         <div className="w-full space-y-5">

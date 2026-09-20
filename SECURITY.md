@@ -4,10 +4,10 @@
 
 We actively maintain and provide security updates for the latest release on the `main` branch.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
-| < 0.1   | :x:                |
+| Version | Supported |
+| ------- | --------- |
+| 0.1.x   | Yes       |
+| < 0.1   | No        |
 
 ---
 
@@ -15,8 +15,7 @@ We actively maintain and provide security updates for the latest release on the 
 
 If you discover a security vulnerability within this project, please do **NOT** open a public GitHub issue.
 
-Instead, please report it privately by sending an email to:
-📧 **bonheurndezenc@gmail.com**
+Instead, please report it privately by sending an email to: **bonheurndezenc@gmail.com**
 
 ### Please include in your report:
 - A description of the vulnerability

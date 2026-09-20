@@ -1,195 +1,209 @@
-# Modern Developer Portfolio & Engineering Publication Platform
+# Developer Portfolio & Engineering Publication Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb?style=flat&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A modern, high-performance developer portfolio, technical blog, and systems architecture publication platform. Built with **Next.js 16 (App Router + Turbopack)**, **React 19**, **Tailwind CSS v4**, **Three.js WebGL graphics**, and **Framer Motion**.
+A high-performance personal engineering portfolio, systems architecture publication platform, and technical blog built with Next.js 16 (App Router), React 19, Tailwind CSS v4, Three.js WebGL graphics, and Framer Motion.
 
 ---
 
-## ✨ Features
+## Key Capabilities
 
-- ⚡ **Ultra-Fast Next.js 16 & React 19**: Built with Server Components, Suspense layouts, and Turbopack compiler.
-- 🎨 **Sleek Minimalist Dark/Light Mode**: Engineered with `next-themes` and a custom monochrome + `#ebcb00` gold accent design system.
-- 📖 **Rich MDX Article & System Reader**:
-  - Full support for Markdown, MDX, code syntax highlighting with Shiki, and reading time estimation.
-  - Interactive diagram rendering with **Mermaid.js** and **PlantUML**.
-  - Dynamic table of contents with scrollspy active heading tracking.
-- 🌐 **Internationalization (i18n)**: Seamless instant switching between **English** and **French** with reactive React Context.
-- 📱 **Dual-Mode Newsletter & Broadcasts**:
-  - Email newsletter subscription with backend sync.
-  - WhatsApp broadcast channel integration with direct mobile deep-linking and desktop QR code preview.
-- 🌌 **Interactive 3D WebGL Graphics**: Embedded interactive canvas scenes powered by Three.js & `@react-three/fiber`.
-- 🔍 **Dynamic Search & Filtering**: Client-side article and project filtering synchronized directly with URL state via `nuqs`.
-- 📡 **Automated RSS Feed**: Auto-generated valid RSS 2.0 XML feed at `/rss.xml`.
-- ♿ **Accessible & SEO Optimized**: Semantic HTML5, descriptive OpenGraph & Twitter cards, dynamic metadata generation, and keyboard navigation.
-
----
-
-## 🛠️ Technology Stack
-
-| Layer | Technology |
-| :--- | :--- |
-| **Framework** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) |
-| **UI Library** | [React 19](https://react.dev/) |
-| **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) |
-| **Animations** | [Framer Motion 12](https://www.framer.com/motion/) |
-| **3D / WebGL** | [Three.js](https://threejs.org/) & [@react-three/fiber](https://r3f.docs.pmnd.rs/) |
-| **Content / MDX** | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki`, `mermaid` |
-| **State & URL** | [Zustand 5](https://zustand-demo.pmnd.rs/) & [nuqs](https://nuqs.47ng.com/) |
-| **Data Fetching** | [TanStack React Query v5](https://tanstack.com/query/latest) & [Axios](https://axios-http.com/) |
-| **Icons** | [Lucide React](https://lucide.dev/) & [Tabler Icons](https://tabler-icons.io/) |
+- **Server-Driven Architecture**: Built on Next.js 16 App Router utilizing React Server Components, Suspense boundaries, and Turbopack for optimal load times and minimal client-side JavaScript payloads.
+- **Design System & Theme Engine**: Adaptive dark/light mode powered by `next-themes`, built on an architectural monochrome palette accented with `#ebcb00` gold.
+- **Interactive Technical Documentation & MDX Reader**:
+  - Full support for Markdown and MDX rendering with automated reading time estimation.
+  - Syntax highlighting via Shiki with dual-theme code execution styling.
+  - Client-side and server-rendered architectural diagrams via Mermaid.js and PlantUML.
+  - Scrollspy table of contents tracking active headings in real-time.
+- **Internationalization (i18n)**: Instant runtime localization switching between English and French without page reloads.
+- **Multi-Channel Distribution**:
+  - Email newsletter subscription with asynchronous backend synchronization.
+  - WhatsApp broadcast channel integration with mobile deep-linking and desktop QR code preview modal.
+- **3D Graphics & Visual Computing**: Interactive WebGL scenes powered by Three.js and `@react-three/fiber`.
+- **Search & URL State Synchronization**: Client-side filtering and query state persisted via `nuqs`.
+- **Syndication & SEO**: Automated RSS 2.0 XML feed (`/rss.xml`), dynamic OpenGraph metadata, structured JSON-LD data, and accessible semantic HTML.
 
 ---
 
-## 🚀 Quick Start
+## Technology Stack
+
+| Category | Technology | Role / Purpose |
+| :--- | :--- | :--- |
+| **Framework** | [Next.js 16](https://nextjs.org/) | App Router, Server Components, Route Handlers, Turbopack |
+| **UI Library** | [React 19](https://react.dev/) | Component architecture, Hooks, React Server Actions |
+| **Language** | [TypeScript 5](https://www.typescriptlang.org/) | End-to-end static typing and strict null checks |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Modern utility-first CSS engine with PostCSS integration |
+| **Animations** | [Framer Motion 12](https://www.framer.com/motion/) | Declarative layout transitions, gesture controls, and scroll triggers |
+| **3D / WebGL** | [Three.js](https://threejs.org/) / [R3F](https://r3f.docs.pmnd.rs/) | Interactive background rendering and canvas shaders |
+| **MDX Engine** | `next-mdx-remote`, `shiki`, `mermaid` | Technical markdown parser, syntax highlighter, diagram renderer |
+| **State Management** | [Zustand 5](https://zustand-demo.pmnd.rs/) & [nuqs](https://nuqs.47ng.com/) | Client state and search param URL serialization |
+| **Data Fetching** | [TanStack Query v5](https://tanstack.com/query/latest) & [Axios](https://axios-http.com/) | Server state caching, background refetching, and API integration |
+| **Icons** | [Lucide React](https://lucide.dev/) & [Tabler Icons](https://tabler-icons.io/) | SVG icon system |
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js**: `v20.x` or higher
+- **Node.js**: `v20.x` or higher (LTS recommended)
 - **Package Manager**: `npm`, `pnpm`, or `bun`
 
-### 1. Clone the Repository
+### Installation
 
-```bash
-git clone https://github.com/bonheurNE07/portfolio-frontend.git
-cd portfolio-frontend
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/bonheurNE07/portfolio-frontend.git
+   cd portfolio-frontend
+   ```
 
-### 2. Install Dependencies
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-```
+3. **Configure environment variables:**
+   ```bash
+   cp .env.example .env.local
+   ```
 
-### 3. Setup Environment Variables
+   Update `.env.local` with your backend endpoint and site metadata:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:8000/api
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
 
-Copy the template environment file:
+4. **Start the local development server:**
+   ```bash
+   npm run dev
+   ```
 
-```bash
-cp .env.example .env.local
-```
-
-Configure your `.env.local`:
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000/api
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-### 4. Run the Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 📜 Available Scripts
+## Environment Variables Reference
 
-| Script | Command | Description |
-| :--- | :--- | :--- |
-| `dev` | `npm run dev` | Starts the Next.js development server with Turbopack |
-| `build` | `npm run build` | Compiles the production build |
-| `start` | `npm run start` | Starts the Next.js production server |
-| `lint` | `npm run lint` | Runs ESLint checks across the codebase |
+| Variable | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `NEXT_PUBLIC_API_URL` | `string` | Base URL for the Django REST Framework API backend | `http://localhost:8000/api` |
+| `NEXT_PUBLIC_SITE_URL` | `string` | Canonical domain used for metadata, OpenGraph, and RSS generation | `http://localhost:3000` |
 
 ---
 
-## 📂 Project Structure
+## Available Scripts
+
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Launches the Next.js development server with Turbopack enabled |
+| `npm run build` | Produces an optimized production build in `.next/` |
+| `npm run start` | Runs the compiled Next.js production server |
+| `npm run lint` | Executes ESLint to check for syntax, type, and code quality issues |
+
+---
+
+## Project Structure
 
 ```text
 portfolio-frontend/
-├── app/                      # Next.js App Router (pages & endpoints)
-│   ├── articles/             # Long-form engineering articles
-│   ├── posts/                # Short-form development notes
-│   ├── projects/             # Systems architecture & project breakdowns
-│   ├── rss.xml/              # Auto-generated RSS feed route
-│   ├── layout.tsx            # Global Root Layout
-│   └── page.tsx              # Home / Landing Page
+├── app/                        # Next.js App Router (Pages, Layouts, APIs)
+│   ├── articles/               # Long-form engineering architecture articles
+│   ├── posts/                  # Short-form development logs and notes
+│   ├── projects/               # System breakdowns and case studies
+│   ├── rss.xml/                # Dynamic RSS 2.0 XML feed endpoint
+│   ├── globals.css             # Global Tailwind CSS tokens and base styles
+│   ├── layout.tsx              # Root HTML layout and provider wraps
+│   └── page.tsx                # Landing and hero presentation page
 │
-├── components/               # UI Components
-│   ├── diagrams/             # Mermaid & Architecture diagram visualizers
-│   ├── newsletter/           # Dual-mode subscribe box & WhatsApp channel card
-│   ├── reader/               # MDX content reader & table of contents
-│   ├── sections/             # Home page sections (Hero, About, Projects, Blog, Contact)
-│   └── shared/               # Shared UI elements (Navbar, Footer, Socials, Modals)
+├── components/                 # Modular UI Components
+│   ├── diagrams/               # Architecture diagram visualizers (Mermaid, PlantUML)
+│   ├── newsletter/             # Dual-mode subscription box and WhatsApp preview
+│   ├── reader/                 # MDX reader, heading anchors, and scrollspy TOC
+│   ├── sections/               # Home sections (Hero, About, Projects, Blog, Contact)
+│   └── shared/                 # Shared UI elements (Navbar, Footer, Modals, Badges)
 │
-├── content/                  # MDX & Markdown Articles, Posts, and Projects
-│   ├── articles/             # Deep-dive architecture write-ups
-│   ├── posts/                # Tech notes & tutorials
-│   └── projects/             # Detailed case studies
+├── content/                    # Markdown & MDX Publication Files
+│   ├── _templates/             # Reusable starter templates for content creation
+│   ├── articles/               # Deep-dive system design write-ups
+│   ├── posts/                  # Quick engineering observations
+│   └── projects/               # Project case study data
 │
-├── context/                  # React Contexts (Language & Translation Context)
-├── hooks/                    # Reusable React hooks
-├── lib/                      # Utility functions, Axios client, Translation definitions
-├── providers/                # Global providers (Theme, React Query)
-└── public/                   # Static media (images, QR codes, icons)
+├── context/                    # React Context providers (i18n language context)
+├── hooks/                      # Custom React hooks
+├── lib/                        # Utility helpers, Axios client, content parsing logic
+├── providers/                  # Application providers (Theme, React Query)
+└── public/                     # Static assets (images, icons, previews)
 ```
 
 ---
 
-## ✍️ Authoring Content (MDX)
+## Content Management (MDX)
 
-Articles and case studies are stored in `content/` as Markdown/MDX files. Example frontmatter:
+Technical articles, dev notes, and case studies are managed as Markdown/MDX files within `content/`.
+
+### Article Schema Example
 
 ```markdown
 ---
 title: "Building Scalable Backend Architectures with Django & Redis"
-description: "A comprehensive guide on engineering scalable, event-driven backends."
 publishedAt: "2026-03-15"
-author: "Emmanuel Bonheur Ndeze"
-category: "Backend"
+modifiedAt: "2026-03-16"
+description: "A comprehensive guide on engineering scalable, event-driven backends."
 tags: ["Django", "Architecture", "Python", "Redis"]
+category: "Backend"
 featured: true
+ogImage: "/images/articles/django-architecture.png"
+draft: false
 ---
 
 # Introduction
 
-Write your content with **Markdown**, MDX components, and code blocks:
+Content supports standard Markdown, MDX component embeds, syntax-highlighted code blocks, and diagrams:
 
 ```python
-def example():
-    return "Hello World"
+def process_event(payload: dict) -> bool:
+    # Event processing logic
+    return True
 ```
 ```
 
 ---
 
-## 🤝 Contributing
+## Quality Assurance & Standards
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check the [issues page](https://github.com/bonheurNE07/portfolio-frontend/issues).
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feat/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'feat: add some amazing feature'`)
-4. Push to the Branch (`git push origin feat/AmazingFeature`)
-5. Open a Pull Request
-
-Please review our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
+- **TypeScript**: Strict type checking enforced across all components and utilities.
+- **Performance**: High Lighthouse scores for Performance, Accessibility, Best Practices, and SEO.
+- **Linting**: ESLint configuration following Next.js core Web Vitals recommendations.
 
 ---
 
-## 📄 License
+## Contributing
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Contributions, bug reports, and suggestions are welcome. Please refer to:
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md)
 
 ---
 
-## 👤 Author
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## Maintainer
 
 **Emmanuel Bonheur Ndeze**
+Software Engineer & Systems Architect
 
-- Website: [bonheur.dev](https://bonheur-ndeze.vercel.app/)
+- Portfolio: [bonheur-ndeze.vercel.app](https://bonheur-ndeze.vercel.app/)
 - GitHub: [@bendeze](https://github.com/bendeze)
 - LinkedIn: [Emmanuel Bonheur Ndeze](https://www.linkedin.com/in/bonheur-ndeze-bne/)
 - Twitter / X: [@ndeze_emmanuel](https://x.com/ndeze_emmanuel)
-- WhatsApp Channel: [Join Channel](https://whatsapp.com/channel/0029VbEWMfgEFeXhQ7h6EH2P)
+- WhatsApp Channel: [Engineering Broadcasts](https://whatsapp.com/channel/0029VbEWMfgEFeXhQ7h6EH2P)

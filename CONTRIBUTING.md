@@ -4,7 +4,7 @@ Thank you for your interest in contributing to this project! We welcome contribu
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How to Contribute](#how-to-contribute)
@@ -17,13 +17,13 @@ Thank you for your interest in contributing to this project! We welcome contribu
 
 ---
 
-## 📜 Code of Conduct
+## Code of Conduct
 
 This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
 ---
 
-## 🛠️ How to Contribute
+## How to Contribute
 
 ### Reporting Bugs
 
@@ -74,7 +74,7 @@ Feature requests are always appreciated! Please provide:
 
 ---
 
-## 💻 Development Setup
+## Development Setup
 
 1. **Node.js**: Ensure you have Node.js `>=20.x` installed.
 2. **Install dependencies**:
@@ -92,7 +92,7 @@ Feature requests are always appreciated! Please provide:
 
 ---
 
-## 🎨 Coding Standards
+## Coding Standards
 
 - **TypeScript**: Strict type checking. Avoid `any` where possible.
 - **Components**: Use React Server Components by default; add `"use client"` only when interactive state, effects, or browser APIs are required.
@@ -102,7 +102,7 @@ Feature requests are always appreciated! Please provide:
 
 ---
 
-## 📝 Commit Message Conventions
+## Commit Message Conventions
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
@@ -118,4 +118,4 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/) speci
 
 ---
 
-Thank you for contributing! 🚀
+Thank you for contributing!

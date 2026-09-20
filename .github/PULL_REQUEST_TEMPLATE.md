@@ -4,12 +4,12 @@ Provide a clear and concise description of the changes made in this pull request
 
 ## Type of Change
 
-- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
-- [ ] ✨ New feature (non-breaking change which adds functionality)
-- [ ] 🎨 UI / Design enhancement
-- [ ] 📝 Documentation update
-- [ ] ⚡ Performance improvement
-- [ ] ♻️ Code refactoring
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] UI / Design enhancement
+- [ ] Documentation update
+- [ ] Performance improvement
+- [ ] Code refactoring
 
 ## Checklist
 

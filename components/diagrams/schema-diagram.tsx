@@ -46,13 +46,19 @@ export function parseSqlDdl(sql: string): TableDefinition[] {
   const cleaned = cleanDiagramSource(sql);
   const cleanSql = cleaned.replace(/--.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "");
 
-  // Match CREATE TABLE blocks
-  const tableRegex = /CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?["`]?([a-zA-Z0-9_]+)["`]?\s*\(([\s\S]*?)\);/gi;
-  let tableMatch;
+  // Match all CREATE TABLE statements (with or without semicolons, with varying spacing)
+  const createTableSplits = cleanSql.split(/(?=CREATE\s+TABLE\b)/i);
 
-  while ((tableMatch = tableRegex.exec(cleanSql)) !== null) {
-    const tableName = tableMatch[1];
-    const body = tableMatch[2];
+  for (const block of createTableSplits) {
+    const headerMatch = block.match(/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?["`]?([a-zA-Z0-9_]+)["`]?\s*\(/i);
+    if (!headerMatch) continue;
+
+    const tableName = headerMatch[1];
+    const startIndex = block.indexOf("(") + 1;
+    const lastParenIndex = block.lastIndexOf(")");
+    if (startIndex <= 0 || lastParenIndex <= startIndex) continue;
+
+    const body = block.substring(startIndex, lastParenIndex);
 
     const lines: string[] = [];
     let currentLine = "";
@@ -89,23 +95,12 @@ export function parseSqlDdl(sql: string): TableDefinition[] {
       }
 
       const fkMatch = line.match(
-        /^FOREIGN\s+KEY\s*\(([^)]+)\)\s*REFERENCES\s+["`]?([a-zA-Z0-9_]+)["`]?\s*(?:\(([^)]+)\))?/i
+        /^(?:CONSTRAINT\s+["`]?\w+["`]?\s+)?FOREIGN\s+KEY\s*\(([^)]+)\)\s*REFERENCES\s+["`]?([a-zA-Z0-9_]+)["`]?\s*(?:\(([^)]+)\))?/i
       );
       if (fkMatch) {
         const col = fkMatch[1].trim().replace(/["`]/g, "");
         const refTable = fkMatch[2].trim().replace(/["`]/g, "");
         const refCol = fkMatch[3] ? fkMatch[3].trim().replace(/["`]/g, "") : "id";
-        tableForeignKeys.push({ col, refTable, refCol });
-        continue;
-      }
-
-      const constraintMatch = line.match(
-        /^CONSTRAINT\s+["`]?\w+["`]?\s+FOREIGN\s+KEY\s*\(([^)]+)\)\s*REFERENCES\s+["`]?([a-zA-Z0-9_]+)["`]?\s*(?:\(([^)]+)\))?/i
-      );
-      if (constraintMatch) {
-        const col = constraintMatch[1].trim().replace(/["`]/g, "");
-        const refTable = constraintMatch[2].trim().replace(/["`]/g, "");
-        const refCol = constraintMatch[3] ? constraintMatch[3].trim().replace(/["`]/g, "") : "id";
         tableForeignKeys.push({ col, refTable, refCol });
         continue;
       }
@@ -196,7 +191,7 @@ export function generateMermaidEr(tables: TableDefinition[]): string {
   tables.forEach((t) => {
     t.columns.forEach((c) => {
       if (c.isForeign && c.foreignTable) {
-        relations.push(`    ${c.foreignTable} ||--o{ ${t.name} : "has"`);
+        relations.push(`    ${c.foreignTable} ||--o{ ${t.name} : "1:1"`);
       }
     });
   });
@@ -209,7 +204,7 @@ export function generateMermaidEr(tables: TableDefinition[]): string {
   tables.forEach((t) => {
     er += `    ${t.name} {\n`;
     t.columns.forEach((c) => {
-      const cleanType = c.type.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+      const cleanType = c.type.split("(")[0].replace(/[^a-zA-Z0-9]/g, "").toLowerCase() || "string";
       const keyFlag = c.isPrimary ? "PK" : c.isForeign ? "FK" : "";
       er += `        ${cleanType} ${c.name} ${keyFlag}\n`;
     });

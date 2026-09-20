@@ -213,7 +213,14 @@ export const translations = {
         frequency: "Quality content, twice a month.",
         success: "Thanks for subscribing! You'll receive technical updates directly in your inbox.",
         invalidEmail: "Please enter a valid email address.",
-        alreadySubscribed: "This email is already subscribed."
+        alreadySubscribed: "This email is already subscribed.",
+        emailTab: "Email Newsletter",
+        whatsappTab: "WhatsApp Channel",
+        whatsappDesc: "Get instant article drop alerts, tech thoughts, and software architecture write-ups directly on WhatsApp.",
+        joinWhatsApp: "Join WhatsApp Channel",
+        scanQr: "Scan QR Code",
+        hideQr: "Hide QR Code",
+        scanInstructions: "Scan with your phone camera to join the broadcast channel."
       },
       pagination: {
         prev: "Previous",
@@ -493,7 +500,14 @@ export const translations = {
         frequency: "Du contenu de qualité, deux fois par mois.",
         success: "Merci pour votre inscription ! Vous recevrez nos analyses techniques directement dans votre boîte mail.",
         invalidEmail: "Veuillez entrer une adresse e-mail valide.",
-        alreadySubscribed: "Cette adresse e-mail est déjà inscrite."
+        alreadySubscribed: "Cette adresse e-mail est déjà inscrite.",
+        emailTab: "Infolettre Email",
+        whatsappTab: "Canal WhatsApp",
+        whatsappDesc: "Recevez des alertes d'articles instantanées, des réflexions techniques et des retours d'expérience directement sur WhatsApp.",
+        joinWhatsApp: "Rejoindre le canal WhatsApp",
+        scanQr: "Scanner le QR Code",
+        hideQr: "Masquer le QR Code",
+        scanInstructions: "Scannez avec l'appareil photo de votre téléphone pour rejoindre le canal."
       },
       pagination: {
         prev: "Précédent",

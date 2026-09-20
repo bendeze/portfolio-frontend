@@ -1,6 +1,7 @@
 import { getAllContent } from "@/lib/content";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bonheur-ndeze.vercel.app/";
+const RAW_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bonheur-ndeze.vercel.app";
+const SITE_URL = RAW_SITE_URL.replace(/\/+$/, "");
 
 function escapeXml(unsafe: string): string {
   return unsafe

@@ -86,13 +86,13 @@ export function DiagramContainer({
       <div
         ref={containerRef}
         className={cn(
-          "relative my-4 rounded-md border-[0.5px] border-zinc-300/80 dark:border-zinc-800 bg-transparent overflow-hidden transition-all duration-200 shadow-none",
+          "relative my-4 rounded-md border-[0.5px] border-dashed border-[#ebcb00]/50 dark:border-[#ebcb00]/40 bg-transparent overflow-hidden transition-all duration-200 shadow-none",
           isFullscreen ? "hidden" : "block",
           className
         )}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-1.5 px-3 py-1.5 border-b-[0.5px] border-zinc-300/80 dark:border-zinc-800 bg-transparent">
+        <div className="flex flex-wrap items-center justify-between gap-1.5 px-3 py-1.5 border-b-[0.5px] border-dashed border-[#ebcb00]/30 dark:border-[#ebcb00]/20 bg-transparent">
           {/* Left Title & Badge */}
           <div className="flex items-center gap-2">
             {icon && <span className="text-zinc-500 dark:text-zinc-400">{icon}</span>}

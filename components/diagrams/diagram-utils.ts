@@ -195,13 +195,16 @@ export async function renderMermaidSafely(
 
     const mermaid = (await import("mermaid")).default;
 
+    const textColor = isDark ? "#ffffff" : "#000000";
+    const brandYellow = "#ebcb00";
+
     mermaid.initialize({
       startOnLoad: false,
       suppressErrorRendering: true,
       securityLevel: "loose",
       fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
       fontSize: 12,
-      theme: isDark ? "dark" : "neutral",
+      theme: "base",
       flowchart: {
         htmlLabels: true,
         useMaxWidth: true,
@@ -224,33 +227,73 @@ export async function renderMermaidSafely(
         bottomMarginAdj: 1,
         useMaxWidth: true,
       },
-      themeVariables: isDark
-        ? {
-            darkMode: true,
-            background: "transparent",
-            mainBkg: "#161b22",
-            nodeBorder: "#30363d",
-            nodeTextColor: "#e6edf3",
-            lineColor: "#8b949e",
-            textColor: "#e6edf3",
-            clusterBkg: "#0d1117",
-            clusterBorder: "#30363d",
-            fontSize: "12px",
-            fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-          }
-        : {
-            darkMode: false,
-            background: "transparent",
-            mainBkg: "#ffffff",
-            nodeBorder: "#d0d7de",
-            nodeTextColor: "#1f2328",
-            lineColor: "#656d76",
-            textColor: "#1f2328",
-            clusterBkg: "#f6f8fa",
-            clusterBorder: "#d0d7de",
-            fontSize: "12px",
-            fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-          },
+      themeVariables: {
+        darkMode: isDark,
+        background: "transparent",
+        primaryColor: "transparent",
+        primaryTextColor: textColor,
+        primaryBorderColor: brandYellow,
+        nodeBorder: brandYellow,
+        mainBkg: "transparent",
+        nodeBkg: "transparent",
+        nodeTextColor: textColor,
+        lineColor: brandYellow,
+        textColor: textColor,
+        titleColor: textColor,
+        edgeLabelBackground: "transparent",
+        clusterBkg: "transparent",
+        clusterBorder: brandYellow,
+        actorBkg: "transparent",
+        actorBorder: brandYellow,
+        actorTextColor: textColor,
+        actorLineColor: brandYellow,
+        signalColor: brandYellow,
+        signalTextColor: textColor,
+        labelBoxBkgColor: "transparent",
+        labelBoxBorderColor: brandYellow,
+        labelTextColor: textColor,
+        loopTextColor: textColor,
+        fontSize: "12px",
+        fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      },
+      themeCSS: `
+        .node rect, .node circle, .node ellipse, .node polygon, .node path {
+          fill: transparent !important;
+          stroke: ${brandYellow} !important;
+          stroke-dasharray: 4, 3 !important;
+          stroke-width: 1.25px !important;
+        }
+        .cluster rect {
+          fill: transparent !important;
+          stroke: ${brandYellow} !important;
+          stroke-dasharray: 5, 4 !important;
+          stroke-width: 1px !important;
+        }
+        .actor {
+          fill: transparent !important;
+          stroke: ${brandYellow} !important;
+          stroke-dasharray: 4, 3 !important;
+        }
+        text, .label text, .node text, .actor text, text.actor, span.nodeLabel, .nodeLabel, div.nodeLabel, p {
+          fill: ${textColor} !important;
+          color: ${textColor} !important;
+          font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        }
+        .edgePath .path, .flowchart-link {
+          stroke: ${brandYellow} !important;
+        }
+        .marker, #arrowhead, #crosshead {
+          fill: ${brandYellow} !important;
+          stroke: ${brandYellow} !important;
+        }
+        .edgeLabel {
+          background-color: transparent !important;
+          color: ${textColor} !important;
+        }
+        .edgeLabel rect {
+          fill: transparent !important;
+        }
+      `,
     });
 
     diagramCounter += 1;

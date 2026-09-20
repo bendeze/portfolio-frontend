@@ -178,7 +178,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
     <>
       {/* Normal In-Article Diagram View */}
       <div
-        className={`group relative my-6 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/40 overflow-hidden ${
+        className={`group relative my-6 rounded-lg border-[0.5px] border-dashed border-[#ebcb00]/50 dark:border-[#ebcb00]/40 bg-transparent overflow-hidden ${
           className || ""
         }`}
       >

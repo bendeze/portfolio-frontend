@@ -290,14 +290,14 @@ export function SchemaDiagram({
                   onMouseEnter={() => setHighlightedTable(table.name)}
                   onMouseLeave={() => setHighlightedTable(null)}
                   className={cn(
-                    "rounded border-[0.5px] bg-transparent shadow-none overflow-hidden transition-colors duration-150",
+                    "rounded border-[0.5px] border-dashed bg-transparent shadow-none overflow-hidden transition-colors duration-150",
                     isTargeted
                       ? "border-[#ebcb00] ring-1 ring-[#ebcb00]"
-                      : "border-zinc-300/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700"
+                      : "border-[#ebcb00]/50 dark:border-[#ebcb00]/40 hover:border-[#ebcb00]"
                   )}
                 >
                   {/* Table Header */}
-                  <div className="flex items-center justify-between px-3 py-1.5 bg-transparent border-b-[0.5px] border-zinc-200 dark:border-zinc-800">
+                  <div className="flex items-center justify-between px-3 py-1.5 bg-transparent border-b-[0.5px] border-dashed border-[#ebcb00]/30 dark:border-[#ebcb00]/20">
                     <div className="flex items-center gap-1.5">
                       <Database className="h-3 w-3 text-[#ebcb00]" />
                       <span className="font-mono text-xs font-bold text-foreground tracking-tight">

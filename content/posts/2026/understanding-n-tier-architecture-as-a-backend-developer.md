@@ -28,16 +28,10 @@ N-tier architecture takes this further by separating application responsibilitie
 
 A typical three-tier application looks like this:
 
-```text
-Client / Browser
-       |
-       | HTTP
-       v
-Application Server
-       |
-       | SQL
-       v
-Database Server
+```mermaid
+flowchart TD
+    Client([Client / Browser]) -->|HTTP| App[Application Server]
+    App -->|SQL| DB[(Database Server)]
 ```
 
 The three tiers are:
@@ -56,17 +50,11 @@ To make the concept practical, I mapped it to the kind of backend application I 
 
 Consider a simple API for retrieving products from a database:
 
-```text
-Browser / Frontend
-        |
-        v
-Django REST Framework API
-        |
-        v
-Business Logic / Services
-        |
-        v
-Database
+```mermaid
+flowchart TD
+    Client([Browser / Frontend]) --> API[Django REST Framework API]
+    API --> BL[Business Logic / Services]
+    BL --> DB[(Database)]
 ```
 
 In this example, the diagram shows logical responsibilities. They do not automatically represent four separate physical tiers.

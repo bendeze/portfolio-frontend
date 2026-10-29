@@ -47,6 +47,7 @@ flowchart TD
         API["FastAPI REST API"]
         Auth["Authentication and Validation"]
         Services["Application Services"]
+
         API --> Auth
         Auth --> Services
     end
@@ -54,12 +55,16 @@ flowchart TD
     subgraph Data["Data Tier"]
         Models["SQLModel / SQLAlchemy"]
         DB[("PostgreSQL Database")]
+
         Models --> DB
     end
 
     User -->|HTTPS| CDN
     User -->|HTTPS REST Requests| API
     Services --> Models
+
+    Monitoring["Monitoring and Logs"]
+    API -.-> Monitoring
 ```
 
 The frontend is publicly available on Cloudflare Pages. The next deployment milestone is to run the FastAPI backend independently, connect it to a persistent PostgreSQL database, and verify the complete request lifecycle.

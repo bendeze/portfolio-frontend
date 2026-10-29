@@ -13,7 +13,7 @@ metrics:
     value: "PostgreSQL / SQLite"
 liveUrl: "https://focus-web-1nr.pages.dev/"
 githubUrl: "https://github.com/bendeze/focus-web"
-ogImage: "/images/projects/focus-web.png"
+ogImage: "/assets/images/projects/focus-web.png"
 draft: false
 ---
 

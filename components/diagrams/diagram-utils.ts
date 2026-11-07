@@ -61,6 +61,9 @@ export function cleanDiagramSource(raw: string): string {
   // Strip trailing tilde fence
   clean = clean.replace(/\n?~~~\s*$/, "");
 
+  // Collapse 3 or more consecutive newlines into 2 (preserving intentional paragraph breaks)
+  clean = clean.replace(/\n{3,}/g, "\n\n");
+
   return clean.trim();
 }
 

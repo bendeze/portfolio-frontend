@@ -86,10 +86,7 @@ export function MermaidDiagram({ chart, title, className }: MermaidDiagramProps)
         if (isMounted) {
           console.error("Mermaid diagram render error:", err);
           const rawMsg = err instanceof Error ? err.message : String(err);
-          const cleanMsg = rawMsg
-            .split("\n")[0]
-            .replace(/Parse error on line \d+:/i, "Syntax error:")
-            .trim();
+          const cleanMsg = rawMsg.split("\n")[0].trim();
 
           setError(cleanMsg || "Invalid diagram syntax");
           setIsLoading(false);

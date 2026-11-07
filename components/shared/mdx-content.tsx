@@ -1,10 +1,48 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import { visit } from "unist-util-visit";
 
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 
 import { DiagramCodeDetector, MermaidDiagram, PlantUMLDiagram, SchemaDiagram } from "@/components/diagrams";
+
+function remarkTransformDiagrams() {
+  return (tree: any) => {
+    visit(tree, "code", (node: any, index: number | undefined, parent: any) => {
+      if (!parent || typeof index !== "number") return;
+      const lang = (node.lang || "").toLowerCase();
+
+      if (lang === "mermaid") {
+        parent.children[index] = {
+          type: "mdxJsxFlowElement",
+          name: "Mermaid",
+          attributes: [
+            {
+              type: "mdxJsxAttribute",
+              name: "chart",
+              value: node.value,
+            },
+          ],
+          children: [],
+        };
+      } else if (lang === "plantuml" || lang === "puml" || lang === "uml") {
+        parent.children[index] = {
+          type: "mdxJsxFlowElement",
+          name: "PlantUML",
+          attributes: [
+            {
+              type: "mdxJsxAttribute",
+              name: "code",
+              value: node.value,
+            },
+          ],
+          children: [],
+        };
+      }
+    });
+  };
+}
 
 // Define your custom components (like standard HTML or your own React components)
 const components = {
@@ -30,7 +68,7 @@ const components = {
 
 const options = {
   mdxOptions: {
-    remarkPlugins: [remarkGfm, remarkBreaks],
+    remarkPlugins: [remarkGfm, remarkBreaks, remarkTransformDiagrams],
     rehypePlugins: [
       // This plugin adds syntax highlighting
       [

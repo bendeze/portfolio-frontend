@@ -21,7 +21,15 @@ export function extractTextContent(node: React.ReactNode): string {
   if (!node) return "";
   
   if (Array.isArray(node)) {
-    return node.map(extractTextContent).join("");
+    let result = "";
+    for (const child of node) {
+      const text = extractTextContent(child);
+      if (text === "\n" && result.endsWith("\n")) {
+        continue;
+      }
+      result += text;
+    }
+    return result;
   }
   
   if (React.isValidElement<{ children?: React.ReactNode; className?: string; "data-line"?: string }>(node)) {
@@ -32,7 +40,7 @@ export function extractTextContent(node: React.ReactNode): string {
 
     const inner = extractTextContent(node.props?.children);
     if (isLine || hasDataLine) {
-      return `${inner}\n`;
+      return inner.endsWith("\n") ? inner : `${inner}\n`;
     }
     return inner;
   }
